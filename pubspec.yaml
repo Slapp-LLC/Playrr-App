@@ -30,11 +30,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  url_launcher: ^6.1.10
+
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.3
+  flutter_config: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -85,8 +89,12 @@ flutter:
     - assets/icons/NotificationIcon.svg
     - assets/icons/SearchIcon.svg
     - assets/icons/ShareIcon.svg
+    - assets/icons/BackIcon.svg
     - assets/icons/TicketsIcon.svg
+    - assets/icons/GoogleIcon.svg
     - assets/images/LandingBackground.png
+    - assets/images/SignUpHero.png
+
   fonts:
       - family: Bebas Neue
         fonts:

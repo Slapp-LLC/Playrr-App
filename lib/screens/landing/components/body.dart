@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/components/MainButton.dart';
+import 'package:playrr_app/components/OuterLink.dart';
+import 'package:playrr_app/screens/login/login.screen.dart';
+import 'package:playrr_app/screens/signup/signup.screen.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -12,6 +15,8 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Uri terms = Uri.parse('https://flutter.dev');
+
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -61,7 +66,10 @@ class Body extends StatelessWidget {
               child: MainButton(
                   text: 'Ingresar',
                   onPressed: () {
-                    printHello();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()));
                   },
                   isPrimary: false),
             ),
@@ -71,10 +79,21 @@ class Body extends StatelessWidget {
                 text: 'Registrarse',
                 isPrimary: true,
                 onPressed: () {
-                  printHello();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()));
                 },
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: OuterLink(url: terms, text: 'Terminos y condiciones'),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: OuterLink(url: terms, text: 'Politicas de privacidad'),
+            )
           ],
         ),
       ),
