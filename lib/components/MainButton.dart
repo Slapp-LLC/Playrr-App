@@ -5,11 +5,14 @@ class MainButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   final bool isPrimary;
+  final bool isLoading;
+
   const MainButton(
       {Key? key,
       required this.text,
       required this.onPressed,
-      required this.isPrimary})
+      required this.isPrimary,
+      this.isLoading = false})
       : super(key: key);
 
   @override
@@ -25,12 +28,22 @@ class MainButton extends StatelessWidget {
       child: TextButton(
         style: ButtonStyle(
             overlayColor: MaterialStateProperty.all(Colors.transparent)),
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(
-              color: textColor, fontFamily: 'Bebas Neue', fontSize: 23),
-        ),
+        onPressed: isLoading ? null : onPressed,
+        child: isLoading
+            ? SizedBox(
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(textColor),
+                  value: null, // set to null to use the default size
+                  strokeWidth: 2.0,
+                ),
+              )
+            : Text(
+                text,
+                style: TextStyle(
+                    color: textColor, fontFamily: 'Bebas Neue', fontSize: 23),
+              ),
       ),
     );
   }

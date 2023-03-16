@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:playrr_app/components/MainAppBar.dart';
+import 'package:playrr_app/components/MainDrawer.dart';
+import 'package:playrr_app/screens/home/components/body.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,12 +13,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(color: Colors.black),
-      child: const Text(
-        'Home',
-        style: TextStyle(color: Colors.white),
-      ),
+    return const Scaffold(
+      appBar: MainAppBar(),
+      body: Body(),
+      endDrawer: MainDrawer(),
     );
   }
 }

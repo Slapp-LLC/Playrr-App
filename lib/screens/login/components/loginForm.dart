@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -17,9 +19,14 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
+  bool _isLoading = false;
   // FlutterConfig.get('API_ENDPOINT');
 
-  void _submitForm(BuildContext context) async {
+  Future<void> _submitForm(BuildContext context) async {
+    setState(() {
+      _isLoading = true;
+    });
+
     final form = _formKey.currentState;
     if (form!.validate()) {
       form.save();
@@ -29,7 +36,6 @@ class _LoginFormState extends State<LoginForm> {
       final response = await dio.post(
           '${dotenv.env['API_ENDPOINT']}/auth/login',
           data: {'email': _email, 'password': _password});
-
       if (response.statusCode == 200 || response.statusCode == 201) {
         final jsonResponse = response.data;
         final token = jsonResponse['token'];
@@ -37,11 +43,6 @@ class _LoginFormState extends State<LoginForm> {
         await storage.write(key: 'token', value: token).then((value) =>
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const Home())));
-      } else {
-        print('Works');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${response.statusCode}'),
-        ));
       }
     } catch (e) {
       String errorMessage;
@@ -64,6 +65,10 @@ class _LoginFormState extends State<LoginForm> {
           showCloseIcon: true,
         ),
       );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
     // _handleLocalSignIn();
   }
@@ -143,9 +148,13 @@ class _LoginFormState extends State<LoginForm> {
           Padding(
             padding: const EdgeInsets.only(top: 18),
             child: MainButton(
+              isLoading: _isLoading,
               text: 'Ingresar',
               isPrimary: true,
-              onPressed: () => _submitForm(context),
+              onPressed: () => {
+                if (_formKey.currentState!.validate())
+                  {_formKey.currentState!.save(), _submitForm(context)}
+              },
             ),
           )
         ],

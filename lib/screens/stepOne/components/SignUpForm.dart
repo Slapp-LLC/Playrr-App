@@ -30,16 +30,22 @@ class _SignUpFormState extends State<SignUpForm> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
-                color: secondaryBackground,
-                borderRadius: BorderRadius.circular(50)),
             margin: const EdgeInsets.symmetric(vertical: 9),
-            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
-              decoration: const InputDecoration(
-                  hintText: 'Nombre',
-                  hintStyle: TextStyle(color: bodyTextColor),
-                  border: InputBorder.none),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: secondaryBackground,
+                hintText: 'Nombre',
+                hintStyle: const TextStyle(color: bodyTextColor),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                    borderSide: BorderSide.none),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                  borderSide:
+                      const BorderSide(color: greenPrimaryColor, width: 2.0),
+                ),
+              ),
               validator: (value) {
                 if (value == null) {
                   return 'Por favor ingresa tu nombre';
@@ -55,16 +61,22 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           Container(
-            decoration: BoxDecoration(
-                color: secondaryBackground,
-                borderRadius: BorderRadius.circular(50)),
             margin: const EdgeInsets.symmetric(vertical: 9),
-            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
-              decoration: const InputDecoration(
-                  hintText: 'Apellido',
-                  hintStyle: TextStyle(color: bodyTextColor),
-                  border: InputBorder.none),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: secondaryBackground,
+                hintText: 'Apellido',
+                hintStyle: const TextStyle(color: bodyTextColor),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                    borderSide: BorderSide.none),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                  borderSide:
+                      const BorderSide(color: greenPrimaryColor, width: 2.0),
+                ),
+              ),
               validator: (value) {
                 if (value == null) {
                   return 'Por favor ingresa tu nombre';
@@ -84,12 +96,19 @@ class _SignUpFormState extends State<SignUpForm> {
                 color: secondaryBackground,
                 borderRadius: BorderRadius.circular(50)),
             margin: const EdgeInsets.symmetric(vertical: 9),
-            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
-              decoration: const InputDecoration(
-                  hintText: 'Email',
-                  hintStyle: TextStyle(color: bodyTextColor),
-                  border: InputBorder.none),
+              decoration: InputDecoration(
+                hintText: 'Email',
+                hintStyle: const TextStyle(color: bodyTextColor),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                    borderSide: BorderSide.none),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                  borderSide:
+                      const BorderSide(color: greenPrimaryColor, width: 2.0),
+                ),
+              ),
               validator: (value) {
                 if (value == null) {
                   return 'Por favor ingresa tu email';
@@ -109,13 +128,19 @@ class _SignUpFormState extends State<SignUpForm> {
                 color: secondaryBackground,
                 borderRadius: BorderRadius.circular(50)),
             margin: const EdgeInsets.symmetric(vertical: 9),
-            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
               obscureText: true,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                   hintText: 'Contraseña',
-                  hintStyle: TextStyle(color: bodyTextColor),
-                  border: InputBorder.none),
+                  hintStyle: const TextStyle(color: bodyTextColor),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                      borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                    borderSide:
+                        const BorderSide(color: greenPrimaryColor, width: 2.0),
+                  )),
               validator: (value) {
                 if (value == null) {
                   return 'Por favor ingresa tu nombre';

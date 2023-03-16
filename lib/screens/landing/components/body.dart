@@ -4,14 +4,10 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/components/OuterLink.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
-import 'package:playrr_app/screens/signup/signup.screen.dart';
+import 'package:playrr_app/screens/stepOne/steOneSignUp.screen.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
-
-  void printHello() {
-    print('Hello');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +78,7 @@ class Body extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SignUpScreen()));
+                          builder: (context) => const StepOneSignUp()));
                 },
               ),
             ),

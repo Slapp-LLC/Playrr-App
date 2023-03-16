@@ -18,6 +18,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # of the product and file versions while build-number is used as the build suffix.
 version: 1.0.0+1
 
+exports: 
+  - lib/utils/is_logged_in.dart
 environment:
   sdk: '>=2.19.0 <3.0.0'
 
@@ -96,6 +98,8 @@ flutter:
     - assets/icons/GoogleIcon.svg
     - assets/images/LandingBackground.png
     - assets/images/SignUpHero.png
+    - assets/images/Splash.png
+    - assets/images/Avatar.png
     - .env
 
   fonts:
