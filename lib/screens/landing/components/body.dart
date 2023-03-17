@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/components/OuterLink.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
-import 'package:playrr_app/screens/stepOne/steOneSignUp.screen.dart';
+import 'package:playrr_app/screens/signup/steOneSignUp.screen.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);

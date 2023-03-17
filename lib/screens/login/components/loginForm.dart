@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -7,6 +5,7 @@ import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
+import 'package:playrr_app/services/authentication_service.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -31,46 +30,10 @@ class _LoginFormState extends State<LoginForm> {
     if (form!.validate()) {
       form.save();
     }
-    try {
-      final dio = Dio();
-      final response = await dio.post(
-          '${dotenv.env['API_ENDPOINT']}/auth/login',
-          data: {'email': _email, 'password': _password});
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final jsonResponse = response.data;
-        final token = jsonResponse['token'];
-        final storage = new FlutterSecureStorage();
-        await storage.write(key: 'token', value: token).then((value) =>
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Home())));
-      }
-    } catch (e) {
-      String errorMessage;
-      if (e is DioError) {
-        if (e.response?.statusCode == 400) {
-          errorMessage = 'Email o contraseña inválidos';
-        } else {
-          errorMessage = 'Ha ocurrido un error, por favor intenta mas tarde.';
-        }
-      } else {
-        errorMessage = 'Ha ocurrido un error, por favor intenta mas tarde.';
-      }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: errorColor,
-          content: Text(
-            'Error: $errorMessage',
-            style: const TextStyle(color: Colors.white70),
-          ),
-          showCloseIcon: true,
-        ),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
-    // _handleLocalSignIn();
+    await AuthService.instance.login(_email, _password, context);
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -99,9 +62,11 @@ class _LoginFormState extends State<LoginForm> {
                   filled: true,
                 ),
                 validator: (value) {
-                  if (value == null) {
+                  if (value == null || value.isEmpty) {
                     return 'Por favor ingresa un email valido.';
-                  } else if (value.isEmpty) {
+                  }
+                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                      .hasMatch(value)) {
                     return 'Por favor ingresa un email valido.';
                   }
                   return null;

@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:playrr_app/components/OutlineIconButton.dart';
 import 'package:playrr_app/screens/login/components/loginForm.dart';
-import 'package:dio/dio.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:playrr_app/services/authentication_service.dart';
+import 'package:playrr_app/screens/passwordRecovery/passwordRecover.screen.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -31,7 +25,12 @@ class _BodyState extends State<Body> {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PasswordRecovery()));
+                    },
                     style: const ButtonStyle(
                         overlayColor:
                             MaterialStatePropertyAll(Colors.transparent)),

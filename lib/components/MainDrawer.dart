@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/screens/landing/landing.screen.dart';
-import 'package:playrr_app/utils/logout.dart';
 
-class MainDrawer extends StatelessWidget {
+import 'package:get/instance_manager.dart';
+import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/screens/landing/landing.screen.dart';
+import 'package:playrr_app/services/authentication_service.dart';
+
+class MainDrawer extends StatefulWidget {
   const MainDrawer({super.key});
 
+  @override
+  State<MainDrawer> createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends State<MainDrawer> {
+  final userController = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -30,9 +37,9 @@ class MainDrawer extends StatelessWidget {
                       width: 80,
                     ),
                   ),
-                  const Text(
-                    'Pierre Campoverde',
-                    style: TextStyle(
+                  Text(
+                    '${userController.userData['name']} ${userController.userData['lastName']}',
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
                       fontSize: 20,
@@ -49,7 +56,7 @@ class MainDrawer extends StatelessWidget {
                   fontWeight: FontWeight.w400),
             ),
             onTap: () {
-              logout(context);
+              AuthService.instance.logOut();
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const LandingScreen()),
