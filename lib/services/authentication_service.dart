@@ -10,6 +10,7 @@ import 'package:get/state_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
+import 'package:playrr_app/screens/postSignup/secondStep/stepTwo.screen.dart';
 
 class AuthService {
   //Initializations
@@ -121,7 +122,7 @@ class AuthService {
       userController.setUserData(jsonResponse['user']);
       await storage.write(key: 'token', value: jsonResponse['token']);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const Home()));
+          context, MaterialPageRoute(builder: (context) => const StepTwo()));
       return response;
     } catch (e) {
       if (e is DioError &&

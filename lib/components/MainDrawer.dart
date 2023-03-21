@@ -52,7 +52,7 @@ class _MainDrawerState extends State<MainDrawer> {
               'Logout',
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 17,
                   fontWeight: FontWeight.w400),
             ),
             onTap: () {

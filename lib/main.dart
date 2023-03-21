@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/signup.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final UserController userController = Get.put(UserController());
+  final SignUpController signUpController = Get.put(SignUpController());
 
   @override
   void initState() {
