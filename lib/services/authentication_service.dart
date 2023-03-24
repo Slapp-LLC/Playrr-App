@@ -92,7 +92,9 @@ class AuthService {
             showCloseIcon: true,
           ),
         );
+        print(e);
       } else {
+        print(e);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             backgroundColor: errorColor,
@@ -118,6 +120,7 @@ class AuthService {
         'name': name,
         'lastName': lastName
       });
+
       final jsonResponse = response.data;
       userController.setUserData(jsonResponse['user']);
       await storage.write(key: 'token', value: jsonResponse['token']);
@@ -171,7 +174,50 @@ class AuthService {
     }
   }
 
-  void logOut() async {
+  Future updateUser(int age, String gender, context) async {
+    try {
+      String? token = await storage.read(key: 'token');
+      if (token == null) {
+        return false;
+      }
+      int userId = userController.userData['id'];
+      final res = await dio.put(
+          '${dotenv.env['API_ENDPOINT']}/user/edit/$userId',
+          data: {'age': age, 'gender': gender},
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+    } catch (e) {
+      if (e is DioError &&
+          (e.response?.statusCode == 404 || e.response?.statusCode == 400)) {
+        String errorMessage =
+            e.response?.data['message'] ?? 'An error occurred';
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: errorColor,
+            content: Text(
+              'Error: $errorMessage',
+              style: const TextStyle(color: Colors.white70),
+            ),
+            showCloseIcon: true,
+          ),
+        );
+        return [e, errorMessage];
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: errorColor,
+            content: Text(
+              'Error: An error occurred',
+              style: TextStyle(color: Colors.white70),
+            ),
+            showCloseIcon: true,
+          ),
+        );
+        return [e, ''];
+      }
+    }
+  }
+
+  Future logOut() async {
     await storage.delete(key: 'token');
     userController.deleteUserData();
   }

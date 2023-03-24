@@ -34,7 +34,6 @@ class _BodyState extends State<Body> {
       return _sportsList;
     } catch (e) {
       print(e);
-      return;
     }
   }
 
@@ -67,7 +66,6 @@ class _BodyState extends State<Body> {
             ),
           ),
           Expanded(child: SportList(sportData: _sportsList)),
-          MainButton(text: 'Continuar', onPressed: () {}, isPrimary: true)
         ]),
       );
     }

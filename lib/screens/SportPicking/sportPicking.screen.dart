@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:playrr_app/screens/SportPicking/components/body.dart';
+import 'package:playrr_app/screens/SportPicking/components/SportPickingBody.dart';
 
 class SportPickingScreen extends StatelessWidget {
   const SportPickingScreen({super.key});
