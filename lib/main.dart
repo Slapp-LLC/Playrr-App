@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/signup.controller.dart';
@@ -9,13 +10,13 @@ import 'package:playrr_app/screens/landing/landing.screen.dart';
 import 'package:playrr_app/screens/signup/steOneSignUp.screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:playrr_app/screens/userProfile/profile.screen.dart';
 import 'package:playrr_app/services/authentication_service.dart';
 
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
 void main() async {
   await dotenv.load(fileName: ".env");
-
   runApp(const MyApp());
 }
 
@@ -64,6 +65,7 @@ class _MyAppState extends State<MyApp> {
         '/login': (context) => const LoginScreen(),
         '/signup/stepOne': (context) => const StepOneSignUp(),
         '/home': (context) => const Home(),
+        '/myProfile': (context) => const MyUserProfile()
       },
     );
   }

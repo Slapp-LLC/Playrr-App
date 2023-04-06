@@ -43,6 +43,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   flutter_native_splash: ^2.2.19
   get: ^4.6.5
+  intl: ^0.18.0
 
 
 dev_dependencies:
@@ -88,9 +89,11 @@ flutter:
     - assets/icons/CalendarIcon.svg
     - assets/icons/EditIcon.svg
     - assets/icons/HeartIcon.svg
+    - assets/icons/SecondaryBackButton.svg
     - assets/icons/HomeIcon.svg
     - assets/icons/LocationIcon.svg
     - assets/icons/MessageIcon.svg
+    - assets/icons/SpotsIcon.svg
     - assets/icons/NotificationIcon.svg
     - assets/icons/SearchIcon.svg
     - assets/icons/ShareIcon.svg
@@ -102,6 +105,7 @@ flutter:
     - assets/images/Splash.png
     - assets/images/Avatar.png
     - .env
+
 
   fonts:
       - family: Bebas Neue

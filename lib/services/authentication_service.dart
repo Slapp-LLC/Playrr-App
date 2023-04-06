@@ -142,6 +142,7 @@ class AuthService {
             showCloseIcon: true,
           ),
         );
+        print(e);
         return [e, errorMessage];
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -154,6 +155,7 @@ class AuthService {
             showCloseIcon: true,
           ),
         );
+        print(e);
         return [e, ''];
       }
     }

@@ -4,6 +4,7 @@ import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
+import 'package:playrr_app/screens/userProfile/profile.screen.dart';
 import 'package:playrr_app/services/authentication_service.dart';
 
 class MainDrawer extends StatefulWidget {
@@ -49,6 +50,18 @@ class _MainDrawerState extends State<MainDrawer> {
               )),
           ListTile(
             title: const Text(
+              'Mi Perfil',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+            ),
+            onTap: () {
+              Navigator.pushNamed(context, 'myProfile');
+            },
+          ),
+          ListTile(
+            title: const Text(
               'Logout',
               style: TextStyle(
                   color: Colors.white,
@@ -62,7 +75,7 @@ class _MainDrawerState extends State<MainDrawer> {
                 MaterialPageRoute(builder: (context) => const LandingScreen()),
               );
             },
-          )
+          ),
         ],
       ),
     );
