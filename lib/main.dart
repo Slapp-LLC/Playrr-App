@@ -7,6 +7,7 @@ import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
+import 'package:playrr_app/screens/myEvents/myEvents.screen.dart';
 import 'package:playrr_app/screens/signup/steOneSignUp.screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -65,7 +66,8 @@ class _MyAppState extends State<MyApp> {
         '/login': (context) => const LoginScreen(),
         '/signup/stepOne': (context) => const StepOneSignUp(),
         '/home': (context) => const Home(),
-        '/myProfile': (context) => const MyUserProfile()
+        '/myProfile': (context) => const MyUserProfile(),
+        '/myEvents': (context) => const MyEvents()
       },
     );
   }
