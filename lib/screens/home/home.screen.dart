@@ -17,14 +17,7 @@ class Home extends StatefulWidget {
 //? en esta pagina, generar una lista con todas las rutas a utilizar en
 // la barra de navegacion y
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+  final int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

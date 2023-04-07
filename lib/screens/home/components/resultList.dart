@@ -13,20 +13,20 @@ class EventResultList extends StatefulWidget {
 class _EventResultListState extends State<EventResultList> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: widget.resultsData.length,
-      itemBuilder: (BuildContext context, int index) {
+    return Column(
+      children: widget.resultsData.map((resultData) {
         return Container(
-            decoration: const BoxDecoration(color: Colors.black),
-            child: EventCard(
-              eventTitle: widget.resultsData[index]['title'],
-              eventDate: widget.resultsData[index]['startDate'],
-              eventLevel: widget.resultsData[index]['level']['name'],
-              eventAddress: widget.resultsData[index]['location'],
-              eventSpots: widget.resultsData[index]['spots'],
-              eventPhotoUrl: widget.resultsData[index]['eventPhoto'],
-            ));
-      },
+          decoration: const BoxDecoration(color: Colors.black),
+          child: EventCard(
+            eventTitle: resultData['title'],
+            eventDate: resultData['startDate'],
+            eventLevel: resultData['level']['name'],
+            eventAddress: resultData['location'],
+            eventSpots: resultData['spots'],
+            eventPhotoUrl: resultData['eventPhoto'],
+          ),
+        );
+      }).toList(),
     );
   }
 }

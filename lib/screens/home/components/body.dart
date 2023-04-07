@@ -41,17 +41,42 @@ class _BodyState extends State<Body> {
         )),
       );
     } else {
-      return Container(
+      return SingleChildScrollView(
+          child: Container(
         decoration: const BoxDecoration(color: Colors.black),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-                child: EventResultList(
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Text('Tus deportes',
+                  style: TextStyle(
+                    fontFamily: 'Bebas neue',
+                    color: Colors.white,
+                    fontSize: 25,
+                  )),
+            ),
+            Container(
+              height: 155,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  border: Border.all(width: 2, color: Colors.white)),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Text('Recomendados',
+                  style: TextStyle(
+                    fontFamily: 'Bebas neue',
+                    color: Colors.white,
+                    fontSize: 25,
+                  )),
+            ),
+            EventResultList(
               resultsData: _eventResult,
-            ))
+            )
           ],
         ),
-      );
+      ));
     }
   }
 }
