@@ -13,6 +13,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
       Navigator.pushReplacementNamed(context, '/home');
     } else if (index == 1) {
       Navigator.pushReplacementNamed(context, '/myEvents');
+    } else if (index == 2) {
+      Navigator.pushReplacementNamed(context, '/searchPage');
+    } else if (index == 3) {
+      Navigator.pushReplacementNamed(context, '/notifications');
+    } else if (index == 4) {
+      Navigator.pushReplacementNamed(context, '/messages');
     }
   }
 
@@ -43,14 +49,20 @@ class CustomBottomNavigationBar extends StatelessWidget {
               BottomNavigationBarItem(
                   backgroundColor: secondaryBackground,
                   icon: SvgPicture.asset('assets/icons/SearchIcon.svg'),
+                  activeIcon:
+                      SvgPicture.asset('assets/icons/ActiveSearchIcon.svg'),
                   label: 'Search Page'),
               BottomNavigationBarItem(
                   backgroundColor: secondaryBackground,
                   icon: SvgPicture.asset('assets/icons/NotificationIcon.svg'),
+                  activeIcon: SvgPicture.asset(
+                      'assets/icons/ActiveNotificationIcon.svg'),
                   label: 'Notifications'),
               BottomNavigationBarItem(
                   backgroundColor: secondaryBackground,
                   icon: SvgPicture.asset('assets/icons/MessageIcon.svg'),
+                  activeIcon:
+                      SvgPicture.asset('assets/icons/ActiveMessageIcon.svg'),
                   label: 'Messages'),
             ],
             currentIndex: selectedIndex,

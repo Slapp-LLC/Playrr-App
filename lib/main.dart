@@ -7,7 +7,10 @@ import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
+import 'package:playrr_app/screens/messages/messages.screen.dart';
 import 'package:playrr_app/screens/myEvents/myEvents.screen.dart';
+import 'package:playrr_app/screens/notifications/notifications.screen.dart';
+import 'package:playrr_app/screens/search/search.screen.dart';
 import 'package:playrr_app/screens/signup/steOneSignUp.screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -67,7 +70,10 @@ class _MyAppState extends State<MyApp> {
         '/signup/stepOne': (context) => const StepOneSignUp(),
         '/home': (context) => const Home(),
         '/myProfile': (context) => const MyUserProfile(),
-        '/myEvents': (context) => const MyEvents()
+        '/myEvents': (context) => const MyEvents(),
+        '/searchPage': (context) => const SearchPage(),
+        '/notifications': (context) => const NotificationPage(),
+        '/messages': (context) => const MessagesPage()
       },
     );
   }

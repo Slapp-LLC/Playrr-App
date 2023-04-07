@@ -39,7 +39,7 @@ class _EventCardState extends State<EventCard> {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         decoration: const BoxDecoration(
             color: Colors.black,
             border:
