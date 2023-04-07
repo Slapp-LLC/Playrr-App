@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/screens/home/components/MySportsSlider.dart';
 import 'package:playrr_app/screens/home/components/resultList.dart';
 
 class Body extends StatefulWidget {
@@ -56,12 +57,7 @@ class _BodyState extends State<Body> {
                     fontSize: 25,
                   )),
             ),
-            Container(
-              height: 155,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Colors.white)),
-            ),
+            const MySportsSlider(),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Text('Recomendados',
