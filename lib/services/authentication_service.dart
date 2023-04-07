@@ -76,8 +76,7 @@ class AuthService {
       final userData = jsonResponse['user'];
       await storage.write(key: 'token', value: token);
       userController.setUserData(userData);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const Home()));
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
     } catch (e) {
       if (e is DioError) {
         String errorMessage =
