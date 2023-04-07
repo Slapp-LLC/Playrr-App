@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -25,10 +27,13 @@ class _MyEventsState extends State<MyEvents> {
     return Scaffold(
         appBar: const SecondaryAppBar(),
         body: Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: const BoxDecoration(color: Colors.black),
             child: const Text(
-          'My Events',
-          style: TextStyle(color: Colors.white),
-        )),
+              'My Events',
+              style: TextStyle(color: Colors.white),
+            )),
         bottomNavigationBar: CustomBottomNavigationBar(
           selectedIndex: _selectedIndex,
           context: context,

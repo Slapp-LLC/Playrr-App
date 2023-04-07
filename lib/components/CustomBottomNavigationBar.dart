@@ -37,6 +37,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
               BottomNavigationBarItem(
                   backgroundColor: secondaryBackground,
                   icon: SvgPicture.asset('assets/icons/TicketsIcon.svg'),
+                  activeIcon:
+                      SvgPicture.asset('assets/icons/ActiveEventsIcon.svg'),
                   label: 'Your events'),
               BottomNavigationBarItem(
                   backgroundColor: secondaryBackground,

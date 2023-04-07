@@ -94,12 +94,16 @@ flutter:
     - assets/icons/ActiveHomeIcon.svg
     - assets/icons/LocationIcon.svg
     - assets/icons/MessageIcon.svg
+    - assets/icons/ActiveMessageIcon.svg
     - assets/icons/SpotsIcon.svg
     - assets/icons/NotificationIcon.svg
+    - assets/icons/ActiveNotificationIcon.svg
     - assets/icons/SearchIcon.svg
+    - assets/icons/ActiveSearchIcon.svg
     - assets/icons/ShareIcon.svg
     - assets/icons/BackIcon.svg
     - assets/icons/TicketsIcon.svg
+    - assets/icons/ActiveEventsIcon.svg
     - assets/icons/GoogleIcon.svg
     - assets/images/LandingBackground.png
     - assets/images/SignUpHero.png
