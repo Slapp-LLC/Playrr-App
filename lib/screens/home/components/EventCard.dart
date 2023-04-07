@@ -11,14 +11,15 @@ class EventCard extends StatefulWidget {
   final String eventLevel;
   final String eventAddress;
   final int eventSpots;
-
+  final String eventPhotoUrl;
   const EventCard(
       {super.key,
       required this.eventDate,
       required this.eventTitle,
       required this.eventLevel,
       required this.eventAddress,
-      required this.eventSpots});
+      required this.eventSpots,
+      required this.eventPhotoUrl});
 
   @override
   State<EventCard> createState() => _EventCardState();
@@ -38,56 +39,66 @@ class _EventCardState extends State<EventCard> {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: const BoxDecoration(
             color: Colors.black,
             border:
                 Border(bottom: BorderSide(width: 1, color: Colors.white24))),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  formattedDate ?? '',
-                  style: const TextStyle(color: bodyTextColor),
-                  textAlign: TextAlign.left,
-                ),
-                Text(
-                  widget.eventTitle,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500),
-                  textAlign: TextAlign.left,
-                ),
-                Text(
-                  widget.eventLevel,
-                  style: const TextStyle(
-                    color: bodyTextColor,
-                    fontSize: 15,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: Text(
+                    formattedDate ?? '',
+                    style: const TextStyle(color: bodyTextColor),
+                    textAlign: TextAlign.left,
                   ),
-                  textAlign: TextAlign.left,
                 ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/LocationIcon.svg',
-                      width: 12,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Text(
-                        widget.eventAddress,
-                        style: const TextStyle(
-                          color: bodyTextColor,
-                          fontSize: 15,
-                        ),
-                        textAlign: TextAlign.left,
+                Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: Text(
+                      widget.eventTitle,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                      textAlign: TextAlign.left,
+                    )),
+                Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: Text(
+                      widget.eventLevel,
+                      style: const TextStyle(
+                        color: bodyTextColor,
+                        fontSize: 15,
                       ),
-                    )
-                  ],
-                ),
+                      textAlign: TextAlign.left,
+                    )),
+                Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          'assets/icons/LocationIcon.svg',
+                          width: 12,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            widget.eventAddress,
+                            style: const TextStyle(
+                              color: bodyTextColor,
+                              fontSize: 15,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        )
+                      ],
+                    )),
                 Row(
                   children: [
                     SvgPicture.asset(
@@ -108,6 +119,10 @@ class _EventCardState extends State<EventCard> {
                   ],
                 )
               ],
+            ),
+            Image.network(
+              widget.eventPhotoUrl,
+              height: 152,
             )
           ],
         ),

@@ -24,6 +24,7 @@ class _EventResultListState extends State<EventResultList> {
               eventLevel: widget.resultsData[index]['level']['name'],
               eventAddress: widget.resultsData[index]['location'],
               eventSpots: widget.resultsData[index]['spots'],
+              eventPhotoUrl: widget.resultsData[index]['eventPhoto'],
             ));
       },
     );
