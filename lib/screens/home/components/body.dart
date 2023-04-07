@@ -16,13 +16,18 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   List<dynamic> _eventResult = [];
-
+  int _selectedSportId = 1;
   Future _getEventSports() async {
     final response = await Dio().get('${dotenv.env['API_ENDPOINT']}/event');
     setState(() {
       _eventResult = response.data;
     });
-    print(_eventResult);
+  }
+
+  void _setSportSelection(int sportId) {
+    setState(() {
+      _selectedSportId = sportId;
+    });
   }
 
   @override

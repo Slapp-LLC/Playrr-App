@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';

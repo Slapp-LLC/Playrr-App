@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/signup.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
@@ -32,8 +34,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  //State Initialization
   final UserController userController = Get.put(UserController());
   final SignUpController signUpController = Get.put(SignUpController());
+  final EventsController eventsController = Get.put(EventsController());
 
   @override
   void initState() {
@@ -42,7 +46,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Playrr',
       theme: ThemeData(
         fontFamily: "Roboto",
