@@ -10,6 +10,7 @@ import 'package:playrr_app/screens/landing/landing.screen.dart';
 import 'package:playrr_app/screens/messages/messages.screen.dart';
 import 'package:playrr_app/screens/myEvents/myEvents.screen.dart';
 import 'package:playrr_app/screens/notifications/notifications.screen.dart';
+import 'package:playrr_app/screens/postSignup/secondStep/stepTwo.screen.dart';
 import 'package:playrr_app/screens/search/search.screen.dart';
 import 'package:playrr_app/screens/signup/steOneSignUp.screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -68,6 +69,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/login': (context) => const LoginScreen(),
         '/signup/stepOne': (context) => const StepOneSignUp(),
+        '/signup/stepTwo': (context) => const StepTwo(),
         '/home': (context) => const Home(),
         '/myProfile': (context) => const MyUserProfile(),
         '/myEvents': (context) => const MyEvents(),

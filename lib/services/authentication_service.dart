@@ -123,8 +123,8 @@ class AuthService {
       final jsonResponse = response.data;
       userController.setUserData(jsonResponse['user']);
       await storage.write(key: 'token', value: jsonResponse['token']);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const StepTwo()));
+      Navigator.pushNamedAndRemoveUntil(
+          context, 'signup/stepTwo', (route) => false);
       return response;
     } catch (e) {
       if (e is DioError &&
