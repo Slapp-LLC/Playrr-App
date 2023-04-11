@@ -22,6 +22,15 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final eventsController = Get.find<EventsController>();
   final userController = Get.find<UserController>();
+  final _refreshKey = GlobalKey<RefreshIndicatorState>();
+
+  Future<void> _refreshData() async {
+    // Call the API or perform any data loading operations here
+    final response =
+        await Dio().get('${dotenv.env['API_ENDPOINT']}/event/filter');
+    eventsController.setEventResultList(response.data);
+    return;
+  }
 
   Future _getEventSports() async {
     final response =
@@ -52,42 +61,46 @@ class _BodyState extends State<Body> {
           ),
         );
       } else {
-        return SingleChildScrollView(
-          child: Container(
-            decoration: const BoxDecoration(color: Colors.black),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: Text(
-                    'Tus deportes',
-                    style: TextStyle(
-                      fontFamily: 'Bebas neue',
-                      color: Colors.white,
-                      fontSize: 25,
+        return RefreshIndicator(
+            backgroundColor: Colors.black,
+            color: greenPrimaryColor,
+            onRefresh: _refreshData,
+            child: SingleChildScrollView(
+              child: Container(
+                decoration: const BoxDecoration(color: Colors.black),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(
+                        'Tus deportes',
+                        style: TextStyle(
+                          fontFamily: 'Bebas neue',
+                          color: Colors.white,
+                          fontSize: 25,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                const MySportsSlider(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: Text(
-                    'Recomendados',
-                    style: TextStyle(
-                      fontFamily: 'Bebas neue',
-                      color: Colors.white,
-                      fontSize: 25,
+                    const MySportsSlider(),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(
+                        'Recomendados',
+                        style: TextStyle(
+                          fontFamily: 'Bebas neue',
+                          color: Colors.white,
+                          fontSize: 25,
+                        ),
+                      ),
                     ),
-                  ),
+                    EventResultList(
+                      resultsData: eventsController.eventResultList,
+                    ),
+                  ],
                 ),
-                EventResultList(
-                  resultsData: eventsController.eventResultList,
-                ),
-              ],
-            ),
-          ),
-        );
+              ),
+            ));
       }
     });
   }
