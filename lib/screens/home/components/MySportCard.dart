@@ -29,7 +29,6 @@ class _MySportCardState extends State<MySportCard> {
     return Obx(() => GestureDetector(
           onTap: () {
             eventsController.setCurrentSportSelection(widget.sportId);
-            print(eventsController.currentSportSelection);
           },
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -51,7 +50,7 @@ class _MySportCardState extends State<MySportCard> {
                   height: 20,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 6),
+                  padding: const EdgeInsets.only(left: 6),
                   child: Text(
                     widget.name,
                     style: const TextStyle(

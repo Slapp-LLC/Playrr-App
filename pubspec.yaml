@@ -109,6 +109,7 @@ flutter:
     - assets/images/SignUpHero.png
     - assets/images/Splash.png
     - assets/images/Avatar.png
+    - assets/images/no-results.png
     - .env
 
 

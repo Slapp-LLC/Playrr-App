@@ -21,6 +21,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.black,
         appBar: const MainAppBar(),
         body: const Body(),
         endDrawer: const MainDrawer(),

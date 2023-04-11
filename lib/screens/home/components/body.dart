@@ -1,9 +1,14 @@
+import 'dart:math';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/events.controller.dart';
+import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/components/MySportsSlider.dart';
 import 'package:playrr_app/screens/home/components/resultList.dart';
 
@@ -15,19 +20,17 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  List<dynamic> _eventResult = [];
-  int _selectedSportId = 1;
-  Future _getEventSports() async {
-    final response = await Dio().get('${dotenv.env['API_ENDPOINT']}/event');
-    setState(() {
-      _eventResult = response.data;
-    });
-  }
+  final eventsController = Get.find<EventsController>();
+  final userController = Get.find<UserController>();
 
-  void _setSportSelection(int sportId) {
-    setState(() {
-      _selectedSportId = sportId;
-    });
+  Future _getEventSports() async {
+    final response =
+        await Dio().get('${dotenv.env['API_ENDPOINT']}/event/filter');
+    eventsController.setEventResultList(response.data);
+    if (eventsController.currentSportSelection.value == 0) {
+      eventsController.setCurrentSportSelection(
+          userController.userData['userSports'][0]['sportId']);
+    }
   }
 
   @override
@@ -38,46 +41,54 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    if (_eventResult.isEmpty) {
-      return Container(
-        decoration: const BoxDecoration(color: Colors.black),
-        child: const Center(
+    return Obx(() {
+      if (eventsController.eventResultList.isEmpty) {
+        return Container(
+          decoration: const BoxDecoration(color: Colors.black),
+          child: const Center(
             child: CircularProgressIndicator(
-          color: greenPrimaryColor,
-        )),
-      );
-    } else {
-      return SingleChildScrollView(
+              color: greenPrimaryColor,
+            ),
+          ),
+        );
+      } else {
+        return SingleChildScrollView(
           child: Container(
-        decoration: const BoxDecoration(color: Colors.black),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Text('Tus deportes',
-                  style: TextStyle(
-                    fontFamily: 'Bebas neue',
-                    color: Colors.white,
-                    fontSize: 25,
-                  )),
+            decoration: const BoxDecoration(color: Colors.black),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: Text(
+                    'Tus deportes',
+                    style: TextStyle(
+                      fontFamily: 'Bebas neue',
+                      color: Colors.white,
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+                const MySportsSlider(),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: Text(
+                    'Recomendados',
+                    style: TextStyle(
+                      fontFamily: 'Bebas neue',
+                      color: Colors.white,
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+                EventResultList(
+                  resultsData: eventsController.eventResultList,
+                ),
+              ],
             ),
-            const MySportsSlider(),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Text('Recomendados',
-                  style: TextStyle(
-                    fontFamily: 'Bebas neue',
-                    color: Colors.white,
-                    fontSize: 25,
-                  )),
-            ),
-            EventResultList(
-              resultsData: _eventResult,
-            )
-          ],
-        ),
-      ));
-    }
+          ),
+        );
+      }
+    });
   }
 }

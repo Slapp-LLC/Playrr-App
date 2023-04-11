@@ -25,6 +25,9 @@ class _MySportsSliderState extends State<MySportsSlider> {
   }
 
   void _getUserSports() {
+    if (eventsController.currentSportSelection == 0) {
+      print('No hay seleccion');
+    }
     setState(() {
       _sportLevels = userController.userData['userSports'];
     });

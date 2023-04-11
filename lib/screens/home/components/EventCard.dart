@@ -120,9 +120,15 @@ class _EventCardState extends State<EventCard> {
                 )
               ],
             ),
-            Image.network(
-              widget.eventPhotoUrl,
-              height: 152,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(
+                  8.0), // Adjust the border radius if needed
+              child: Image.network(
+                widget.eventPhotoUrl,
+                height: 152,
+                width: 115,
+                fit: BoxFit.cover,
+              ),
             )
           ],
         ),
