@@ -31,6 +31,7 @@ class _EventResultListState extends State<EventResultList> {
                   (resultData) => Container(
                     decoration: const BoxDecoration(color: Colors.black),
                     child: EventCard(
+                      eventId: resultData['id'],
                       eventTitle: resultData['title'],
                       eventDate: resultData['startDate'],
                       eventLevel: resultData['level']['name'],

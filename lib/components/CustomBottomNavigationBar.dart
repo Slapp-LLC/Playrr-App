@@ -12,13 +12,13 @@ class CustomBottomNavigationBar extends StatelessWidget {
     if (index == 0) {
       Navigator.pushReplacementNamed(context, '/home');
     } else if (index == 1) {
-      Navigator.pushReplacementNamed(context, '/myEvents');
+      Navigator.pushNamed(context, '/myEvents');
     } else if (index == 2) {
-      Navigator.pushReplacementNamed(context, '/searchPage');
+      Navigator.pushNamed(context, '/searchPage');
     } else if (index == 3) {
-      Navigator.pushReplacementNamed(context, '/notifications');
+      Navigator.pushNamed(context, '/notifications');
     } else if (index == 4) {
-      Navigator.pushReplacementNamed(context, '/messages');
+      Navigator.pushNamed(context, '/messages');
     }
   }
 

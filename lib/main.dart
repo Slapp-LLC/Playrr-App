@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/signup.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/screens/event/event.screen.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
@@ -19,6 +19,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:playrr_app/screens/userProfile/profile.screen.dart';
 import 'package:playrr_app/services/authentication_service.dart';
+import 'utils/router.utils.dart';
 
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -70,6 +71,7 @@ class _MyAppState extends State<MyApp> {
           }
         },
       ),
+      onGenerateRoute: RouterGen.generatedRoute,
       routes: {
         '/login': (context) => const LoginScreen(),
         '/signup/stepOne': (context) => const StepOneSignUp(),

@@ -26,16 +26,16 @@ class _BodyState extends State<Body> {
 
   Future<void> _refreshData() async {
     // Call the API or perform any data loading operations here
-    final response =
-        await Dio().get('${dotenv.env['API_ENDPOINT']}/event/filter');
+    final response = await Dio().get('${dotenv.env['API_ENDPOINT']}/event');
     eventsController.setEventResultList(response.data);
     return;
   }
 
+  //Handle errors
   Future _getEventSports() async {
-    final response =
-        await Dio().get('${dotenv.env['API_ENDPOINT']}/event/filter');
+    final response = await Dio().get('${dotenv.env['API_ENDPOINT']}/event');
     eventsController.setEventResultList(response.data);
+
     if (eventsController.currentSportSelection.value == 0) {
       eventsController.setCurrentSportSelection(
           userController.userData['userSports'][0]['sportId']);

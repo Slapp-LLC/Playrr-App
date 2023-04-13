@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/utils/date.utils.dart';
+import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class EventCard extends StatefulWidget {
   final String eventTitle;
@@ -12,8 +13,10 @@ class EventCard extends StatefulWidget {
   final String eventAddress;
   final int eventSpots;
   final String eventPhotoUrl;
+  final int eventId;
   const EventCard(
       {super.key,
+      required this.eventId,
       required this.eventDate,
       required this.eventTitle,
       required this.eventLevel,
@@ -37,7 +40,10 @@ class _EventCardState extends State<EventCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, RoutePaths.Event,
+            arguments: widget.eventId);
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         decoration: const BoxDecoration(
