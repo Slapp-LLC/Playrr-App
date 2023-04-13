@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/screens/event/components/DateSection.dart';
 import 'package:playrr_app/screens/event/components/JoinBar.dart';
 import 'package:playrr_app/screens/event/components/LocationSection.dart';
 
@@ -103,11 +104,12 @@ class _EventBodyState extends State<EventBody> {
                               color: bodyTextColor, fontSize: 16),
                         ),
                       ),
-                      LocationSection(location: eventData['location'])
+                      LocationSection(location: eventData['location']),
+                      DateSection(date: eventData['startDate'])
                     ],
                   ),
                 )),
-                JoinBar(price: eventData['price'])
+                JoinBar(price: eventData['price']),
               ],
             );
           }

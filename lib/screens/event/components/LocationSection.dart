@@ -17,7 +17,7 @@ class _LocationSectionState extends State<LocationSection> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      margin: const EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.only(top: 20),
       child: Column(children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -28,8 +28,14 @@ class _LocationSectionState extends State<LocationSection> {
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: greenPrimaryColor, width: 1)),
-                child: SvgPicture.asset('assets/icons/LocationGreenIcon.svg')),
+                    border: Border.all(
+                        color: greenPrimaryColor.withOpacity(0.33), width: 1)),
+                child: Transform.scale(
+                  scale: 0.75,
+                  child: SvgPicture.asset(
+                    'assets/icons/LocationGreenIcon.svg',
+                  ),
+                )),
             Expanded(
                 child: GestureDetector(
               onTap: () {},
