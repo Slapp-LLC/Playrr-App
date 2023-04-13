@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/screens/event/components/JoinBar.dart';
+import 'package:playrr_app/screens/event/components/LocationSection.dart';
 
 class EventBody extends StatefulWidget {
   final int eventId;
@@ -93,7 +95,6 @@ class _EventBodyState extends State<EventBody> {
                               fontWeight: FontWeight.w600),
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
@@ -102,9 +103,7 @@ class _EventBodyState extends State<EventBody> {
                               color: bodyTextColor, fontSize: 16),
                         ),
                       ),
-
-                      // U
-                      //se the eventData object to build the UI here
+                      LocationSection(location: eventData['location'])
                     ],
                   ),
                 )),

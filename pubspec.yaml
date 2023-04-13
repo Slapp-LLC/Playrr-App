@@ -97,6 +97,7 @@ flutter:
     - assets/icons/ActiveMessageIcon.svg
     - assets/icons/SpotsIcon.svg
     - assets/icons/NotificationIcon.svg
+    - assets/icons/LocationGreenIcon.svg
     - assets/icons/ActiveNotificationIcon.svg
     - assets/icons/SearchIcon.svg
     - assets/icons/ActiveSearchIcon.svg
