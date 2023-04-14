@@ -15,13 +15,10 @@ import 'package:playrr_app/screens/notifications/notifications.screen.dart';
 import 'package:playrr_app/screens/postSignup/secondStep/stepTwo.screen.dart';
 import 'package:playrr_app/screens/search/search.screen.dart';
 import 'package:playrr_app/screens/signup/steOneSignUp.screen.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:playrr_app/screens/userProfile/profile.screen.dart';
 import 'package:playrr_app/services/authentication_service.dart';
 import 'utils/router.utils.dart';
-
-final GoogleSignIn googleSignIn = GoogleSignIn();
 
 void main() async {
   await dotenv.load(fileName: ".env");

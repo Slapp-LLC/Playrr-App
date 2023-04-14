@@ -3,60 +3,20 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/utils/date.utils.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class DateSection extends StatefulWidget {
-  final String date;
-
-  const DateSection({super.key, required this.date});
+class ChatSection extends StatefulWidget {
+  const ChatSection({super.key});
 
   @override
-  State<DateSection> createState() => _DateSectionState();
+  State<ChatSection> createState() => _ChatSectionState();
 }
 
-class _DateSectionState extends State<DateSection> {
-  String? formatedDate;
-  String? formatedTime;
-
-  @override
-  void initState() {
-    super.initState();
-    formatedDate = DateUtil.getMonthAndDay(widget.date);
-    formatedTime = DateUtil.getTime(widget.date);
-  }
-
-  void _launchGoogleCalendar() async {
-    final String eventTitle = 'My Event';
-    final String location = '123 Main St, Anytown USA';
-    final DateTime startTime = DateTime.now().add(Duration(hours: 1));
-    final DateTime endTime = DateTime.now().add(Duration(hours: 2));
-    final String description = 'This is a description of my event.';
-
-    final String startDate = startTime.toUtc().toString().replaceAll(' ', 'T');
-    final String endDate = endTime.toUtc().toString().replaceAll(' ', 'T');
-
-    final String url =
-        'https://www.google.com/calendar/render?action=TEMPLATE&text=$eventTitle&location=$location&dates=$startDate/$endDate&details=$description';
-
-    final Uri urlFormatedd = Uri.parse(url);
-    if (!await launchUrl(urlFormatedd)) {
-      throw Exception('Could not launch $url');
-    }
-  }
-
+class _ChatSectionState extends State<ChatSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      decoration: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: secondaryBackground,
-            width: 1.5,
-          ),
-        ),
-      ),
+      margin: const EdgeInsets.only(top: 0),
+      padding: const EdgeInsets.only(top: 10, bottom: 25),
       child: Row(
         children: [
           Container(
@@ -70,12 +30,12 @@ class _DateSectionState extends State<DateSection> {
               child: Transform.scale(
                 scale: 0.75,
                 child: SvgPicture.asset(
-                  'assets/icons/CalendarIcon.svg',
+                  'assets/icons/MessageGreenIcon.svg',
                 ),
               )),
           Expanded(
               child: GestureDetector(
-            onTap: _launchGoogleCalendar,
+            onTap: () {},
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -83,20 +43,20 @@ class _DateSectionState extends State<DateSection> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          padding: EdgeInsets.symmetric(vertical: 4),
                           child: Text(
-                            formatedDate!,
-                            style: const TextStyle(
+                            'Chat del grupo',
+                            style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 17),
                           ),
                         ),
                         Text(
-                          formatedTime!,
-                          style: const TextStyle(color: bodyTextColor),
+                          'Unete al chat del evento',
+                          style: TextStyle(color: bodyTextColor),
                         )
                       ],
                     ),

@@ -1,8 +1,12 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LocationSection extends StatefulWidget {
   final String location;
@@ -13,11 +17,30 @@ class LocationSection extends StatefulWidget {
 }
 
 class _LocationSectionState extends State<LocationSection> {
+  void _launchGoogleMaps() async {
+    final String coordinates = '37.7749,-122.4194';
+
+    final url =
+        'https://www.google.com/maps/search/?api=1&query=${coordinates}';
+
+    final Uri urlFormatedd = Uri.parse(url);
+    if (!await launchUrl(urlFormatedd)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: secondaryBackground,
+            width: 1.5,
+          ),
+        ),
+      ),
       padding: const EdgeInsets.symmetric(vertical: 10),
-      margin: const EdgeInsets.only(top: 20),
       child: Column(children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,7 +61,7 @@ class _LocationSectionState extends State<LocationSection> {
                 )),
             Expanded(
                 child: GestureDetector(
-              onTap: () {},
+              onTap: _launchGoogleMaps,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -74,10 +97,21 @@ class _LocationSectionState extends State<LocationSection> {
           ],
         ),
         Container(
-          margin: const EdgeInsets.only(top: 10),
-          width: double.infinity,
-          height: 165,
-          decoration: const BoxDecoration(color: secondaryBackground),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          height: 163,
+          width: 358,
+          child: GoogleMap(
+              initialCameraPosition: const CameraPosition(
+                target: LatLng(37.7749, -122.4194),
+                zoom: 17,
+              ),
+              zoomControlsEnabled: false,
+              gestureRecognizers: {
+                Factory<OneSequenceGestureRecognizer>(
+                  () => EagerGestureRecognizer(),
+                )
+              }),
         )
       ]),
     );

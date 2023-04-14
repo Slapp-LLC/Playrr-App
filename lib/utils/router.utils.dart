@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playrr_app/screens/event/event.screen.dart';
+import 'package:playrr_app/screens/eventParticipants/eventParticipants.screen.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
@@ -12,6 +13,10 @@ class RouterGen {
             builder: (_) => EventPage(
                   id: data,
                 ));
+      case (RoutePaths.EventParticipants):
+        var data = settings.arguments;
+        return MaterialPageRoute(
+            builder: (_) => EventParticipantsPage(usersList: data));
       default:
         return MaterialPageRoute(builder: (_) => const Home());
     }

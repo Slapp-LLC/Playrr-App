@@ -38,12 +38,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   dio: ^5.0.2
-  google_sign_in: ^6.0.2
   flutter_dotenv: ^5.0.2
   flutter_secure_storage: ^8.0.0
   flutter_native_splash: ^2.2.19
   get: ^4.6.5
   intl: ^0.18.0
+  google_maps_flutter: ^2.2.5
 
 
 dev_dependencies:
@@ -96,6 +96,7 @@ flutter:
     - assets/icons/MessageIcon.svg
     - assets/icons/ActiveMessageIcon.svg
     - assets/icons/SpotsIcon.svg
+    - assets/icons/MessageGreenIcon.svg
     - assets/icons/NotificationIcon.svg
     - assets/icons/LocationGreenIcon.svg
     - assets/icons/ActiveNotificationIcon.svg
