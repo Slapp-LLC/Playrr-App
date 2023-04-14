@@ -47,12 +47,16 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
                     fontWeight: FontWeight.w600),
               ),
               GestureDetector(
-                  onTap: () {},
-                  child: const Padding(
-                      padding: EdgeInsets.only(top: 5),
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutePaths.User,
+                        arguments: widget.hostId);
+                  },
+                  child: Padding(
+                      padding: const EdgeInsets.only(top: 5),
                       child: CircleAvatar(
                         backgroundColor: secondaryBackground,
                         radius: 25,
+                        backgroundImage: NetworkImage(widget.hostAvatar),
                       ))),
             ],
           ),

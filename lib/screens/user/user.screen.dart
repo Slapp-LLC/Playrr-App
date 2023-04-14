@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:playrr_app/components/MainAppBar.dart';
 import 'package:playrr_app/components/SecondaryAppBar.dart';
-import 'package:playrr_app/screens/MyProfile/components/body.dart';
+import 'package:playrr_app/screens/user/components/UserBody.dart';
 
-class MyUserProfile extends StatelessWidget {
-  const MyUserProfile({super.key});
+class UserPage extends StatefulWidget {
+  final int userId;
+  const UserPage({super.key, required this.userId});
 
+  @override
+  State<UserPage> createState() => _UserPageState();
+}
+
+class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: SecondaryAppBar(),
-      body: Body(),
+      body: UserBody(),
     );
   }
 }

@@ -16,7 +16,7 @@ import 'package:playrr_app/screens/postSignup/secondStep/stepTwo.screen.dart';
 import 'package:playrr_app/screens/search/search.screen.dart';
 import 'package:playrr_app/screens/signup/steOneSignUp.screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:playrr_app/screens/userProfile/profile.screen.dart';
+import 'package:playrr_app/screens/myProfile/myProfile.screen.dart';
 import 'package:playrr_app/services/authentication_service.dart';
 import 'utils/router.utils.dart';
 

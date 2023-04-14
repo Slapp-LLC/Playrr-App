@@ -3,7 +3,7 @@ import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
-import 'package:playrr_app/screens/userProfile/profile.screen.dart';
+import 'package:playrr_app/screens/myProfile/myProfile.screen.dart';
 import 'package:playrr_app/services/authentication_service.dart';
 
 class MainDrawer extends StatefulWidget {

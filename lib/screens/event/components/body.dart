@@ -65,6 +65,7 @@ class _EventBodyState extends State<EventBody> {
             );
           } else {
             final eventData = snapshot.data!;
+            print(eventData);
             return Container(
               color: Colors.black,
               child: Column(
@@ -133,7 +134,7 @@ class _EventBodyState extends State<EventBody> {
                         LocationSection(location: eventData['location']),
                         DateSection(date: eventData['startDate']),
                         ParticipantsSection(
-                          hostAvatar: '',
+                          hostAvatar: eventData['host']['photoUrl'],
                           hostId: 2,
                           spotsNumber: eventData['spots'],
                         ),
