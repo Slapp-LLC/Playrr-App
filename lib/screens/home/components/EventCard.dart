@@ -6,6 +6,7 @@ import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/utils/date.utils.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
+//TODO Manegar null values, bug al no tener imagen los eventos
 class EventCard extends StatefulWidget {
   final String eventTitle;
   final String eventDate;
@@ -17,12 +18,12 @@ class EventCard extends StatefulWidget {
   const EventCard(
       {super.key,
       required this.eventId,
-      required this.eventDate,
       required this.eventTitle,
+      required this.eventDate,
       required this.eventLevel,
       required this.eventAddress,
-      required this.eventSpots,
-      required this.eventPhotoUrl});
+      required this.eventPhotoUrl,
+      required this.eventSpots});
 
   @override
   State<EventCard> createState() => _EventCardState();

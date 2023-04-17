@@ -112,6 +112,7 @@ flutter:
     - assets/images/Splash.png
     - assets/images/Avatar.png
     - assets/images/no-results.png
+    - assets/map_styles.json
     - .env
 
 

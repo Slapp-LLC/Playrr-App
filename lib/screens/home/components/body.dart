@@ -35,10 +35,9 @@ class _BodyState extends State<Body> {
   Future _getEventSports() async {
     final response = await Dio().get('${dotenv.env['API_ENDPOINT']}/event');
     eventsController.setEventResultList(response.data);
-
     if (eventsController.currentSportSelection.value == 0) {
       eventsController.setCurrentSportSelection(
-          userController.userData['userSports'][0]['sportId']);
+          userController.userData['userSports'][0]['sport_id']);
     }
   }
 

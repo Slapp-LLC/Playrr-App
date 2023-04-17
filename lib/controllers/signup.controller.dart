@@ -28,7 +28,7 @@ class SignUpController extends GetxController {
       existingItem['levelId'] = levelId;
     } else {
       // Add a new item to the list
-      pickedSports.add({'sportId': sportId, 'levelId': levelId});
+      pickedSports.add({'sport_id': sportId, 'level_id': levelId});
     }
   }
 

@@ -11,6 +11,7 @@ import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/postSignup/secondStep/stepTwo.screen.dart';
+import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class AuthService {
   //Initializations
@@ -24,6 +25,7 @@ class AuthService {
   //Getting the current user by jwtToken
   Future<bool> getCurrentUser(context) async {
     final token = await storage.read(key: 'token');
+
     if (token == null) {
       return false;
     }
@@ -119,12 +121,14 @@ class AuthService {
         'name': name,
         'lastName': lastName
       });
-
       final jsonResponse = response.data;
       userController.setUserData(jsonResponse['user']);
+
       await storage.write(key: 'token', value: jsonResponse['token']);
+
       Navigator.pushNamedAndRemoveUntil(
-          context, 'signup/stepTwo', (route) => false);
+          context, RoutePaths.StepTwoSignUp, (route) => false);
+
       return response;
     } catch (e) {
       if (e is DioError &&

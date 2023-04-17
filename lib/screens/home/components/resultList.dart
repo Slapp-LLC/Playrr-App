@@ -20,16 +20,31 @@ class _EventResultListState extends State<EventResultList> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final filteredResult = eventsController.eventResultList.where(
-          (resultData) =>
-              resultData['sport']['id'] ==
-              eventsController.currentSportSelection.value);
+      final filteredResult =
+          eventsController.eventResultList.where((resultData) {
+        if (resultData == null) {
+          return false;
+        }
+
+        return resultData['sport'] != null &&
+            resultData['sport']['id'] ==
+                eventsController.currentSportSelection.value;
+      });
       return Column(
         children: filteredResult.isNotEmpty
             ? filteredResult
                 .map(
                   (resultData) => Container(
                     decoration: const BoxDecoration(color: Colors.black),
+                    // child: Text(
+                    //   resultData['id'].toString() +
+                    //       resultData['title'] +
+                    //       resultData['startDate'] +
+                    //       resultData['level']['name'] +
+                    //       resultData['location'] +
+                    //       resultData['spots'].to,
+                    //   style: TextStyle(color: Colors.amber),
+                    // ),
                     child: EventCard(
                       eventId: resultData['id'],
                       eventTitle: resultData['title'],
@@ -39,11 +54,54 @@ class _EventResultListState extends State<EventResultList> {
                       eventSpots: resultData['spots'],
                       eventPhotoUrl: resultData['eventPhoto'],
                     ),
+                    // child: EventCard(
+                    //   eventTitle: resultData['title'],
+                    //   eventDate: resultData['startDate'],
+                    //   eventId: resultData['id'],
+                    //   eventLevel: resultData['level']['name'],
+                    //   eventAddress: resultData['location'],
+                    //   eventPhotoUrl: resultData['photo'],
+                    // ),
                   ),
                 )
                 .toList()
             : [const NoResults()],
       );
     });
+    // return Obx(() {
+    //   final filteredResult =
+    //       eventsController.eventResultList.where((resultData) {
+    //     // if (resultData == null) {
+    //     //   return false;
+    //     // }
+
+    //     return resultData['sport'] != null &&
+    //         resultData['sport']['id'] ==
+    //             eventsController.currentSportSelection.value;
+    //   });
+
+    //   filteredResult.map((e) => {print(e['id'])});
+
+    //   return Column(
+    //     children: eventsController.eventResultList.isNotEmpty
+    //         ? eventsController.eventResultList
+    //             .map(
+    //               (resultData) => Container(
+    //                 decoration: const BoxDecoration(color: Colors.black),
+    //                 child: EventCard(
+    //                   eventId: resultData['id'],
+    //                   eventTitle: resultData['title'],
+    //                   eventDate: resultData['startDate'],
+    //                   eventLevel: resultData['level']['name'],
+    //                   eventAddress: resultData['location'],
+    //                   eventSpots: resultData['spots'],
+    //                   eventPhotoUrl: resultData['eventPhoto'],
+    //                 ),
+    //               ),
+    //             )
+    //             .toList()
+    //         : [const NoResults()],
+    //   );
+    // });
   }
 }

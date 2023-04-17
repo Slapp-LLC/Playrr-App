@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:playrr_app/components/Avatar.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
@@ -46,18 +47,16 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
                     fontSize: 17,
                     fontWeight: FontWeight.w600),
               ),
-              GestureDetector(
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, RoutePaths.User,
                         arguments: widget.hostId);
                   },
-                  child: Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: CircleAvatar(
-                        backgroundColor: secondaryBackground,
-                        radius: 25,
-                        backgroundImage: NetworkImage(widget.hostAvatar),
-                      ))),
+                  child: AvatarImage(photoUrl: widget.hostAvatar),
+                ),
+              )
             ],
           ),
           Column(

@@ -11,6 +11,7 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final userController = Get.find<UserController>();
+    print(userController.userData['photoUrl']);
     return AppBar(
       automaticallyImplyLeading: false,
       actions: <Widget>[Container()], // this will hide endDrawer hamburger icon
@@ -33,8 +34,9 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
                     backgroundColor: greenPrimaryColor,
                     radius: 175,
                     child: CircleAvatar(
-                      backgroundImage: userController
-                              .userData['photoUrl'].isNotEmpty
+                      backgroundImage: userController.userData['photoUrl'] !=
+                                  null &&
+                              userController.userData['photoUrl'].isNotEmpty
                           ? NetworkImage(userController.userData['photoUrl'])
                           : Image.asset('assets/images/Avatar.png').image,
                       radius: 90,
