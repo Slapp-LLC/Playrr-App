@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/components/Avatar.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/screens/event/components/ParticipantImageList.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class ParticipantsSection extends StatefulWidget {
@@ -62,17 +63,15 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
               )
             ],
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Players ${widget.playersList.length} /${widget.spotsNumber}',
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600),
-              ),
-              GestureDetector(
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              'Players ${widget.playersList.length} /${widget.spotsNumber}',
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600),
+            ),
+            GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, RoutePaths.EventParticipants,
                       arguments: '');
@@ -80,76 +79,10 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
                 child: SizedBox(
                     width: 130,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Stack(
-                        children: [
-                          const Positioned(
-                            child: CircleAvatar(
-                              backgroundColor: secondaryBackground,
-                              backgroundImage: NetworkImage(
-                                  'https://images.pagina12.com.ar/styles/focal_3_2_360x240/public/2023-04/715923-lionel-20messi.jpg?h=c6980913&itok=dOYCJttG'),
-                              radius: 25,
-                            ),
-                          ),
-                          const Positioned(
-                            left: 25,
-                            child: CircleAvatar(
-                              backgroundColor: secondaryBackground,
-                              backgroundImage: NetworkImage(
-                                  'https://images.pagina12.com.ar/styles/focal_3_2_360x240/public/2023-04/715923-lionel-20messi.jpg?h=c6980913&itok=dOYCJttG'),
-                              radius: 25,
-                            ),
-                          ),
-                          const Positioned(
-                            left: 50,
-                            child: CircleAvatar(
-                              backgroundColor: secondaryBackground,
-                              backgroundImage: NetworkImage(
-                                  'https://images.pagina12.com.ar/styles/focal_3_2_360x240/public/2023-04/715923-lionel-20messi.jpg?h=c6980913&itok=dOYCJttG'),
-                              radius: 25,
-                            ),
-                          ),
-                          Positioned(
-                            left: 75,
-                            child: Container(
-                              width: 50.5,
-                              height: 50.5,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(
-                                      color:
-                                          greenPrimaryColor.withOpacity(0.50))),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(25),
-                                child: BackdropFilter(
-                                  filter:
-                                      ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                        color: const Color(0x001e2021)
-                                            .withOpacity(0.4),
-                                        borderRadius: BorderRadius.circular(25),
-                                      ),
-                                      child: const Center(
-                                        child: Text(
-                                          '+3',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              color: greenPrimaryColor,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      )),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )),
-              )
-            ],
-          )
+                        padding: const EdgeInsets.only(top: 10),
+                        child: ParticipantImageList(
+                            playerList: widget.playersList))))
+          ])
         ],
       ),
     );
