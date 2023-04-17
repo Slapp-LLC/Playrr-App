@@ -26,7 +26,6 @@ class _EventBodyState extends State<EventBody> {
     try {
       final response = await Dio()
           .get('${dotenv.env['API_ENDPOINT']}/event/${widget.eventId}');
-      print(response.data);
       return response.data;
     } catch (e) {
       print(e);

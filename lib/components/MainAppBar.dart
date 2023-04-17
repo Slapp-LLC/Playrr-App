@@ -11,7 +11,6 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final userController = Get.find<UserController>();
-    print(userController.userData['photoUrl']);
     return AppBar(
       automaticallyImplyLeading: false,
       actions: <Widget>[Container()], // this will hide endDrawer hamburger icon

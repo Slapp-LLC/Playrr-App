@@ -46,14 +46,14 @@ class _EventResultListState extends State<EventResultList> {
                     //   style: TextStyle(color: Colors.amber),
                     // ),
                     child: EventCard(
-                      eventId: resultData['id'],
-                      eventTitle: resultData['title'],
-                      eventDate: resultData['startDate'],
-                      eventLevel: resultData['level']['name'],
-                      eventAddress: resultData['location'],
-                      eventSpots: resultData['spots'],
-                      eventPhotoUrl: resultData['eventPhoto'],
-                    ),
+                        eventId: resultData['id'],
+                        eventTitle: resultData['title'],
+                        eventDate: resultData['startDate'],
+                        eventLevel: resultData['level']['name'],
+                        eventAddress: resultData['location'],
+                        eventSpots: resultData['spots'],
+                        eventPhotoUrl: resultData['eventPhoto'],
+                        attendingAmount: resultData['players'].length),
                     // child: EventCard(
                     //   eventTitle: resultData['title'],
                     //   eventDate: resultData['startDate'],
@@ -68,40 +68,5 @@ class _EventResultListState extends State<EventResultList> {
             : [const NoResults()],
       );
     });
-    // return Obx(() {
-    //   final filteredResult =
-    //       eventsController.eventResultList.where((resultData) {
-    //     // if (resultData == null) {
-    //     //   return false;
-    //     // }
-
-    //     return resultData['sport'] != null &&
-    //         resultData['sport']['id'] ==
-    //             eventsController.currentSportSelection.value;
-    //   });
-
-    //   filteredResult.map((e) => {print(e['id'])});
-
-    //   return Column(
-    //     children: eventsController.eventResultList.isNotEmpty
-    //         ? eventsController.eventResultList
-    //             .map(
-    //               (resultData) => Container(
-    //                 decoration: const BoxDecoration(color: Colors.black),
-    //                 child: EventCard(
-    //                   eventId: resultData['id'],
-    //                   eventTitle: resultData['title'],
-    //                   eventDate: resultData['startDate'],
-    //                   eventLevel: resultData['level']['name'],
-    //                   eventAddress: resultData['location'],
-    //                   eventSpots: resultData['spots'],
-    //                   eventPhotoUrl: resultData['eventPhoto'],
-    //                 ),
-    //               ),
-    //             )
-    //             .toList()
-    //         : [const NoResults()],
-    //   );
-    // });
   }
 }

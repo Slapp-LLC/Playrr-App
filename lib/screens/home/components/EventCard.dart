@@ -15,6 +15,7 @@ class EventCard extends StatefulWidget {
   final int eventSpots;
   final String eventPhotoUrl;
   final int eventId;
+  final int attendingAmount;
   const EventCard(
       {super.key,
       required this.eventId,
@@ -23,7 +24,8 @@ class EventCard extends StatefulWidget {
       required this.eventLevel,
       required this.eventAddress,
       required this.eventPhotoUrl,
-      required this.eventSpots});
+      required this.eventSpots,
+      required this.attendingAmount});
 
   @override
   State<EventCard> createState() => _EventCardState();
@@ -36,6 +38,7 @@ class _EventCardState extends State<EventCard> {
   void initState() {
     super.initState();
     formattedDate = DateUtil.formatDate(widget.eventDate);
+    print(widget.attendingAmount);
   }
 
   @override
@@ -115,7 +118,7 @@ class _EventCardState extends State<EventCard> {
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: Text(
-                        '0/${widget.eventSpots}',
+                        '${widget.attendingAmount}/${widget.eventSpots}',
                         style: const TextStyle(
                           color: bodyTextColor,
                           fontSize: 15,
