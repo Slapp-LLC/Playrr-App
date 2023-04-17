@@ -137,6 +137,7 @@ class _EventBodyState extends State<EventBody> {
                           hostAvatar: eventData['host']['photoUrl'],
                           hostId: 2,
                           spotsNumber: eventData['spots'],
+                          playersList: eventData['players'],
                         ),
                         const ChatSection()
                       ],

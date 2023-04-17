@@ -11,11 +11,14 @@ class ParticipantsSection extends StatefulWidget {
   final String hostAvatar;
   final int hostId;
   final spotsNumber;
+  final List playersList;
+
   const ParticipantsSection(
       {super.key,
       required this.hostAvatar,
       required this.hostId,
-      required this.spotsNumber});
+      required this.spotsNumber,
+      required this.playersList});
 
   @override
   State<ParticipantsSection> createState() => _ParticipantsSectionState();
@@ -63,7 +66,7 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Players 0/${widget.spotsNumber}',
+                'Players ${widget.playersList.length} /${widget.spotsNumber}',
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 17,
