@@ -20,27 +20,18 @@ class _EventParticipantBodyState extends State<EventParticipantBody> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Column(
-        children: [
-          Text(
-            'Jugadores',
-            style: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
-          ),
-          Column(
-              children: widget.playersList
-                  .map((player) => PlayerItem(
-                      player_id: player['user']['id'],
-                      player_lastName: player['user']['lastName'],
-                      player_name: player['user']['name'],
-                      player_photoUrl: player['user']['photoUrl']))
-                  .toList())
-        ],
-      ),
-    ));
+    return ListView.builder(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        itemCount: widget.playersList.length,
+        itemBuilder: (context, index) {
+          return PlayerItem(
+            player_id: widget.playersList[index]['user']['id'],
+            player_lastName: widget.playersList[index]['user']['lastName'],
+            player_name: widget.playersList[index]['user']['name'],
+            player_photoUrl: widget.playersList[index]['user']['photoUrl'],
+          );
+        });
+    ;
   }
 }
 // const Text(

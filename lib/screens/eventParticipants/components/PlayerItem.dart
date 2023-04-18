@@ -37,7 +37,7 @@ class _PlayerItemState extends State<PlayerItem> {
                 children: [
                   AvatarImage(photoUrl: widget.player_photoUrl),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
                       '${widget.player_name} ${widget.player_lastName}',
                       style: const TextStyle(color: Colors.white, fontSize: 17),
