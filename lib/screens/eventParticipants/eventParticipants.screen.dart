@@ -16,8 +16,11 @@ class _EventParticipantsPageState extends State<EventParticipantsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SecondaryAppBar(),
-      body: EventParticipantBody(),
+      backgroundColor: Colors.black,
+      appBar: const SecondaryAppBar(),
+      body: EventParticipantBody(
+        playersList: widget.usersList,
+      ),
     );
   }
 }

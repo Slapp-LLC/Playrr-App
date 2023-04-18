@@ -74,7 +74,7 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
             GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, RoutePaths.EventParticipants,
-                      arguments: '');
+                      arguments: widget.playersList);
                 },
                 child: SizedBox(
                     width: 130,
