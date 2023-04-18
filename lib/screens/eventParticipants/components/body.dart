@@ -13,12 +13,6 @@ class EventParticipantBody extends StatefulWidget {
 
 class _EventParticipantBodyState extends State<EventParticipantBody> {
   @override
-  void initState() {
-    super.initState();
-    print(widget.playersList);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ListView.builder(
         padding: EdgeInsets.symmetric(horizontal: 15),

@@ -15,9 +15,12 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.black,
       appBar: SecondaryAppBar(),
-      body: UserBody(),
+      body: UserBody(
+        userId: widget.userId,
+      ),
     );
   }
 }

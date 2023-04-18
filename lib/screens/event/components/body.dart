@@ -134,7 +134,7 @@ class _EventBodyState extends State<EventBody> {
                         DateSection(date: eventData['startDate']),
                         ParticipantsSection(
                           hostAvatar: eventData['host']['photoUrl'],
-                          hostId: 2,
+                          hostId: eventData['host']['id'],
                           spotsNumber: eventData['spots'],
                           playersList: eventData['players'],
                         ),

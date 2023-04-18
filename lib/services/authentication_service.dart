@@ -9,8 +9,7 @@ import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
-import 'package:playrr_app/screens/home/home.screen.dart';
-import 'package:playrr_app/screens/postSignup/secondStep/stepTwo.screen.dart';
+
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class AuthService {
