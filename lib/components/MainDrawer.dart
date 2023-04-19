@@ -32,9 +32,26 @@ class _MainDrawerState extends State<MainDrawer> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Image.asset(
-                      'assets/images/Avatar.png',
-                      width: 80,
+                    child: Container(
+                      width: 75,
+                      height: 75,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black,
+                        border:
+                            Border.all(color: secondaryBackground, width: 3),
+                        image: userController.userData['photoUrl'] != null &&
+                                userController.userData['photoUrl'].isNotEmpty
+                            ? DecorationImage(
+                                image: NetworkImage(
+                                    userController.userData['photoUrl']),
+                                fit: BoxFit.cover,
+                              )
+                            : const DecorationImage(
+                                image: AssetImage('assets/images/Avatar.png'),
+                                fit: BoxFit.cover,
+                              ),
+                      ),
                     ),
                   ),
                   Text(
