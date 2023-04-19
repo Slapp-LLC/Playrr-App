@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playrr_app/screens/event/event.screen.dart';
 import 'package:playrr_app/screens/eventParticipants/eventParticipants.screen.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
+import 'package:playrr_app/screens/myProfile/myProfile.screen.dart';
 import 'package:playrr_app/screens/postSignup/secondStep/stepTwo.screen.dart';
 import 'package:playrr_app/screens/user/user.screen.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
@@ -26,8 +27,10 @@ class RouterGen {
       case (RoutePaths.StepTwoSignUp):
         return MaterialPageRoute(builder: (_) => const StepTwo());
 
-      default:
+      case (RoutePaths.MyProfile):
         return MaterialPageRoute(builder: (_) => const Home());
+      default:
+        return MaterialPageRoute(builder: (_) => const MyUserProfile());
     }
   }
 }

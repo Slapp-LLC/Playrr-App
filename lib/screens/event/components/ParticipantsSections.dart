@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 import 'package:playrr_app/components/Avatar.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/event/components/ParticipantImageList.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
@@ -26,6 +28,8 @@ class ParticipantsSection extends StatefulWidget {
 }
 
 class _ParticipantsSectionState extends State<ParticipantsSection> {
+  final userController = Get.find<UserController>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,8 +59,15 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
                 padding: const EdgeInsets.only(top: 10),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, RoutePaths.User,
-                        arguments: widget.hostId);
+                    if (widget.hostId == userController.userData['id']) {
+                      Navigator.pushNamed(
+                        context,
+                        RoutePaths.MyProfile,
+                      );
+                    } else {
+                      Navigator.pushNamed(context, RoutePaths.User,
+                          arguments: widget.hostId);
+                    }
                   },
                   child: AvatarImage(photoUrl: widget.hostAvatar),
                 ),

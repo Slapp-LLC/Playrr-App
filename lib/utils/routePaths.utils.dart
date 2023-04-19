@@ -5,4 +5,5 @@ class RoutePaths {
   static const EventParticipants = '/eventParticipants';
   static const User = '/user';
   static const StepTwoSignUp = '/signup/stepTwo';
+  static const MyProfile = '/myProfile';
 }
