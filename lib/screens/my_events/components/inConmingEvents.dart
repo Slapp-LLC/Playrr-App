@@ -19,15 +19,6 @@ class _InconmingEventsState extends State<InconmingEvents> {
   final userController = Get.find<UserController>();
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print(widget.incomingEvents);
-    print(widget.incomingEvents[0]['event']['title']);
-    print(widget.incomingEvents[0]['event']['startDate']);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ListView.builder(
         itemCount: widget.incomingEvents.length,
@@ -46,13 +37,4 @@ class _InconmingEventsState extends State<InconmingEvents> {
               attendingAmount: 10);
         });
   }
-  // return EventCard(
-  //     eventId: widget.incomingEvents[index]['id'],
-  //     eventTitle: widget.incomingEvents[index]['title'],
-  //     eventDate: widget.incomingEvents[index]['startDate'],
-  //     eventLevel: widget.incomingEvents[index]['level'],
-  //     eventAddress: widget.incomingEvents[index]['location'],
-  //     eventPhotoUrl: widget.incomingEvents[index]['eventPhoto'],
-  //     eventSpots: widget.incomingEvents[index]['spots'],
-  //     attendingAmount: 12);
 }

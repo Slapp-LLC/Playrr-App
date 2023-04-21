@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:playrr_app/constants.dart';
 
 class AvatarImage extends StatefulWidget {
-  final String photoUrl;
+  final String? photoUrl;
   const AvatarImage({super.key, required this.photoUrl});
 
   @override
@@ -14,10 +15,9 @@ class _AvatarImageState extends State<AvatarImage> {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.grey.shade400, width: 1),
-        image: widget.photoUrl != null && widget.photoUrl.isNotEmpty
+        image: widget.photoUrl != null
             ? DecorationImage(
-                image: NetworkImage(widget.photoUrl),
+                image: NetworkImage(widget.photoUrl!),
                 fit: BoxFit.cover,
               )
             : const DecorationImage(

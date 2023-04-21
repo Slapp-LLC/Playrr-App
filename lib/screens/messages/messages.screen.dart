@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
 import 'package:playrr_app/components/SecondaryAppBar.dart';
 
@@ -16,7 +17,17 @@ class _MessagesPageState extends State<MessagesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SecondaryAppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: const Text('Chats'),
+        centerTitle: true,
+        leading: IconButton(
+          icon: SvgPicture.asset('assets/icons/SecondaryBackButton.svg'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       bottomNavigationBar: CustomBottomNavigationBar(
         context: context,
         selectedIndex: _selectedIndex,
