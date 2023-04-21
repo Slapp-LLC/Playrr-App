@@ -6,4 +6,5 @@ class RoutePaths {
   static const User = '/user';
   static const StepTwoSignUp = '/signup/stepTwo';
   static const MyProfile = '/myProfile';
+  static const SportPicking = '/sportPicking';
 }

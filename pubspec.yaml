@@ -90,6 +90,7 @@ flutter:
     - assets/icons/EditIcon.svg
     - assets/icons/HeartIcon.svg
     - assets/icons/SecondaryBackButton.svg
+    - assets/icons/AddIcon.svg
     - assets/icons/HomeIcon.svg
     - assets/icons/ActiveHomeIcon.svg
     - assets/icons/LocationIcon.svg

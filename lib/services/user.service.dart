@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
+import 'package:playrr_app/services/authentication_service.dart';
 
 class UserService {
   static final UserService instance = UserService._();
@@ -18,15 +19,19 @@ class UserService {
   final storage = const FlutterSecureStorage();
   UserController userController = Get.put(UserController());
 
-  Future setUserSports(userSports, context) async {
+  Future setUserSports(int sportId, int levelId, context) async {
+    Map<String, dynamic> data = {
+      'sport_id': sportId,
+      'level_id': levelId,
+    };
     int userId = userController.userData['id'];
-    String data = jsonEncode(userSports);
+    String parsedData = jsonEncode(data);
     try {
       final token = await storage.read(key: 'token');
-      final response = await dio.post(
-          '${dotenv.env['API_ENDPOINT']}/user/userSport/$userId',
-          data: data,
+      await dio.post('${dotenv.env['API_ENDPOINT']}/user/userSport/$userId',
+          data: parsedData,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
+      await AuthService.instance.getCurrentUser(context);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const Home()));
     } catch (e) {

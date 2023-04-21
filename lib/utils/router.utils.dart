@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:playrr_app/screens/event/event.screen.dart';
-import 'package:playrr_app/screens/eventParticipants/eventParticipants.screen.dart';
+import 'package:playrr_app/screens/event_participants/eventParticipants.screen.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
-import 'package:playrr_app/screens/myProfile/myProfile.screen.dart';
-import 'package:playrr_app/screens/postSignup/secondStep/stepTwo.screen.dart';
+import 'package:playrr_app/screens/my_profile/my_profile.screen.dart';
+import 'package:playrr_app/screens/post_signup/secondStep/stepTwo.screen.dart';
+import 'package:playrr_app/screens/sport_picking/sportPicking.screen.dart';
 import 'package:playrr_app/screens/user/user.screen.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
@@ -29,6 +30,9 @@ class RouterGen {
 
       case (RoutePaths.MyProfile):
         return MaterialPageRoute(builder: (_) => const Home());
+
+      case (RoutePaths.SportPicking):
+        return MaterialPageRoute(builder: (_) => const SportPickingScreen());
       default:
         return MaterialPageRoute(builder: (_) => const MyUserProfile());
     }

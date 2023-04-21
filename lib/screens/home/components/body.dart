@@ -11,6 +11,7 @@ import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/components/MySportsSlider.dart';
 import 'package:playrr_app/screens/home/components/resultList.dart';
+import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -33,11 +34,16 @@ class _BodyState extends State<Body> {
 
   //Handle errors
   Future _getEventSports() async {
+    if (userController.userData['userSports'].length == 0) {
+      Future.delayed(Duration.zero, () {
+        Navigator.pushReplacementNamed(context, RoutePaths.SportPicking);
+      });
+    }
     final response = await Dio().get('${dotenv.env['API_ENDPOINT']}/event');
     eventsController.setEventResultList(response.data);
     if (eventsController.currentSportSelection.value == 0) {
       eventsController.setCurrentSportSelection(
-          userController.userData['userSports'][0]['sport_id']);
+          userController.userData['userSports'][0]['sport']['id']);
     }
   }
 

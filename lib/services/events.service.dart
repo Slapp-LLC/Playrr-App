@@ -9,6 +9,9 @@ class EventService {
   factory EventService() => instance;
   EventService._();
   final dio = Dio();
+  // Future GetMyEvents() async {
+  //   try {} catch (e) {}
+  // }
 
   Future getAllEvents(context) async {
     try {

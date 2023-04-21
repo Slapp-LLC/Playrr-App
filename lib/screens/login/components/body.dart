@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playrr_app/screens/login/components/loginForm.dart';
-import 'package:playrr_app/screens/passwordRecovery/passwordRecover.screen.dart';
+import 'package:playrr_app/screens/password_recovery/passwordRecover.screen.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});

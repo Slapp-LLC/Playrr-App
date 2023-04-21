@@ -3,8 +3,8 @@ import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
-import 'package:playrr_app/screens/myProfile/myProfile.screen.dart';
 import 'package:playrr_app/services/authentication_service.dart';
+import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class MainDrawer extends StatefulWidget {
   const MainDrawer({super.key});
@@ -73,7 +73,7 @@ class _MainDrawerState extends State<MainDrawer> {
                   fontWeight: FontWeight.w400),
             ),
             onTap: () {
-              Navigator.pushNamed(context, 'myProfile');
+              Navigator.pushNamed(context, RoutePaths.MyProfile);
             },
           ),
           ListTile(

@@ -38,7 +38,6 @@ class _EventCardState extends State<EventCard> {
   void initState() {
     super.initState();
     formattedDate = DateUtil.formatDate(widget.eventDate);
-    print(widget.attendingAmount);
   }
 
   @override

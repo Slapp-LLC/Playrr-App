@@ -10,13 +10,13 @@ import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
 import 'package:playrr_app/screens/messages/messages.screen.dart';
-import 'package:playrr_app/screens/myEvents/myEvents.screen.dart';
+import 'package:playrr_app/screens/my_events/myEvents.screen.dart';
+import 'package:playrr_app/screens/my_profile/my_profile.screen.dart';
 import 'package:playrr_app/screens/notifications/notifications.screen.dart';
-import 'package:playrr_app/screens/postSignup/secondStep/stepTwo.screen.dart';
+import 'package:playrr_app/screens/post_signup/secondStep/stepTwo.screen.dart';
 import 'package:playrr_app/screens/search/search.screen.dart';
 import 'package:playrr_app/screens/signup/steOneSignUp.screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:playrr_app/screens/myProfile/myProfile.screen.dart';
 import 'package:playrr_app/services/authentication_service.dart';
 import 'utils/router.utils.dart';
 
