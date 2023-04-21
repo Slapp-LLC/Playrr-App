@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
 import 'package:playrr_app/components/SecondaryAppBar.dart';
+import 'package:playrr_app/screens/messages/components/messages_body.dart';
 
 class MessagesPage extends StatefulWidget {
   const MessagesPage({super.key});
@@ -28,6 +29,7 @@ class _MessagesPageState extends State<MessagesPage> {
           },
         ),
       ),
+      body: const MessagesBody(),
       bottomNavigationBar: CustomBottomNavigationBar(
         context: context,
         selectedIndex: _selectedIndex,
