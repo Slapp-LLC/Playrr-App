@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
 import 'package:playrr_app/components/SecondaryAppBar.dart';
+import 'package:playrr_app/screens/notifications/components/notifications_body.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -28,6 +29,7 @@ class _NotificationPageState extends State<NotificationPage> {
           },
         ),
       ),
+      body: const NotificationsBody(),
       bottomNavigationBar: CustomBottomNavigationBar(
           selectedIndex: _selectedIndex, context: context),
     );
