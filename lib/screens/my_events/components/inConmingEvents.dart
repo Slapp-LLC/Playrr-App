@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/ticker_provider.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/components/EventCard.dart';
+import 'package:playrr_app/screens/my_events/components/no_events.dart';
 
 class InconmingEvents extends StatefulWidget {
   final List incomingEvents;
@@ -25,19 +26,21 @@ class _InconmingEventsState extends State<InconmingEvents> {
       final eventDate = DateTime.parse(event['event']['startDate']).toUtc();
       return now.isBefore(eventDate);
     }).toList();
-    return ListView.builder(
-        itemCount: incomingEvents.length,
-        itemBuilder: (context, index) {
-          return EventCard(
-              eventId: incomingEvents[index]['event']['id'],
-              eventTitle: incomingEvents[index]['event']['title'],
-              eventDate: incomingEvents[index]['event']['startDate'],
-              eventLevel: incomingEvents[index]['event']['level']['name'],
-              eventAddress: incomingEvents[index]['event']['location'],
-              eventPhotoUrl: incomingEvents[index]['event']['eventPhoto'],
-              eventSpots: incomingEvents[index]['event']['spots'],
-              //Todo Make this dynamic
-              attendingAmount: 10);
-        });
+    return incomingEvents.isNotEmpty
+        ? ListView.builder(
+            itemCount: incomingEvents.length,
+            itemBuilder: (context, index) {
+              return EventCard(
+                  eventId: incomingEvents[index]['event']['id'],
+                  eventTitle: incomingEvents[index]['event']['title'],
+                  eventDate: incomingEvents[index]['event']['startDate'],
+                  eventLevel: incomingEvents[index]['event']['level']['name'],
+                  eventAddress: incomingEvents[index]['event']['location'],
+                  eventPhotoUrl: incomingEvents[index]['event']['eventPhoto'],
+                  eventSpots: incomingEvents[index]['event']['spots'],
+                  //Todo Make this dynamic
+                  attendingAmount: 10);
+            })
+        : const NoEvents();
   }
 }
