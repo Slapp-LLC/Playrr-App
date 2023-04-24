@@ -78,6 +78,26 @@ class _MainDrawerState extends State<MainDrawer> {
           ),
           ListTile(
             title: const Text(
+              'Configuraciones',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            title: const Text(
+              'Preguntas frencuentes',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400),
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            title: const Text(
               'Logout',
               style: TextStyle(
                   color: Colors.white,

@@ -26,13 +26,15 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
               width: 52,
               height: 52,
               child: IconButton(
+                  color: secondaryBackground,
                   onPressed: () {
                     Scaffold.of(context).openEndDrawer();
                   },
                   icon: CircleAvatar(
-                    backgroundColor: greenPrimaryColor,
+                    backgroundColor: secondaryBackground,
                     radius: 175,
                     child: CircleAvatar(
+                      backgroundColor: secondaryBackground,
                       backgroundImage: userController.userData['photoUrl'] !=
                                   null &&
                               userController.userData['photoUrl'].isNotEmpty

@@ -7,7 +7,7 @@ import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class PlayerItem extends StatefulWidget {
   final int player_id;
-  final String player_photoUrl;
+  final String? player_photoUrl;
   final String player_name;
   final String player_lastName;
   const PlayerItem(
