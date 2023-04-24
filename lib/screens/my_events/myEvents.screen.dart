@@ -46,7 +46,7 @@ class _MyEventsState extends State<MyEvents> {
               ),
               centerTitle: true,
             ),
-            body: MyEventsBody(),
+            body: const MyEventsBody(),
             bottomNavigationBar: CustomBottomNavigationBar(
               selectedIndex: _selectedIndex,
               context: context,

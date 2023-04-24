@@ -21,4 +21,10 @@ class DateUtil {
     String formattedDate = format.format(dateTimeUtc);
     return formattedDate;
   }
+
+  static bool isEventIncoming(String isoDateString) {
+    DateTime eventTime = DateTime.parse(isoDateString);
+    DateTime currentTime = DateTime.now();
+    return eventTime.isAfter(currentTime);
+  }
 }

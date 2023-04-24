@@ -31,7 +31,7 @@ class _MyEventsBodyState extends State<MyEventsBody> {
       child: TabBarView(
         children: [
           InconmingEvents(incomingEvents: _incomingEvents!),
-          PassedEvents(),
+          PassedEvents(incomingEvents: _incomingEvents!),
         ],
       ),
     );

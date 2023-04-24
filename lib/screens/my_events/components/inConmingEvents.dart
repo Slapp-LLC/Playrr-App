@@ -20,19 +20,22 @@ class _InconmingEventsState extends State<InconmingEvents> {
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now().toUtc();
+    final incomingEvents = widget.incomingEvents.where((event) {
+      final eventDate = DateTime.parse(event['event']['startDate']).toUtc();
+      return now.isBefore(eventDate);
+    }).toList();
     return ListView.builder(
-        itemCount: widget.incomingEvents.length,
+        itemCount: incomingEvents.length,
         itemBuilder: (context, index) {
           return EventCard(
-              eventId: widget.incomingEvents[index]['event']['id'],
-              eventTitle: widget.incomingEvents[index]['event']['title'],
-              eventDate: widget.incomingEvents[index]['event']['startDate'],
-              eventLevel: widget.incomingEvents[index]['event']['level']
-                  ['name'],
-              eventAddress: widget.incomingEvents[index]['event']['location'],
-              eventPhotoUrl: widget.incomingEvents[index]['event']
-                  ['eventPhoto'],
-              eventSpots: widget.incomingEvents[index]['event']['spots'],
+              eventId: incomingEvents[index]['event']['id'],
+              eventTitle: incomingEvents[index]['event']['title'],
+              eventDate: incomingEvents[index]['event']['startDate'],
+              eventLevel: incomingEvents[index]['event']['level']['name'],
+              eventAddress: incomingEvents[index]['event']['location'],
+              eventPhotoUrl: incomingEvents[index]['event']['eventPhoto'],
+              eventSpots: incomingEvents[index]['event']['spots'],
               //Todo Make this dynamic
               attendingAmount: 10);
         });
