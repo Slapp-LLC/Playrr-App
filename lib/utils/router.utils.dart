@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:playrr_app/screens/chat/chat.screen.dart';
+import 'package:playrr_app/screens/edit_profle/edit_profile.screen.dart';
 import 'package:playrr_app/screens/event/event.screen.dart';
 import 'package:playrr_app/screens/event_participants/eventParticipants.screen.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
@@ -33,6 +35,13 @@ class RouterGen {
 
       case (RoutePaths.SportPicking):
         return MaterialPageRoute(builder: (_) => const SportPickingScreen());
+
+      case (RoutePaths.EditMyProfile):
+        return MaterialPageRoute(builder: (_) => const EditProfile());
+
+      case (RoutePaths.ChatUser):
+        return MaterialPageRoute(builder: (_) => const Chat());
+
       default:
         return MaterialPageRoute(builder: (_) => const MyUserProfile());
     }

@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/components/Avatar.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class UserBody extends StatefulWidget {
   final int userId;
@@ -112,7 +113,9 @@ class _UserBodyState extends State<UserBody> {
                   child: IconButton(
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, RoutePaths.ChatUser);
+                    },
                     icon: SvgPicture.asset('assets/icons/MessageGreenIcon.svg'),
                   ),
                 ),

@@ -7,4 +7,6 @@ class RoutePaths {
   static const StepTwoSignUp = '/signup/stepTwo';
   static const MyProfile = '/myProfile';
   static const SportPicking = '/sportPicking';
+  static const EditMyProfile = '/editMyProfile';
+  static const ChatUser = '/chatUser';
 }

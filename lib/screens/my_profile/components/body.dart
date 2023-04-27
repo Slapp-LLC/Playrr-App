@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -99,7 +100,9 @@ class _BodyState extends State<Body> {
                           fontSize: 25),
                     )),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, RoutePaths.EditMyProfile);
+                  },
                   icon: SvgPicture.asset('assets/icons/EditIcon.svg'),
                   label: const Text(
                     'Editar perfil',
