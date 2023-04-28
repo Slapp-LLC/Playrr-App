@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/services/authentication_service.dart';
 
 class UserDataForm extends StatefulWidget {
   final String? email;
@@ -23,16 +24,45 @@ class _UserDataFormState extends State<UserDataForm> {
   final _formKey = GlobalKey<FormState>();
 
   String _email = '';
-  String _password = '';
+  String _name = '';
+  String _lastName = '';
+  String _bio = '';
+  bool _isLoading = false;
+
+  Future<void> _submitForm() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final form = _formKey.currentState;
+    if (form != null && form.validate()) {
+      form.save();
+    }
+
+    await AuthService.instance.updateProfile(_email, _name, _lastName, _bio);
+    await AuthService.instance.getCurrentUser(context);
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _email = widget.email!;
+    _name = widget.name;
+    _lastName = widget.lastName;
+    _bio = widget.bio!;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
-        key: _formKey,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(top: 15),
+            padding: const EdgeInsets.only(top: 15),
             child: TextFormField(
               initialValue: widget.email,
               decoration: InputDecoration(
@@ -71,7 +101,7 @@ class _UserDataFormState extends State<UserDataForm> {
             child: TextFormField(
               initialValue: widget.name,
               decoration: InputDecoration(
-                hintText: 'Name',
+                hintText: 'Nombre',
                 hintStyle: const TextStyle(color: bodyTextColor),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(50.0),
@@ -87,16 +117,15 @@ class _UserDataFormState extends State<UserDataForm> {
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Por favor ingresa un email valido.';
+                  return 'Por favor ingresa un nombre valido.';
                 }
-                if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                    .hasMatch(value)) {
-                  return 'Por favor ingresa un email valido.';
+                if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                  return 'Por favor ingresa un nombre valido.';
                 }
                 return null;
               },
               onSaved: (value) {
-                _email = value!;
+                _name = value!;
               },
               style: const TextStyle(color: Colors.white),
             ),
@@ -122,16 +151,15 @@ class _UserDataFormState extends State<UserDataForm> {
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Por favor ingresa un email valido.';
+                  return 'Por favor ingresa un apellido valido.';
                 }
-                if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                    .hasMatch(value)) {
-                  return 'Por favor ingresa un email valido.';
+                if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                  return 'Por favor ingresa un apellido valido.';
                 }
                 return null;
               },
               onSaved: (value) {
-                _email = value!;
+                _lastName = value!;
               },
               style: const TextStyle(color: Colors.white),
             ),
@@ -154,22 +182,37 @@ class _UserDataFormState extends State<UserDataForm> {
                         const BorderSide(color: greenPrimaryColor, width: 2.0),
                     borderRadius: BorderRadius.circular(20),
                   )),
+              onSaved: (value) {
+                _bio = value!;
+              },
+              style: const TextStyle(color: Colors.white),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    backgroundColor: greenPrimaryColor),
-                onPressed: () {},
-                child: const Text(
-                  'Guardar cambios',
-                  style: TextStyle(color: Colors.black),
-                )),
-          )
+              padding: const EdgeInsets.only(top: 15),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      backgroundColor: greenPrimaryColor,
+                      minimumSize: const Size(200, 45)),
+                  onPressed: _submitForm,
+                  child: _isLoading
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.black),
+                            value: null, // set to null to use the default size
+                            strokeWidth: 2.0,
+                          ),
+                        )
+                      : const Text(
+                          'Guardar cambios',
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        )))
         ],
       ),
     );

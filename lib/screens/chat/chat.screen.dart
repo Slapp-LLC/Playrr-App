@@ -6,7 +6,8 @@ import 'package:playrr_app/screens/chat/components/appbar.dart';
 import 'package:playrr_app/screens/chat/components/body.dart';
 
 class Chat extends StatefulWidget {
-  const Chat({super.key});
+  final int userId;
+  const Chat({super.key, required this.userId});
 
   @override
   State<Chat> createState() => _ChatState();

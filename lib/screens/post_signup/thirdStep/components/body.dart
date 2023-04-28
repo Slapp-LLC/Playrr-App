@@ -90,7 +90,7 @@ class _BodyState extends State<Body> {
                   int age = signUpController.age();
                   setState(() {});
                   await AuthService.instance
-                      .updateUser(age, gender, context)
+                      .setAgeAndGender(age, gender, context)
                       .then((value) => Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -40,7 +40,8 @@ class RouterGen {
         return MaterialPageRoute(builder: (_) => const EditProfile());
 
       case (RoutePaths.ChatUser):
-        return MaterialPageRoute(builder: (_) => const Chat());
+        var data = settings.arguments as int;
+        return MaterialPageRoute(builder: (_) => Chat(userId: data));
 
       default:
         return MaterialPageRoute(builder: (_) => const MyUserProfile());

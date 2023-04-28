@@ -21,7 +21,7 @@ class _EventParticipantsPageState extends State<EventParticipantsPage> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Jugadores',
           style: TextStyle(color: Colors.white),
         ),

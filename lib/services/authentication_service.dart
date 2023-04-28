@@ -66,6 +66,28 @@ class AuthService {
     }
   }
 
+  Future updateProfile(
+      String email, String name, String lastName, String bio) async {
+    final token = await storage.read(key: 'token');
+    int userId = userController.userData['id'];
+    if (token == null) {
+      return false;
+    }
+    try {
+      final response = await dio.put(
+          '${dotenv.env['API_ENDPOINT']}/user/edit/${userId.toString()}',
+          options: Options(headers: {'Authorization': 'Bearer $token'}),
+          data: {
+            'email': email,
+            'name': name,
+            'lastName': lastName,
+            'bio': bio
+          });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   //Login Method
   Future<void> login(String email, String password, context) async {
     try {
@@ -178,7 +200,7 @@ class AuthService {
     }
   }
 
-  Future updateUser(int age, String gender, context) async {
+  Future setAgeAndGender(int age, String gender, context) async {
     try {
       String? token = await storage.read(key: 'token');
       if (token == null) {

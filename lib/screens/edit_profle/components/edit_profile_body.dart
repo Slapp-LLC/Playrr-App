@@ -15,6 +15,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final userController = Get.find<UserController>();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -35,7 +36,7 @@ class _BodyState extends State<Body> {
               email: userController.userData['email'],
               name: userController.userData['name'],
               lastName: userController.userData['lastName'],
-              bio: ''),
+              bio: userController.userData['bio']),
         ],
       ),
     );

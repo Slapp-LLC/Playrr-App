@@ -114,7 +114,8 @@ class _UserBodyState extends State<UserBody> {
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onPressed: () {
-                      Navigator.pushNamed(context, RoutePaths.ChatUser);
+                      Navigator.pushNamed(context, RoutePaths.ChatUser,
+                          arguments: widget.userId);
                     },
                     icon: SvgPicture.asset('assets/icons/MessageGreenIcon.svg'),
                   ),
