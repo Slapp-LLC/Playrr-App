@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/controllers/signup.controller.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/screens/sport_picking/levelPicking.screen.dart';
 
 class SportCard extends StatelessWidget {
@@ -18,7 +18,7 @@ class SportCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SignUpController signUpController = Get.put(SignUpController());
+    final AuthController signUpController = Get.put(AuthController());
 
     return GestureDetector(
       onTap: () {

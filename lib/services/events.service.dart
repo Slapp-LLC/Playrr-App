@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:playrr_app/constants.dart';
 
 class EventService {
   //Initializations
   static final EventService instance = EventService._();
   factory EventService() => instance;
+  final storage = const FlutterSecureStorage();
+
   EventService._();
   final dio = Dio();
   // Future GetMyEvents() async {
@@ -45,6 +48,18 @@ class EventService {
           ),
         );
       }
+    }
+  }
+
+  Future joinEvent(int eventId) async {
+    final token = await storage.read(key: 'token');
+    try {
+      final response = await dio.post(
+          '${dotenv.env['API_ENDPOINT']}/tickets/join',
+          options: Options(headers: {'Authorization': 'Bearer $token'}),
+          data: {'eventId': eventId});
+    } catch (e) {
+      print(e);
     }
   }
 }

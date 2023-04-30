@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/services/authentication_service.dart';
+import 'package:playrr_app/services/authentication.service.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});

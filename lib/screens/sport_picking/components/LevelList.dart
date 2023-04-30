@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/components/CustomCheckbox.dart';
-import 'package:playrr_app/controllers/signup.controller.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
 
 class LevelList extends StatefulWidget {
   final List levelsData;
@@ -14,7 +14,7 @@ class LevelList extends StatefulWidget {
 }
 
 class _LevelListState extends State<LevelList> {
-  final SignUpController signUpController = Get.put(SignUpController());
+  final AuthController signUpController = Get.put(AuthController());
 
   String _selectedLevel = '';
   void saveLevel(value) {

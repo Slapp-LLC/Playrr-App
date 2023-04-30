@@ -5,10 +5,10 @@ import 'package:playrr_app/components/CustomCheckbox.dart';
 import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:get/get.dart';
-import 'package:playrr_app/controllers/signup.controller.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/sport_picking/sportPicking.screen.dart';
-import 'package:playrr_app/services/authentication_service.dart';
+import 'package:playrr_app/services/authentication.service.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -18,7 +18,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final SignUpController signUpController = Get.put(SignUpController());
+  final AuthController signUpController = Get.put(AuthController());
   final userController = Get.find<UserController>();
   bool _isLoading = false;
   String selectedGender = '';
@@ -89,9 +89,8 @@ class _BodyState extends State<Body> {
                   String gender = signUpController.gender();
                   int age = signUpController.age();
                   setState(() {});
-                  await AuthService.instance
-                      .setAgeAndGender(age, gender, context)
-                      .then((value) => Navigator.push(
+                  await AuthService.instance.setAgeAndGender(age, gender).then(
+                      (value) => Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>

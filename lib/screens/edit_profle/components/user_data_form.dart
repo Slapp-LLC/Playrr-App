@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/services/authentication_service.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
+import 'package:playrr_app/services/authentication.service.dart';
 
 class UserDataForm extends StatefulWidget {
   final String? email;
@@ -39,8 +40,8 @@ class _UserDataFormState extends State<UserDataForm> {
       form.save();
     }
 
-    await AuthService.instance.updateProfile(_email, _name, _lastName, _bio);
-    await AuthService.instance.getCurrentUser(context);
+    // await AuthService.instance.updateProfile(_email, _name, _lastName, _bio);
+    // await AuthService.instance.getCurrentUser(context);
     setState(() {
       _isLoading = false;
     });

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/services/authentication_service.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
+import 'package:playrr_app/services/authentication.service.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final FocusNode _focusNode = FocusNode();
+  final AuthController authController = AuthController();
   final _signUpFormKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
@@ -28,8 +30,7 @@ class _SignUpFormState extends State<SignUpForm> {
     if (form!.validate()) {
       form.save();
     }
-    await AuthService.instance
-        .signUp(_email, _password, _name, _lastName, context);
+    await authController.signUp(_email, _password, _name, _lastName);
 
     setState(() {
       _isLoading = false;

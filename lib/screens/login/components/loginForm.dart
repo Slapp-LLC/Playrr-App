@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
-import 'package:playrr_app/services/authentication_service.dart';
+import 'package:playrr_app/services/authentication.service.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -16,25 +18,26 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-  String _email = '';
-  String _password = '';
+  final AuthController _authController = Get.find<AuthController>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
   // FlutterConfig.get('API_ENDPOINT');
 
-  Future<void> _submitForm(BuildContext context) async {
-    setState(() {
-      _isLoading = true;
-    });
+  // Future<void> _submitForm(BuildContext context) async {
+  //   setState(() {
+  //     _isLoading = true;
+  //   });
 
-    final form = _formKey.currentState;
-    if (form!.validate()) {
-      form.save();
-    }
-    await AuthService.instance.login(_email, _password, context);
-    setState(() {
-      _isLoading = false;
-    });
-  }
+  //   final form = _formKey.currentState;
+  //   if (form!.validate()) {
+  //     form.save();
+  //   }
+  //   await AuthService.instance.login(_email, _password, context);
+  //   setState(() {
+  //     _isLoading = false;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +49,7 @@ class _LoginFormState extends State<LoginForm> {
           Column(
             children: [
               TextFormField(
+                controller: _emailController,
                 decoration: InputDecoration(
                   hintText: 'Email',
                   hintStyle: const TextStyle(color: bodyTextColor),
@@ -71,9 +75,6 @@ class _LoginFormState extends State<LoginForm> {
                   }
                   return null;
                 },
-                onSaved: (value) {
-                  _email = value!;
-                },
                 style: const TextStyle(color: Colors.white),
               ),
             ],
@@ -82,6 +83,7 @@ class _LoginFormState extends State<LoginForm> {
             margin: const EdgeInsets.only(top: 18),
             child: TextFormField(
               obscureText: true,
+              controller: _passwordController,
               decoration: InputDecoration(
                 hintText: 'Contraseña',
                 hintStyle: const TextStyle(color: bodyTextColor),
@@ -104,9 +106,6 @@ class _LoginFormState extends State<LoginForm> {
                 }
                 return null;
               },
-              onSaved: (value) {
-                _password = value!;
-              },
               style: const TextStyle(color: Colors.white),
             ),
           ),
@@ -118,7 +117,10 @@ class _LoginFormState extends State<LoginForm> {
               isPrimary: true,
               onPressed: () => {
                 if (_formKey.currentState!.validate())
-                  {_formKey.currentState!.save(), _submitForm(context)}
+                  {
+                    _authController.login(
+                        _emailController.text, _passwordController.text)
+                  }
               },
             ),
           )

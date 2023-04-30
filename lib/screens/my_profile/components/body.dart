@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -101,7 +99,8 @@ class _BodyState extends State<Body> {
                     )),
                 ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.pushNamed(context, RoutePaths.EditMyProfile);
+                    Navigator.pushReplacementNamed(
+                        context, RoutePaths.EditMyProfile);
                   },
                   icon: SvgPicture.asset('assets/icons/EditIcon.svg'),
                   label: const Text(

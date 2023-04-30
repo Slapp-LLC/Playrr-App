@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/controllers/signup.controller.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/screens/post_signup/thirdStep/stepThree.screen.dart';
 
@@ -15,7 +15,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final SignUpController signUpController = Get.put(SignUpController());
+  final AuthController signUpController = Get.put(AuthController());
 
   int _age = 0;
   final _ageFormKey = GlobalKey<FormState>();

@@ -142,7 +142,10 @@ class _EventBodyState extends State<EventBody> {
                       ],
                     ),
                   )),
-                  JoinBar(price: eventData['price']),
+                  JoinBar(
+                    price: eventData['price'],
+                    eventId: eventData['id'],
+                  ),
                 ],
               ),
             );

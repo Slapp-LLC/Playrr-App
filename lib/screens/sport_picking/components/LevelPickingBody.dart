@@ -6,7 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/controllers/signup.controller.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/screens/sport_picking/components/LevelList.dart';
 import 'package:playrr_app/services/user.service.dart';
 
@@ -19,7 +19,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   List<dynamic> _sportLevels = [];
-  final SignUpController signUpController = Get.put(SignUpController());
+  final AuthController signUpController = Get.put(AuthController());
 
   @override
   void initState() {

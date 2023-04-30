@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/services/events.service.dart';
 
 class JoinBar extends StatefulWidget {
   final int price;
-  const JoinBar({super.key, required this.price});
+  final int eventId;
+  const JoinBar({super.key, required this.price, required this.eventId});
 
   @override
   State<JoinBar> createState() => _JoinBarState();
@@ -56,7 +58,9 @@ class _JoinBarState extends State<JoinBar> {
                     color: greenPrimaryColor,
                     borderRadius: BorderRadius.circular(50)),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    EventService.instance.joinEvent(widget.eventId);
+                  },
                   child: const Text(
                     'Lets play',
                     style: TextStyle(

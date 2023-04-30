@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
-import 'package:playrr_app/controllers/signup.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
-import 'package:playrr_app/screens/event/event.screen.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
@@ -17,7 +16,6 @@ import 'package:playrr_app/screens/post_signup/secondStep/stepTwo.screen.dart';
 import 'package:playrr_app/screens/search/search.screen.dart';
 import 'package:playrr_app/screens/signup/steOneSignUp.screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:playrr_app/services/authentication_service.dart';
 import 'utils/router.utils.dart';
 
 void main() async {
@@ -34,13 +32,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   //State Initialization
   final UserController userController = Get.put(UserController());
-  final SignUpController signUpController = Get.put(SignUpController());
+  final AuthController authController = Get.put(AuthController());
   final EventsController eventsController = Get.put(EventsController());
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +43,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: "Roboto",
       ),
       home: FutureBuilder<bool>(
-        future: AuthService.instance.getCurrentUser(context),
+        future: authController.getCurrenUser(),
         builder: (context, spanshot) {
           if (spanshot.connectionState == ConnectionState.waiting) {
             return Scaffold(

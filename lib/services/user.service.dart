@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
-import 'package:playrr_app/services/authentication_service.dart';
+import 'package:playrr_app/services/authentication.service.dart';
 
 class UserService {
   static final UserService instance = UserService._();
@@ -31,7 +31,7 @@ class UserService {
       await dio.post('${dotenv.env['API_ENDPOINT']}/user/userSport/$userId',
           data: parsedData,
           options: Options(headers: {'Authorization': 'Bearer $token'}));
-      await AuthService.instance.getCurrentUser(context);
+      await AuthService.instance.getUserData();
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const Home()));
     } catch (e) {

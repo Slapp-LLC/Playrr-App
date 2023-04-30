@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
-import 'package:playrr_app/services/authentication_service.dart';
+import 'package:playrr_app/services/authentication.service.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class MainDrawer extends StatefulWidget {
@@ -14,6 +15,7 @@ class MainDrawer extends StatefulWidget {
 }
 
 class _MainDrawerState extends State<MainDrawer> {
+  final AuthController authController = AuthController();
   final userController = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
@@ -105,7 +107,7 @@ class _MainDrawerState extends State<MainDrawer> {
                   fontWeight: FontWeight.w400),
             ),
             onTap: () {
-              AuthService.instance.logOut();
+              authController.logOut();
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const LandingScreen()),
