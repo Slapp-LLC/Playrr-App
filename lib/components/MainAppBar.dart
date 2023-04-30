@@ -3,14 +3,15 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/providers/user.provider.dart';
 
 class MainAppBar extends StatelessWidget with PreferredSizeWidget {
   const MainAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final userController = Get.find<UserController>();
+    final UserProvider _userProvider = Get.put(UserProvider());
+
     return AppBar(
       automaticallyImplyLeading: false,
       actions: <Widget>[Container()], // this will hide endDrawer hamburger icon
@@ -35,10 +36,9 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
                     radius: 175,
                     child: CircleAvatar(
                       backgroundColor: secondaryBackground,
-                      backgroundImage: userController.userData['photoUrl'] !=
-                                  null &&
-                              userController.userData['photoUrl'].isNotEmpty
-                          ? NetworkImage(userController.userData['photoUrl'])
+                      backgroundImage: _userProvider.user.photoUrl != null &&
+                              _userProvider.user.photoUrl.isNotEmpty
+                          ? NetworkImage(_userProvider.user.photoUrl)
                           : Image.asset('assets/images/Avatar.png').image,
                       radius: 90,
                     ),

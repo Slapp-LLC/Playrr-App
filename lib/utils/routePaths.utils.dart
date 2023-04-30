@@ -9,4 +9,5 @@ class RoutePaths {
   static const SportPicking = '/sportPicking';
   static const EditMyProfile = '/editMyProfile';
   static const ChatUser = '/chatUser';
+  static const Home = '/home';
 }

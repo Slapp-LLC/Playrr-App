@@ -3,6 +3,7 @@ import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
 import 'package:playrr_app/services/authentication.service.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
@@ -15,6 +16,7 @@ class MainDrawer extends StatefulWidget {
 }
 
 class _MainDrawerState extends State<MainDrawer> {
+  final UserProvider _userProvider = Get.put(UserProvider());
   final AuthController authController = AuthController();
   final userController = Get.find<UserController>();
   @override
@@ -42,11 +44,11 @@ class _MainDrawerState extends State<MainDrawer> {
                         color: Colors.black,
                         border:
                             Border.all(color: secondaryBackground, width: 3),
-                        image: userController.userData['photoUrl'] != null &&
-                                userController.userData['photoUrl'].isNotEmpty
+                        image: _userProvider.user.photoUrl != null &&
+                                _userProvider.user.photoUrl.isNotEmpty
                             ? DecorationImage(
-                                image: NetworkImage(
-                                    userController.userData['photoUrl']),
+                                image:
+                                    NetworkImage(_userProvider.user.photoUrl),
                                 fit: BoxFit.cover,
                               )
                             : const DecorationImage(
@@ -57,7 +59,7 @@ class _MainDrawerState extends State<MainDrawer> {
                     ),
                   ),
                   Text(
-                    '${userController.userData['name']} ${userController.userData['lastName']}',
+                    '${_userProvider.user.name} ${_userProvider.user.lastName}',
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,

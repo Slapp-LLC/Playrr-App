@@ -5,6 +5,7 @@ import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
   final UserController userController = Get.put(UserController());
   final AuthController authController = Get.put(AuthController());
   final EventsController eventsController = Get.put(EventsController());
-
+  final UserProvider userProvider = Get.put(UserProvider());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/models/user.model.dart';
+import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/services/authentication.service.dart';
 import 'package:playrr_app/services/errorHandling.service.dart';
 import 'package:playrr_app/services/http.service.dart';
 import 'package:playrr_app/utils/api_error.dart';
+import 'package:playrr_app/utils/routePaths.utils.dart';
 import 'package:playrr_app/utils/token_manager.dart';
 import 'package:dio/dio.dart' as dio; // Add an alias to the dio import
 
 class AuthController extends GetxController {
   final AuthService authService = AuthService.instance;
   final TokenManager tokenManager = Get.put(TokenManager());
-
+  final UserProvider _userProvider = Get.put(UserProvider());
   Future<void> login(String email, String password) async {
     try {
       // Response response = await httpService.login(email, password);
       dio.Response response = await authService.login(email, password);
-      print(response);
-      // await tokenManager.storeToken(response.data['token']);
+      UserModel user =
+          UserModel.fromJson(response.data['user'] as Map<String, dynamic>);
+      _userProvider.updateUser(user);
+      await tokenManager.storeToken(response.data['token']);
+      Get.offAllNamed(RoutePaths.Home);
     } on ApiError catch (e) {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
     } catch (e) {
+      print(e);
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
           backgroundColor: errorColor,
