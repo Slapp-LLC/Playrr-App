@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/models/user.model.dart';
+import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/components/MySportCard.dart';
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
@@ -18,17 +20,19 @@ class MySportsSlider extends StatefulWidget {
 class _MySportsSliderState extends State<MySportsSlider> {
   final userController = Get.find<UserController>();
   final eventsController = Get.find<EventsController>();
-
+  UserProvider userProvider = Get.find<UserProvider>();
   List<dynamic> _sportLevels = [];
   @override
   void initState() {
     super.initState();
     _getUserSports();
+    UserModel currentUser = userProvider.user;
+    print(currentUser.userSports);
   }
 
   void _getUserSports() {
     setState(() {
-      _sportLevels = userController.userData['userSports'];
+      _sportLevels = userProvider.user.userSports;
     });
   }
 
@@ -46,11 +50,12 @@ class _MySportsSliderState extends State<MySportsSlider> {
               scrollDirection: Axis.horizontal,
               itemCount: _sportLevels.length,
               itemBuilder: (BuildContext context, int index) {
+                UserSport sportLevel = _sportLevels[index];
                 return MySportCard(
                   index: index,
-                  photoURl: _sportLevels[index]['sport']['iconUrl'],
-                  name: _sportLevels[index]['sport']['name'],
-                  sportId: _sportLevels[index]['sport']['id'],
+                  photoURl: sportLevel.sport.iconUrl,
+                  name: sportLevel.sport.name,
+                  sportId: sportLevel.sport.id,
                 );
               },
             ),

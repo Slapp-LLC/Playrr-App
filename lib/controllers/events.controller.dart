@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:playrr_app/providers/events.provider.dart';
+import 'package:playrr_app/services/errorHandling.service.dart';
+import 'package:playrr_app/services/events.service.dart';
+import 'package:dio/dio.dart' as dio;
+import 'package:playrr_app/utils/api_error.dart'; // Add an alias to the dio import
 
 class EventsController extends GetxController {
-  var currentSportSelection = 0.obs;
-  var eventResultList = RxList<dynamic>([]);
+  final EventService _eventService = EventService.instance;
+  final _eventsProvider = Get.find<EventsProvider>();
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   Get.put(EventsController());
-  // }
-  void setCurrentSportSelection(int value) {
-    currentSportSelection.value = value;
-  }
-
-  void setEventResultList(List<dynamic> results) {
-    eventResultList.assignAll(results);
+  Future<void> getReccomendedEvents() async {
+    try {
+      dio.Response response = await _eventService.getRecommendedEvents();
+      _eventsProvider.setEventResultList(response.data);
+    } on ApiError catch (e) {
+      ErrorHandlingService.instance
+          .showError(e.message, statusCode: e.statusCode);
+    }
   }
 }

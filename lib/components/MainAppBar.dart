@@ -36,9 +36,8 @@ class MainAppBar extends StatelessWidget with PreferredSizeWidget {
                     radius: 175,
                     child: CircleAvatar(
                       backgroundColor: secondaryBackground,
-                      backgroundImage: _userProvider.user.photoUrl != null &&
-                              _userProvider.user.photoUrl.isNotEmpty
-                          ? NetworkImage(_userProvider.user.photoUrl)
+                      backgroundImage: _userProvider.user.photoUrl != null
+                          ? NetworkImage(_userProvider.user.photoUrl!)
                           : Image.asset('assets/images/Avatar.png').image,
                       radius: 90,
                     ),

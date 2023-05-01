@@ -28,7 +28,6 @@ class AuthController extends GetxController {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
     } catch (e) {
-      print(e);
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
           backgroundColor: errorColor,
@@ -43,27 +42,38 @@ class AuthController extends GetxController {
   }
 
   Future<bool> getCurrenUser() async {
-    try {
-      dio.Response response = await authService.getUserData();
-      print(response);
-      return true;
-      //Implement futher logic
-    } on ApiError catch (e) {
-      ErrorHandlingService.instance
-          .showError(e.message, statusCode: e.statusCode);
+    final accessToken = await tokenManager.getToken();
+    if (accessToken == null) {
       return false;
-    } catch (e) {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(
-        const SnackBar(
-          backgroundColor: errorColor,
-          content: Text(
-            'Error: An unexpected error occurred',
-            style: TextStyle(color: Colors.white70),
+    } else {
+      try {
+        dio.Response response = await authService.getUserData(accessToken);
+
+        if (response.data != null) {
+          UserModel user =
+              UserModel.fromJson(response.data as Map<String, dynamic>);
+          _userProvider.updateUser(user);
+          return true;
+        }
+        return false;
+        //Implement futher logic
+      } on ApiError catch (e) {
+        ErrorHandlingService.instance
+            .showError(e.message, statusCode: e.statusCode);
+        return false;
+      } catch (e) {
+        ScaffoldMessenger.of(Get.context!).showSnackBar(
+          const SnackBar(
+            backgroundColor: errorColor,
+            content: Text(
+              'Error: An unexpected error occurred',
+              style: TextStyle(color: Colors.white70),
+            ),
+            showCloseIcon: true,
           ),
-          showCloseIcon: true,
-        ),
-      );
-      return false;
+        );
+        return false;
+      }
     }
   }
 

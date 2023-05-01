@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
 import 'package:playrr_app/components/MainAppBar.dart';
 import 'package:playrr_app/components/MainDrawer.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/events.controller.dart';
+import 'package:playrr_app/models/user.model.dart';
+import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/components/body.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +21,11 @@ class Home extends StatefulWidget {
 //? en esta pagina, generar una lista con todas las rutas a utilizar en
 // la barra de navegacion y
 class _HomeState extends State<Home> {
+  UserProvider userProvider = Get.find<UserProvider>();
+  final eventsController = Get.find<EventsController>();
+
   final int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

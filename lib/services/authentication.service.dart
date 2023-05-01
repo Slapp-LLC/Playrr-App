@@ -9,6 +9,7 @@ import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/models/user.model.dart';
 import 'package:playrr_app/services/http.service.dart';
 import 'package:playrr_app/utils/api_error.dart';
 
@@ -33,20 +34,19 @@ class AuthService {
           .post('/auth/login', data: {'email': email, 'password': password});
       return response;
     } on DioError catch (e) {
-      print(e);
       String errorMessage = e.response?.data['message'] ?? 'An error occurred';
       throw ApiError(statusCode: e.response?.statusCode, message: errorMessage);
     }
   }
 
   //Get current user's data
-  Future<Response> getUserData() async {
-    final accessToken = tokenManager.getToken();
+  Future<Response> getUserData(String accessToken) async {
     try {
       Response response = await dio.get('/auth/profile',
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       return response;
     } on DioError catch (e) {
+      print('Hello');
       String errorMessage = e.response?.data['message'] ?? 'An error occurred';
       throw ApiError(message: errorMessage, statusCode: e.response?.statusCode);
     }
@@ -90,7 +90,7 @@ class AuthService {
   Future<Response> setAgeAndGender(int age, String gender) async {
     final accessToken = tokenManager.getToken();
     try {
-      Response response = await dio.put('/user/edit/${13}',
+      Response response = await dio.put('/user/edit/${accessToken}',
           data: {'age': age, 'gender': gender},
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       return response;

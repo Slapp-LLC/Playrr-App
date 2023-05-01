@@ -44,11 +44,10 @@ class _MainDrawerState extends State<MainDrawer> {
                         color: Colors.black,
                         border:
                             Border.all(color: secondaryBackground, width: 3),
-                        image: _userProvider.user.photoUrl != null &&
-                                _userProvider.user.photoUrl.isNotEmpty
+                        image: _userProvider.user.photoUrl != null
                             ? DecorationImage(
                                 image:
-                                    NetworkImage(_userProvider.user.photoUrl),
+                                    NetworkImage(_userProvider.user.photoUrl!),
                                 fit: BoxFit.cover,
                               )
                             : const DecorationImage(

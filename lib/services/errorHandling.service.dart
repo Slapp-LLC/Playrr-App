@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
 
@@ -9,12 +10,14 @@ class ErrorHandlingService {
 
   // Show error message using GetX SnackBar
   void showError(String message, {int? statusCode}) {
-    Get.showSnackbar(
-      GetSnackBar(
-        title: statusCode == null ? 'Error' : 'Error ($statusCode)',
-        message: message,
+    ScaffoldMessenger.of(Get.context!).showSnackBar(
+      SnackBar(
         backgroundColor: errorColor,
-        duration: Duration(seconds: 3),
+        content: Text(
+          'Error $statusCode: $message',
+          style: TextStyle(color: Colors.white70),
+        ),
+        showCloseIcon: true,
       ),
     );
   }

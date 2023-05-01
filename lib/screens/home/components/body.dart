@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/screens/home/components/MySportsSlider.dart';
 import 'package:playrr_app/screens/home/components/resultList.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
@@ -22,41 +23,30 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final eventsController = Get.find<EventsController>();
+  final _eventsProvider = Get.find<EventsProvider>();
+  // final eventsController = Get.find<EventsController>();
   final userController = Get.find<UserController>();
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
   Future<void> _refreshData() async {
     // Call the API or perform any data loading operations here
-    final response = await Dio().get('${dotenv.env['API_ENDPOINT']}/event');
-    eventsController.setEventResultList(response.data);
+    // final response = await Dio().get('${dotenv.env['API_ENDPOINT']}/event');
+    // eventsController.setEventResultList(response.data);
     return;
   }
 
   //Handle errors
-  Future _getEventSports() async {
-    if (userController.userData['userSports'].length == 0) {
-      Future.delayed(Duration.zero, () {
-        Navigator.pushReplacementNamed(context, RoutePaths.SportPicking);
-      });
-    }
-    final response = await Dio().get('${dotenv.env['API_ENDPOINT']}/event');
-    eventsController.setEventResultList(response.data);
-    if (eventsController.currentSportSelection.value == 0) {
-      eventsController.setCurrentSportSelection(
-          userController.userData['userSports'][0]['sport']['id']);
-    }
-  }
 
   @override
   void initState() {
     super.initState();
-    _getEventSports();
+    eventsController.getReccomendedEvents();
   }
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (eventsController.eventResultList.isEmpty) {
+      if (_eventsProvider.eventResultList.isEmpty) {
         return Container(
           decoration: const BoxDecoration(color: Colors.black),
           child: const Center(
@@ -75,8 +65,8 @@ class _BodyState extends State<Body> {
                 decoration: const BoxDecoration(color: Colors.black),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
+                  children: const [
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Text(
                         'Tus deportes',
@@ -87,8 +77,8 @@ class _BodyState extends State<Body> {
                         ),
                       ),
                     ),
-                    const MySportsSlider(),
-                    const Padding(
+                    MySportsSlider(),
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Text(
                         'Recomendados',
@@ -99,9 +89,7 @@ class _BodyState extends State<Body> {
                         ),
                       ),
                     ),
-                    EventResultList(
-                      resultsData: eventsController.eventResultList,
-                    ),
+                    EventResultList(),
                   ],
                 ),
               ),

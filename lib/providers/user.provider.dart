@@ -9,6 +9,8 @@ class UserProvider extends GetxController {
     email: '',
     age: 0,
     photoUrl: '',
+    bio: null,
+    country: null,
     userSports: [],
     matches: [],
     role: UserRole(id: 0, name: ''),

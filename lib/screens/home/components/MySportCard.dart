@@ -5,6 +5,7 @@ import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
+import 'package:playrr_app/providers/events.provider.dart';
 
 class MySportCard extends StatefulWidget {
   final int index;
@@ -23,12 +24,12 @@ class MySportCard extends StatefulWidget {
 }
 
 class _MySportCardState extends State<MySportCard> {
-  final eventsController = Get.find<EventsController>();
+  final _eventProvider = Get.find<EventsProvider>();
   @override
   Widget build(BuildContext context) {
     return Obx(() => GestureDetector(
           onTap: () {
-            eventsController.setCurrentSportSelection(widget.sportId);
+            _eventProvider.setCurrentSportSelection(widget.sportId);
           },
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -37,7 +38,7 @@ class _MySportCardState extends State<MySportCard> {
             decoration: BoxDecoration(
               color: secondaryBackground,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
-              border: eventsController.currentSportSelection == widget.sportId
+              border: _eventProvider.currentSportSelection == widget.sportId
                   ? Border.all(color: greenPrimaryColor, width: 2)
                   : Border.all(color: Colors.black, width: 2),
             ),

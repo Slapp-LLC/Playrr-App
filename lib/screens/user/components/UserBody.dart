@@ -27,7 +27,6 @@ class _UserBodyState extends State<UserBody> {
       final response = await Dio().get(
           '${dotenv.env['API_ENDPOINT']}/user/${widget.userId}',
           options: Options(headers: {'Authorization': 'Bearer $token'}));
-      print(response.data);
       return response.data;
     } catch (e) {
       print(e);
