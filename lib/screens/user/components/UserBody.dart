@@ -77,7 +77,6 @@ class _UserBodyState extends State<UserBody> {
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: Colors.grey.shade400, width: 1),
                     image: userData?['photoUrl'] != null &&
                             userData?['photoUrl'].isNotEmpty
                         ? DecorationImage(

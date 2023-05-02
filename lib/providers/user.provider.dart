@@ -21,4 +21,18 @@ class UserProvider extends GetxController {
   void updateUser(UserModel newUser) {
     _user.value = newUser;
   }
+
+  void resetUser() {
+    _user.value = UserModel(
+      id: 0,
+      name: '',
+      lastName: '',
+      email: '',
+      age: 0,
+      photoUrl: '',
+      userSports: [],
+      matches: [],
+      role: UserRole(id: 0, name: ''),
+    );
+  }
 }

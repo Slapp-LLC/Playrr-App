@@ -5,6 +5,7 @@ import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/providers/auth.provider.dart';
 import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
@@ -38,6 +39,7 @@ class _MyAppState extends State<MyApp> {
   final EventsController eventsController = Get.put(EventsController());
   final UserProvider userProvider = Get.put(UserProvider());
   final EventsProvider eventsProvider = Get.put(EventsProvider());
+  final AuthProvider authProvider = Get.put(AuthProvider());
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,6 @@ class _MyAppState extends State<MyApp> {
                 ])));
           } else {
             final bool isLoggedIn = spanshot.data!;
-            print(isLoggedIn);
             return isLoggedIn ? const Home() : const LandingScreen();
           }
         },

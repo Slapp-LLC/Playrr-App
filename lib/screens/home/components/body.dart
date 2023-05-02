@@ -10,6 +10,7 @@ import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/providers/events.provider.dart';
+import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/components/MySportsSlider.dart';
 import 'package:playrr_app/screens/home/components/resultList.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
@@ -22,9 +23,9 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final eventsController = Get.find<EventsController>();
+  final EventsController _eventsController = Get.find<EventsController>();
   final _eventsProvider = Get.find<EventsProvider>();
-  // final eventsController = Get.find<EventsController>();
+  final UserProvider _userProvider = Get.find<UserProvider>();
   final userController = Get.find<UserController>();
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
@@ -35,66 +36,86 @@ class _BodyState extends State<Body> {
     return;
   }
 
-  //Handle errors
-
-  @override
-  void initState() {
-    super.initState();
-    eventsController.getReccomendedEvents();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (_eventsProvider.eventResultList.isEmpty) {
-        return Container(
-          decoration: const BoxDecoration(color: Colors.black),
-          child: const Center(
-            child: CircularProgressIndicator(
-              color: greenPrimaryColor,
-            ),
-          ),
-        );
-      } else {
-        return RefreshIndicator(
-            backgroundColor: Colors.black,
-            color: greenPrimaryColor,
-            onRefresh: _refreshData,
-            child: SingleChildScrollView(
-              child: Container(
+    return FutureBuilder(
+        future: _eventsController.getRecomendedEvents(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container(
                 decoration: const BoxDecoration(color: Colors.black),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(
-                        'Tus deportes',
-                        style: TextStyle(
-                          fontFamily: 'Bebas neue',
-                          color: Colors.white,
-                          fontSize: 25,
-                        ),
-                      ),
-                    ),
-                    MySportsSlider(),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(
-                        'Recomendados',
-                        style: TextStyle(
-                          fontFamily: 'Bebas neue',
-                          color: Colors.white,
-                          fontSize: 25,
-                        ),
-                      ),
-                    ),
-                    EventResultList(),
-                  ],
-                ),
-              ),
-            ));
-      }
-    });
+                child: const Center(
+                    child: CircularProgressIndicator(
+                  color: greenPrimaryColor,
+                )));
+          } else if (snapshot.hasError) {
+            return Text(
+              'Error',
+              style: TextStyle(color: Colors.white),
+            );
+          } else {
+            return RefreshIndicator(
+                onRefresh: _refreshData,
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Column(
+                    children: const [MySportsSlider(), EventResultList()],
+                  ),
+                ));
+          }
+        });
   }
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Obx(() {
+  //     if (_eventsProvider.eventResultList.isEmpty) {
+  //       return Container(
+  //         decoration: const BoxDecoration(color: Colors.black),
+  //         child: const Center(
+  //           child: CircularProgressIndicator(
+  //             color: greenPrimaryColor,
+  //           ),
+  //         ),
+  //       );
+  //     } else {
+  //       return RefreshIndicator(
+  //           backgroundColor: Colors.black,
+  //           color: greenPrimaryColor,
+  //           onRefresh: _refreshData,
+  //           child: SingleChildScrollView(
+  //             child: Container(
+  //               decoration: const BoxDecoration(color: Colors.black),
+  //               child: Column(
+  //                 crossAxisAlignment: CrossAxisAlignment.start,
+  //                 children: const [
+  //                   Padding(
+  //                     padding: EdgeInsets.symmetric(horizontal: 15),
+  //                     child: Text(
+  //                       'Tus deportes',
+  //                       style: TextStyle(
+  //                         fontFamily: 'Bebas neue',
+  //                         color: Colors.white,
+  //                         fontSize: 25,
+  //                       ),
+  //                     ),
+  //                   ),
+  //                   MySportsSlider(),
+  //                   Padding(
+  //                     padding: EdgeInsets.symmetric(horizontal: 15),
+  //                     child: Text(
+  //                       'Recomendados',
+  //                       style: TextStyle(
+  //                         fontFamily: 'Bebas neue',
+  //                         color: Colors.white,
+  //                         fontSize: 25,
+  //                       ),
+  //                     ),
+  //                   ),
+  //                   EventResultList(),
+  //                 ],
+  //               ),
+  //             ),
+  //           ));
+  //     }
+  //   });
 }

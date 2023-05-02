@@ -23,33 +23,35 @@ class _EventResultListState extends State<EventResultList> {
     return Obx(() {
       //There are not results
 
-      // final filteredResult =
-      //     eventsController.eventResultList.where((resultData) {
-      //   if (resultData == null) {
-      //     return false;
-      //   }
+      final filteredResult = _eventProvider.eventResultList.where((resultData) {
+        if (resultData == null) {
+          return false;
+        }
 
-      //   return resultData['sport'] != null &&
-      //       resultData['sport']['id'] ==
-      //           eventsController.currentSportSelection.value;
-      // });
+        return resultData['sport'] != null &&
+            resultData['sport']['id'] ==
+                _eventProvider.currentSportSelection.value;
+      });
+
       return Column(
-          children: _eventProvider.eventResultList
-              .map(
-                (resultData) => Container(
-                  decoration: const BoxDecoration(color: Colors.black),
-                  child: EventCard(
-                      eventId: resultData['id'],
-                      eventTitle: resultData['title'],
-                      eventDate: resultData['startDate'],
-                      eventLevel: resultData['level']['name'],
-                      eventAddress: resultData['location'],
-                      eventSpots: resultData['spots'],
-                      eventPhotoUrl: resultData['eventPhoto'],
-                      attendingAmount: resultData['players'].length),
-                ),
-              )
-              .toList());
+          children: filteredResult.isNotEmpty
+              ? filteredResult
+                  .map(
+                    (resultData) => Container(
+                      decoration: const BoxDecoration(color: Colors.black),
+                      child: EventCard(
+                          eventId: resultData['id'],
+                          eventTitle: resultData['title'],
+                          eventDate: resultData['startDate'],
+                          eventLevel: resultData['level']['name'],
+                          eventAddress: resultData['location'],
+                          eventSpots: resultData['spots'],
+                          eventPhotoUrl: resultData['eventPhoto'],
+                          attendingAmount: resultData['players'].length),
+                    ),
+                  )
+                  .toList()
+              : [const NoResults()]);
     });
   }
 }

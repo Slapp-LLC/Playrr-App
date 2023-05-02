@@ -87,10 +87,10 @@ class AuthService {
     }
   }
 
-  Future<Response> setAgeAndGender(int age, String gender) async {
+  Future<Response> setAgeAndGender(int age, String gender, int userId) async {
     final accessToken = tokenManager.getToken();
     try {
-      Response response = await dio.put('/user/edit/${accessToken}',
+      Response response = await dio.put('/user/edit/${userId}',
           data: {'age': age, 'gender': gender},
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       return response;
@@ -104,6 +104,16 @@ class AuthService {
     try {
       final response =
           await dio.post('/auth/forgor-password', data: {'email': email});
+      return response;
+    } on DioError catch (e) {
+      String errorMessage = e.response?.data['message'] ?? 'An error occurred';
+      throw ApiError(message: errorMessage, statusCode: e.response?.statusCode);
+    }
+  }
+
+  Future<Response> getSportLevels() async {
+    try {
+      final response = await dio.get('/sport/levels');
       return response;
     } on DioError catch (e) {
       String errorMessage = e.response?.data['message'] ?? 'An error occurred';

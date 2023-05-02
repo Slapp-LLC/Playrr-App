@@ -5,6 +5,7 @@ import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:get/get.dart';
+import 'package:playrr_app/providers/auth.provider.dart';
 import 'package:playrr_app/screens/post_signup/thirdStep/stepThree.screen.dart';
 
 class Body extends StatefulWidget {
@@ -15,8 +16,8 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final AuthController signUpController = Get.put(AuthController());
-
+  // final AuthController signUpController = Get.put(AuthController());
+  final AuthProvider authProvider = Get.find<AuthProvider>();
   int _age = 0;
   final _ageFormKey = GlobalKey<FormState>();
   @override
@@ -82,7 +83,7 @@ class _BodyState extends State<Body> {
                         return null;
                       },
                       onSaved: (value) {
-                        signUpController.setAge(int.parse(value!));
+                        authProvider.setAge(int.parse(value!));
                       },
                       style: const TextStyle(color: Colors.white),
                     ),

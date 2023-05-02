@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:playrr_app/models/sport.model.dart';
 
 class EventsProvider extends GetxController {
+  var sports = <Sport>[].obs;
   var currentSportSelection = 0.obs;
   var eventResultList = RxList<dynamic>([]);
 
@@ -10,5 +12,10 @@ class EventsProvider extends GetxController {
 
   void setEventResultList(List<dynamic> results) {
     eventResultList.assignAll(results);
+  }
+
+  void setSports(List<dynamic> newSports) {
+    sports.value =
+        newSports.map((sportJson) => Sport.fromJson(sportJson)).toList();
   }
 }

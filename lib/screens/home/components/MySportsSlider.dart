@@ -4,7 +4,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/models/sport.model.dart';
 import 'package:playrr_app/models/user.model.dart';
+import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/components/MySportCard.dart';
 import 'package:get/instance_manager.dart';
@@ -20,26 +22,25 @@ class MySportsSlider extends StatefulWidget {
 class _MySportsSliderState extends State<MySportsSlider> {
   final userController = Get.find<UserController>();
   final eventsController = Get.find<EventsController>();
+  final EventsProvider _eventsProvider = Get.find<EventsProvider>();
   UserProvider userProvider = Get.find<UserProvider>();
-  List<dynamic> _sportLevels = [];
+  List<Sport> _sports = [];
   @override
   void initState() {
     super.initState();
     _getUserSports();
     UserModel currentUser = userProvider.user;
-    print(currentUser.userSports);
   }
 
   void _getUserSports() {
     setState(() {
-      _sportLevels = userProvider.user.userSports;
+      _sports = _eventsProvider.sports;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
       height: 55,
       margin: const EdgeInsets.only(bottom: 25, top: 10),
       width: double.infinity,
@@ -48,23 +49,17 @@ class _MySportsSliderState extends State<MySportsSlider> {
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: _sportLevels.length,
+              itemCount: _sports.length,
               itemBuilder: (BuildContext context, int index) {
-                UserSport sportLevel = _sportLevels[index];
+                Sport sport = _sports[index];
                 return MySportCard(
                   index: index,
-                  photoURl: sportLevel.sport.iconUrl,
-                  name: sportLevel.sport.name,
-                  sportId: sportLevel.sport.id,
+                  photoURl: sport.iconUrl,
+                  name: sport.name,
+                  sportId: sport.id,
                 );
               },
             ),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, RoutePaths.SportPicking);
-            },
-            icon: SvgPicture.asset('assets/icons/AddIcon.svg'),
           ),
         ],
       ),

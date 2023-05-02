@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/components/Avatar.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class ChatItem extends StatefulWidget {
   const ChatItem({super.key});
@@ -17,7 +18,9 @@ class _ChatItemState extends State<ChatItem> {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, RoutePaths.ChatUser, arguments: 1);
+          },
           child: Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(

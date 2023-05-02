@@ -24,9 +24,9 @@ class _CustomNotificationState extends State<CustomNotification> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          border: Border(
-              bottom: const BorderSide(width: 1, color: secondaryBackground))),
+      decoration: const BoxDecoration(
+          border:
+              Border(bottom: BorderSide(width: 1, color: secondaryBackground))),
       padding: const EdgeInsets.all(10),
       child: Row(
         children: [

@@ -67,6 +67,16 @@ class EventService {
     }
   }
 
+  Future<Response> getAllSports() async {
+    try {
+      Response response = await dio.get('/sport');
+      return response;
+    } on DioError catch (e) {
+      String errorMessage = e.response?.data['message'] ?? 'An error occurred';
+      throw ApiError(statusCode: e.response?.statusCode, message: errorMessage);
+    }
+  }
+
   Future joinEvent(int eventId) async {
     final token = await storage.read(key: 'token');
     try {

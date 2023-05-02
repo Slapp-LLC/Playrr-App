@@ -1,9 +1,11 @@
+import 'package:playrr_app/models/sport.model.dart';
+
 class UserModel {
   final int id;
   final String name;
   final String lastName;
   final String email;
-  final int age;
+  final int? age;
   final String? photoUrl;
   final String? bio;
   final String? country;
@@ -16,7 +18,7 @@ class UserModel {
     required this.name,
     required this.lastName,
     required this.email,
-    required this.age,
+    this.age,
     this.photoUrl,
     this.bio,
     this.country,
@@ -68,28 +70,6 @@ class UserSport {
     return UserSport(
       sport: Sport.fromJson(json['sport']),
       level: Level.fromJson(json['level']),
-    );
-  }
-}
-
-class Sport {
-  final int id;
-  final String name;
-  final String photoUrl;
-  final String iconUrl;
-
-  Sport(
-      {required this.id,
-      required this.name,
-      required this.photoUrl,
-      required this.iconUrl});
-
-  factory Sport.fromJson(Map<String, dynamic> json) {
-    return Sport(
-      id: json['id'],
-      name: json['name'],
-      photoUrl: json['photoUrl'],
-      iconUrl: json['iconUrl'],
     );
   }
 }

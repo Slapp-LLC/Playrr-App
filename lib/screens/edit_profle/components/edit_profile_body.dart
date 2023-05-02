@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/edit_profle/components/profile_picture.dart';
 import 'package:playrr_app/screens/edit_profle/components/user_data_form.dart';
 
@@ -14,14 +15,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final userController = Get.find<UserController>();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print(userController.userData);
-  }
+  final UserProvider _userProvider = Get.find<UserProvider>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +24,13 @@ class _BodyState extends State<Body> {
       child: Column(
         children: [
           ProfilePicture(
-            photoUrl: userController.userData['photoUrl'],
+            photoUrl: _userProvider.user.photoUrl,
           ),
           UserDataForm(
-              email: userController.userData['email'],
-              name: userController.userData['name'],
-              lastName: userController.userData['lastName'],
-              bio: userController.userData['bio']),
+              email: _userProvider.user.email,
+              name: _userProvider.user.name,
+              lastName: _userProvider.user.lastName,
+              bio: _userProvider.user.bio),
         ],
       ),
     );

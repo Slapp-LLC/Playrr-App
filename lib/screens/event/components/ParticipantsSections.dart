@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:playrr_app/components/Avatar.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/event/components/ParticipantImageList.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
@@ -28,7 +29,9 @@ class ParticipantsSection extends StatefulWidget {
 }
 
 class _ParticipantsSectionState extends State<ParticipantsSection> {
-  final userController = Get.find<UserController>();
+  // final userController = Get.find<UserController>();
+
+  final UserProvider _userProvider = Get.find<UserProvider>();
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +62,7 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
                 padding: const EdgeInsets.only(top: 10),
                 child: GestureDetector(
                   onTap: () {
-                    if (widget.hostId == userController.userData['id']) {
+                    if (widget.hostId == _userProvider.user.id) {
                       Navigator.pushNamed(
                         context,
                         RoutePaths.MyProfile,

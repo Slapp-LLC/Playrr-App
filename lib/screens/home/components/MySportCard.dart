@@ -24,6 +24,7 @@ class MySportCard extends StatefulWidget {
 }
 
 class _MySportCardState extends State<MySportCard> {
+  // final EventsProvider eventsProvider = Get.put(EventsProvider());
   final _eventProvider = Get.find<EventsProvider>();
   @override
   Widget build(BuildContext context) {

@@ -6,6 +6,7 @@ import 'package:playrr_app/screens/event_participants/eventParticipants.screen.d
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/my_profile/my_profile.screen.dart';
 import 'package:playrr_app/screens/post_signup/secondStep/stepTwo.screen.dart';
+import 'package:playrr_app/screens/sport_picking/levelPicking.screen.dart';
 import 'package:playrr_app/screens/sport_picking/sportPicking.screen.dart';
 import 'package:playrr_app/screens/user/user.screen.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
@@ -42,6 +43,9 @@ class RouterGen {
       case (RoutePaths.ChatUser):
         var data = settings.arguments as int;
         return MaterialPageRoute(builder: (_) => Chat(userId: data));
+
+      case (RoutePaths.LevelPicking):
+        return MaterialPageRoute(builder: (_) => const LevelPickingScreen());
 
       default:
         return MaterialPageRoute(builder: (_) => const MyUserProfile());

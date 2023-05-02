@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/models/user.model.dart';
+import 'package:playrr_app/providers/auth.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/services/authentication.service.dart';
 import 'package:playrr_app/services/errorHandling.service.dart';
@@ -15,10 +16,12 @@ class AuthController extends GetxController {
   final AuthService authService = AuthService.instance;
   final TokenManager tokenManager = Get.put(TokenManager());
   final UserProvider _userProvider = Get.put(UserProvider());
+  final AuthProvider _authProvider = Get.put(AuthProvider());
   Future<void> login(String email, String password) async {
     try {
       // Response response = await httpService.login(email, password);
       dio.Response response = await authService.login(email, password);
+      print(response);
       UserModel user =
           UserModel.fromJson(response.data['user'] as Map<String, dynamic>);
       _userProvider.updateUser(user);
@@ -28,6 +31,7 @@ class AuthController extends GetxController {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
     } catch (e) {
+      print(e);
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
           backgroundColor: errorColor,
@@ -82,7 +86,11 @@ class AuthController extends GetxController {
     try {
       dio.Response response =
           await authService.signUp(email, password, name, lastName);
-
+      UserModel user =
+          UserModel.fromJson(response.data['user'] as Map<String, dynamic>);
+      _userProvider.updateUser(user);
+      await tokenManager.storeToken(response.data['token']);
+      Get.offAllNamed(RoutePaths.StepTwoSignUp);
       //Todo Implement futher logic
     } on ApiError catch (e) {
       ErrorHandlingService.instance
@@ -101,9 +109,13 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> setAgeAndGender(int age, String gender) async {
+  Future<void> setAgeAndGender() async {
     try {
-      dio.Response response = await authService.setAgeAndGender(age, gender);
+      final int age = _authProvider.age.value;
+      final String gender = _authProvider.gender.value;
+      final int userId = _userProvider.user.id;
+      await authService.setAgeAndGender(age, gender, userId);
+      Get.offAllNamed(RoutePaths.SportPicking);
     } on ApiError catch (e) {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
@@ -124,7 +136,6 @@ class AuthController extends GetxController {
   Future<void> recoverPassword(String email) async {
     try {
       dio.Response response = await authService.recoverPassword(email);
-      //Todo futher implementation
     } on ApiError catch (e) {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
@@ -145,6 +156,7 @@ class AuthController extends GetxController {
   Future<void> logOut() async {
     try {
       await tokenManager.deleteToken();
+      _userProvider.resetUser(); // Reset user state
       //Todo futher implementation
     } catch (e) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(
@@ -160,27 +172,33 @@ class AuthController extends GetxController {
     }
   }
 
-// Future logOut() async {
-  //   await storage.delete(key: 'token');
-  //   userController.deleteUserData();
-  // }
+  Future getSportsLevels() async {
+    try {
+      final dio.Response response = await authService.getSportLevels();
+      return response;
+    } on ApiError catch (e) {
+      ErrorHandlingService.instance
+          .showError(e.message, statusCode: e.statusCode);
+    } catch (e) {
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        const SnackBar(
+          backgroundColor: errorColor,
+          content: Text(
+            'Error: An unexpected error occurred',
+            style: TextStyle(color: Colors.white70),
+          ),
+          showCloseIcon: true,
+        ),
+      );
+    }
+  }
+
   var age = 0.obs;
   var gender = ''.obs;
   var pickedSportId = 0.obs;
   var pickedLevelId = 0.obs;
   var currentSport = 0.obs;
   var _userData;
-
-  get userData => _userData;
-  void setUserData(data) {
-    _userData = data;
-    update();
-  }
-
-  void deleteUserData() {
-    _userData = null;
-    update();
-  }
 
   void setAge(int value) {
     age.value = value;

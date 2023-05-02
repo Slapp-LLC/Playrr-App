@@ -19,27 +19,28 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   List<dynamic> _sportLevels = [];
-  final AuthController signUpController = Get.put(AuthController());
+  final AuthController authController = Get.put(AuthController());
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
-    _getSportLevels();
+    _sportLevels = await authController.getSportsLevels();
   }
 
-  Future _getSportLevels() async {
-    try {
-      //TODO N+1 problem here, it shoudl send back all the levels thoghter with sports, to avoid making multiple queries
-      final response =
-          await Dio().get('${dotenv.env['API_ENDPOINT']}/sport/levels');
-      setState(() {
-        _sportLevels = response.data;
-      });
-      return _sportLevels;
-    } catch (e) {
-      print(e);
-    }
-  }
+  //Todo SportLevels
+  // Future _getSportLevels() async {
+  //   try {
+  //     //TODO N+1 problem here, it shoudl send back all the levels thoghter with sports, to avoid making multiple queries
+  //     final response =
+  //         await Dio().get('${dotenv.env['API_ENDPOINT']}/sport/levels');
+  //     setState(() {
+  //       _sportLevels = response.data;
+  //     });
+  //     return _sportLevels;
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +65,10 @@ class _BodyState extends State<Body> {
               MainButton(
                   text: 'Empezar',
                   onPressed: () async {
-                    final sportId = signUpController.pickedSportId();
-                    final levelId = signUpController.pickedLevelId();
-                    await UserService.instance
-                        .setUserSports(sportId, levelId, context);
+                    final sportId = authController.pickedSportId();
+                    final levelId = authController.pickedLevelId();
+                    // await UserService.instance
+                    //     .setUserSports(sportId, levelId, context);
                   },
                   isPrimary: true)
             ],

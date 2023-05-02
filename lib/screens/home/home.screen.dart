@@ -25,6 +25,12 @@ class _HomeState extends State<Home> {
   final eventsController = Get.find<EventsController>();
 
   final int _selectedIndex = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    eventsController.getRecomendedEvents();
+  }
 
   @override
   Widget build(BuildContext context) {

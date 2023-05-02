@@ -7,6 +7,7 @@ import 'package:playrr_app/constants.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/providers/auth.provider.dart';
 import 'package:playrr_app/screens/sport_picking/sportPicking.screen.dart';
 import 'package:playrr_app/services/authentication.service.dart';
 
@@ -18,8 +19,10 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final AuthController signUpController = Get.put(AuthController());
+  // final AuthController signUpController = Get.put(AuthController());
+  final AuthProvider authProvider = Get.find<AuthProvider>();
   final userController = Get.find<UserController>();
+  final AuthController _authController = Get.find<AuthController>();
   bool _isLoading = false;
   String selectedGender = '';
 
@@ -27,7 +30,7 @@ class _BodyState extends State<Body> {
     setState(() {
       selectedGender = value;
     });
-    signUpController.setGender(value);
+    authProvider.setGender(value);
   }
 
   @override
@@ -86,15 +89,7 @@ class _BodyState extends State<Body> {
                 text: 'Siguiente',
                 isLoading: false,
                 onPressed: () async {
-                  String gender = signUpController.gender();
-                  int age = signUpController.age();
-                  setState(() {});
-                  await AuthService.instance.setAgeAndGender(age, gender).then(
-                      (value) => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const SportPickingScreen())));
+                  await _authController.setAgeAndGender();
                 },
                 isPrimary: true),
           )
