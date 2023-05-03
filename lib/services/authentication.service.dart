@@ -46,25 +46,6 @@ class AuthService {
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       return response;
     } on DioError catch (e) {
-      print('Hello');
-      String errorMessage = e.response?.data['message'] ?? 'An error occurred';
-      throw ApiError(message: errorMessage, statusCode: e.response?.statusCode);
-    }
-  }
-
-  //Update profile data
-  Future<Response> updateUserData(
-      String email, String name, String lastName, String bio) async {
-    final accessToken = tokenManager.getToken();
-    // int userId = userController.userData['id'];
-
-    try {
-      Response response = await dio.get(
-        '/user/edit/${13.toString()}',
-        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
-      );
-      return response;
-    } on DioError catch (e) {
       String errorMessage = e.response?.data['message'] ?? 'An error occurred';
       throw ApiError(message: errorMessage, statusCode: e.response?.statusCode);
     }
@@ -88,9 +69,9 @@ class AuthService {
   }
 
   Future<Response> setAgeAndGender(int age, String gender, int userId) async {
-    final accessToken = tokenManager.getToken();
+    final accessToken = await tokenManager.getToken();
     try {
-      Response response = await dio.put('/user/edit/${userId}',
+      Response response = await dio.put('/user/edit/${userId.toString()}',
           data: {'age': age, 'gender': gender},
           options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
       return response;

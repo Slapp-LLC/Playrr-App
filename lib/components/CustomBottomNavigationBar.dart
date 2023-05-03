@@ -29,7 +29,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Colors.black,
         ),
-        child: ClipRRect(
+        child: SafeArea(
+            child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(50)),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
@@ -71,6 +72,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
             backgroundColor: secondaryBackground,
             onTap: _onItemTapped,
           ),
-        ));
+        )));
   }
 }

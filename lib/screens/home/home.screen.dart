@@ -9,6 +9,7 @@ import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/models/user.model.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/components/body.dart';
+import 'package:playrr_app/services/location.service.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -30,6 +31,7 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     eventsController.getRecomendedEvents();
+    LocationService.instance.getCurrentLocation();
   }
 
   @override

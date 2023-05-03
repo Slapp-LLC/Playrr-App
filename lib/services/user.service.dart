@@ -36,6 +36,65 @@ class UserService {
     }
   }
 
+  //Update profile data
+  Future<Response> updateMyUserData(
+      String email, String name, String lastName, String bio) async {
+    // int userId = userController.userData['id'];
+    try {
+      final accessToken = await tokenManager.getToken();
+      Response response = await dio.put(
+        '/user/edit/${13.toString()}',
+        options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
+      );
+      return response;
+    } on DioError catch (e) {
+      String errorMessage = e.response?.data['message'] ?? 'An error occurred';
+      throw ApiError(message: errorMessage, statusCode: e.response?.statusCode);
+    }
+  }
+
+  Future<Response> getUserData(int userId) async {
+    try {
+      final accessToken = await tokenManager.getToken();
+      Response response = await dio.get('/user/$userId',
+          options: Options(headers: {'Authorization': 'Bearer $accessToken'}));
+      return response;
+    } on DioError catch (e) {
+      String errorMessage = e.response?.data['message'] ?? 'An error occurred';
+      throw ApiError(message: errorMessage, statusCode: e.response?.statusCode);
+    }
+  }
+
+  // Future<Map<String, dynamic>> _getUserData() async {
+  //   final storage = const FlutterSecureStorage();
+  //   final token = await storage.read(key: 'token');
+
+  //   try {
+  //     final response = await Dio().get(
+  //         '${dotenv.env['API_ENDPOINT']}/user/${widget.userId}',
+  //         options: Options(headers: {'Authorization': 'Bearer $token'}));
+  //     return response.data;
+  //   } catch (e) {
+  //     print(e);
+  //     rethrow;
+  //   }
+  // }
+
+//  Future<Map<String, dynamic>> _getMyData() async {
+//     final storage = const FlutterSecureStorage();
+//     final token = await storage.read(key: 'token');
+
+//     try {
+//       final response = await Dio().get(
+//           '${dotenv.env['API_ENDPOINT']}/user/myProfile',
+//           options: Options(headers: {'Authorization': 'Bearer $token'}));
+//       return response.data;
+//     } catch (e) {
+//       print(e);
+//       rethrow;
+//     }
+//   }
+
   // Future setUserSports(int sportId, int levelId, context) async {
   //   Map<String, dynamic> data = {
   //     'sport_id': sportId,

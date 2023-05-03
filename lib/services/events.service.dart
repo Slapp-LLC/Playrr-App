@@ -18,10 +18,7 @@ class EventService {
   final httpService = HttpService.instance;
   late final Dio dio;
   final tokenManager = TokenManager();
-  // Future GetMyEvents() async {
-  //   try {} catch (e) {}
-  // }
-
+  //Get reccomended events
   Future<Response> getRecommendedEvents() async {
     try {
       final response = dio.get('/event');
@@ -32,41 +29,7 @@ class EventService {
     }
   }
 
-  Future getAllEvents(context) async {
-    try {
-      final response = await dio.get('${dotenv.env['API_ENDPOINT']}/event');
-      return response;
-    } catch (e) {
-      if (e is DioError) {
-        String errorMessage =
-            e.response?.data['message'] ?? 'An error occurred';
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: errorColor,
-            content: Text(
-              'Error: $errorMessage',
-              style: const TextStyle(color: Colors.white70),
-            ),
-            showCloseIcon: true,
-          ),
-        );
-        print(e);
-      } else {
-        print(e);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: errorColor,
-            content: Text(
-              'Error: An error occurred',
-              style: TextStyle(color: Colors.white70),
-            ),
-            showCloseIcon: true,
-          ),
-        );
-      }
-    }
-  }
-
+  //Get all sports
   Future<Response> getAllSports() async {
     try {
       Response response = await dio.get('/sport');
@@ -77,15 +40,28 @@ class EventService {
     }
   }
 
-  Future joinEvent(int eventId) async {
+  //Join an event
+  Future<Response> joinEvent(int eventId) async {
     final token = await storage.read(key: 'token');
     try {
-      final response = await dio.post(
-          '${dotenv.env['API_ENDPOINT']}/tickets/join',
+      Response response = await dio.post('/tickets/join',
           options: Options(headers: {'Authorization': 'Bearer $token'}),
           data: {'eventId': eventId});
-    } catch (e) {
-      print(e);
+      return response;
+    } on DioError catch (e) {
+      String errorMessage = e.response?.data['message'] ?? 'An error occurred';
+      throw ApiError(statusCode: e.response?.statusCode, message: errorMessage);
+    }
+  }
+
+  //Get an event
+  Future<Response> getEvent(int eventId) async {
+    try {
+      final response = await dio.get('/event/$eventId');
+      return response;
+    } on DioError catch (e) {
+      String errorMessage = e.response?.data['message'] ?? 'An error occurred';
+      throw ApiError(statusCode: e.response?.statusCode, message: errorMessage);
     }
   }
 }

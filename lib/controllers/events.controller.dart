@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:playrr_app/models/sport.model.dart';
 import 'package:playrr_app/providers/events.provider.dart';
-import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/services/errorHandling.service.dart';
 import 'package:playrr_app/services/events.service.dart';
 import 'package:dio/dio.dart' as dio;
@@ -11,7 +8,7 @@ import 'package:playrr_app/utils/api_error.dart'; // Add an alias to the dio imp
 class EventsController extends GetxController {
   final EventsProvider _eventsProvider = Get.put(EventsProvider());
   final EventService _eventService = EventService.instance;
-  final UserProvider _userProvider = Get.put(UserProvider());
+
   Future<bool> getRecomendedEvents() async {
     try {
       dio.Response sportsResponse = await _eventService.getAllSports();

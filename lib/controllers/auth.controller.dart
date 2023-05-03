@@ -21,7 +21,6 @@ class AuthController extends GetxController {
     try {
       // Response response = await httpService.login(email, password);
       dio.Response response = await authService.login(email, password);
-      print(response);
       UserModel user =
           UserModel.fromJson(response.data['user'] as Map<String, dynamic>);
       _userProvider.updateUser(user);
@@ -115,7 +114,7 @@ class AuthController extends GetxController {
       final String gender = _authProvider.gender.value;
       final int userId = _userProvider.user.id;
       await authService.setAgeAndGender(age, gender, userId);
-      Get.offAllNamed(RoutePaths.SportPicking);
+      Get.offAllNamed(RoutePaths.Home);
     } on ApiError catch (e) {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);

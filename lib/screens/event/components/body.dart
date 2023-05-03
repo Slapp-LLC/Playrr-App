@@ -4,7 +4,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/screens/event/components/ChatSection.dart';
 import 'package:playrr_app/screens/event/components/DateSection.dart';
 import 'package:playrr_app/screens/event/components/JoinBar.dart';
@@ -20,8 +22,9 @@ class EventBody extends StatefulWidget {
 }
 
 class _EventBodyState extends State<EventBody> {
+  final EventsController _eventsController = Get.find<EventsController>();
   late Future<Map<String, dynamic>> _eventDataFuture;
-
+  //Todo pass this to event service [X]
   Future<Map<String, dynamic>> _getEventData() async {
     try {
       final response = await Dio()
@@ -36,7 +39,6 @@ class _EventBodyState extends State<EventBody> {
   @override
   void initState() {
     super.initState();
-    _getEventData();
   }
 
   @override

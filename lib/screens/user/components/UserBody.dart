@@ -5,9 +5,11 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:playrr_app/components/Avatar.dart';
+import 'package:get/get.dart';
+import 'package:playrr_app/components/avatar.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class UserBody extends StatefulWidget {
@@ -19,31 +21,16 @@ class UserBody extends StatefulWidget {
 }
 
 class _UserBodyState extends State<UserBody> {
-  Future<Map<String, dynamic>> _getUserData() async {
-    final storage = const FlutterSecureStorage();
-    final token = await storage.read(key: 'token');
-
-    try {
-      final response = await Dio().get(
-          '${dotenv.env['API_ENDPOINT']}/user/${widget.userId}',
-          options: Options(headers: {'Authorization': 'Bearer $token'}));
-      return response.data;
-    } catch (e) {
-      print(e);
-      rethrow;
-    }
-  }
-
+  final UserController _userController = Get.find<UserController>();
   @override
   void initState() {
     super.initState();
-    _getUserData();
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _getUserData(),
+      future: _userController.getUserData(widget.userId),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(

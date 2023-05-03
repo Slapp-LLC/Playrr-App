@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:playrr_app/constants.dart';
 
 class ProfilePicture extends StatefulWidget {
-  final String? photoUrl;
+  final String photoUrl;
   const ProfilePicture({super.key, required this.photoUrl});
 
   @override
@@ -30,7 +30,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -42,7 +42,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
               shape: BoxShape.circle,
               color: Colors.black,
               border: Border.all(color: secondaryBackground, width: 3),
-              image: widget.photoUrl != null
+              image: widget.photoUrl.isNotEmpty
                   ? DecorationImage(
                       image: NetworkImage(widget.photoUrl!),
                       fit: BoxFit.cover,

@@ -28,7 +28,7 @@ class _BodyState extends State<Body> {
   final UserProvider _userProvider = Get.find<UserProvider>();
   final userController = Get.find<UserController>();
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
-
+  //Todo make a controller for this []
   Future<void> _refreshData() async {
     // Call the API or perform any data loading operations here
     // final response = await Dio().get('${dotenv.env['API_ENDPOINT']}/event');
@@ -57,7 +57,6 @@ class _BodyState extends State<Body> {
             return RefreshIndicator(
                 onRefresh: _refreshData,
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     children: const [MySportsSlider(), EventResultList()],
                   ),

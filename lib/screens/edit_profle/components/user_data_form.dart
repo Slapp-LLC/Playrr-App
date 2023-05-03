@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
+import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/services/authentication.service.dart';
 
 class UserDataForm extends StatefulWidget {
-  final String? email;
+  final String email;
   final String name;
   final String lastName;
-  final String? bio;
+  final String bio;
   const UserDataForm(
       {super.key,
       required this.email,
@@ -23,7 +25,7 @@ class UserDataForm extends StatefulWidget {
 
 class _UserDataFormState extends State<UserDataForm> {
   final _formKey = GlobalKey<FormState>();
-
+  final UserController _userController = Get.find<UserController>();
   String _email = '';
   String _name = '';
   String _lastName = '';
@@ -39,9 +41,7 @@ class _UserDataFormState extends State<UserDataForm> {
     if (form != null && form.validate()) {
       form.save();
     }
-
-    // await AuthService.instance.updateProfile(_email, _name, _lastName, _bio);
-    // await AuthService.instance.getCurrentUser(context);
+    await _userController.updateUserData(_email, _name, _lastName, _bio);
     setState(() {
       _isLoading = false;
     });
@@ -50,10 +50,10 @@ class _UserDataFormState extends State<UserDataForm> {
   @override
   void initState() {
     super.initState();
-    _email = widget.email!;
+    _email = widget.email;
     _name = widget.name;
     _lastName = widget.lastName;
-    _bio = widget.bio!;
+    _bio = widget.bio;
   }
 
   @override

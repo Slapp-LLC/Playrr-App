@@ -42,7 +42,8 @@ class _MySportsSliderState extends State<MySportsSlider> {
   Widget build(BuildContext context) {
     return Container(
       height: 55,
-      margin: const EdgeInsets.only(bottom: 25, top: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.only(bottom: 10, top: 10),
       width: double.infinity,
       child: Row(
         children: [

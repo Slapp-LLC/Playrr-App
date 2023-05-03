@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:playrr_app/components/Avatar.dart';
+import 'package:playrr_app/components/avatar.dart';
 import 'package:playrr_app/constants.dart';
 
 class ParticipantImageList extends StatefulWidget {

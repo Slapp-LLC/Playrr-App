@@ -1,5 +1,5 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:playrr_app/constants.dart';
 
 class AvatarImage extends StatefulWidget {
   final String? photoUrl;

@@ -24,13 +24,13 @@ class _BodyState extends State<Body> {
       child: Column(
         children: [
           ProfilePicture(
-            photoUrl: _userProvider.user.photoUrl,
+            photoUrl: _userProvider.user.photoUrl ?? '',
           ),
           UserDataForm(
               email: _userProvider.user.email,
               name: _userProvider.user.name,
               lastName: _userProvider.user.lastName,
-              bio: _userProvider.user.bio),
+              bio: _userProvider.user.bio ?? ''),
         ],
       ),
     );

@@ -1,13 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
-import 'package:playrr_app/screens/home/home.screen.dart';
-import 'package:playrr_app/services/authentication.service.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -22,22 +17,24 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
-  // FlutterConfig.get('API_ENDPOINT');
 
-  // Future<void> _submitForm(BuildContext context) async {
-  //   setState(() {
-  //     _isLoading = true;
-  //   });
+  Future<void> _submitForm(String email, String password) async {
+    setState(() {
+      _isLoading = true;
+    });
 
-  //   final form = _formKey.currentState;
-  //   if (form!.validate()) {
-  //     form.save();
-  //   }
-  //   await AuthService.instance.login(_email, _password, context);
-  //   setState(() {
-  //     _isLoading = false;
-  //   });
-  // }
+    final form = _formKey.currentState;
+    if (form!.validate()) {
+      form.save();
+    }
+    await _authController.login(
+      email,
+      password,
+    );
+    setState(() {
+      _isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,11 +113,7 @@ class _LoginFormState extends State<LoginForm> {
               text: 'Ingresar',
               isPrimary: true,
               onPressed: () => {
-                if (_formKey.currentState!.validate())
-                  {
-                    _authController.login(
-                        _emailController.text, _passwordController.text)
-                  }
+                _submitForm(_emailController.text, _passwordController.text)
               },
             ),
           )
