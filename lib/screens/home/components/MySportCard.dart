@@ -48,8 +48,8 @@ class _MySportCardState extends State<MySportCard> {
               children: [
                 Image.network(
                   widget.photoURl,
-                  width: 20,
-                  height: 20,
+                  width: 30,
+                  height: 30,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 6),

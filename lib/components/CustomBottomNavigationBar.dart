@@ -14,10 +14,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
     } else if (index == 1) {
       Navigator.pushNamed(context, '/myEvents');
     } else if (index == 2) {
-      Navigator.pushNamed(context, '/searchPage');
-    } else if (index == 3) {
       Navigator.pushNamed(context, '/notifications');
-    } else if (index == 4) {
+    } else if (index == 3) {
       Navigator.pushNamed(context, '/messages');
     }
   }
@@ -47,12 +45,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   activeIcon:
                       SvgPicture.asset('assets/icons/ActiveEventsIcon.svg'),
                   label: 'Your events'),
-              BottomNavigationBarItem(
-                  backgroundColor: secondaryBackground,
-                  icon: SvgPicture.asset('assets/icons/SearchIcon.svg'),
-                  activeIcon:
-                      SvgPicture.asset('assets/icons/ActiveSearchIcon.svg'),
-                  label: 'Search Page'),
               BottomNavigationBarItem(
                   backgroundColor: secondaryBackground,
                   icon: SvgPicture.asset('assets/icons/NotificationIcon.svg'),

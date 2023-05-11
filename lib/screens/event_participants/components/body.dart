@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:playrr_app/models/event.model.dart';
 import 'package:playrr_app/screens/event_participants/components/PlayerItem.dart';
 
 class EventParticipantBody extends StatefulWidget {
-  final List playersList;
+  final List<Ticket> playersList;
   const EventParticipantBody({super.key, required this.playersList});
 
   @override
@@ -19,10 +20,10 @@ class _EventParticipantBodyState extends State<EventParticipantBody> {
         itemCount: widget.playersList.length,
         itemBuilder: (context, index) {
           return PlayerItem(
-            player_id: widget.playersList[index]['user']['id'],
-            player_lastName: widget.playersList[index]['user']['lastName'],
-            player_name: widget.playersList[index]['user']['name'],
-            player_photoUrl: widget.playersList[index]['user']['photoUrl'],
+            player_id: widget.playersList[index].user.id,
+            player_lastName: widget.playersList[index].user.lastName,
+            player_name: widget.playersList[index].user.name,
+            player_photoUrl: widget.playersList[index].user.photoUrl,
           );
         });
     ;

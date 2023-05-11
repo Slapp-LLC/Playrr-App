@@ -17,13 +17,7 @@ class MyEvents extends StatefulWidget {
 }
 
 class _MyEventsState extends State<MyEvents> {
-  int _selectedIndex = 1;
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    Navigator.pushNamed(context, '/myEvents');
-  }
+  final _selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {

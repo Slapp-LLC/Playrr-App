@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playrr_app/screens/chat/chat.screen.dart';
 import 'package:playrr_app/screens/edit_profle/edit_profile.screen.dart';
 import 'package:playrr_app/screens/event/event.screen.dart';
+import 'package:playrr_app/screens/eventChat/eventChat.screen.dart';
 import 'package:playrr_app/screens/event_participants/eventParticipants.screen.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/my_profile/my_profile.screen.dart';
@@ -46,6 +47,9 @@ class RouterGen {
 
       case (RoutePaths.LevelPicking):
         return MaterialPageRoute(builder: (_) => const LevelPickingScreen());
+
+      case (RoutePaths.EventChat):
+        return MaterialPageRoute(builder: (_) => const EventChatScreen());
 
       default:
         return MaterialPageRoute(builder: (_) => const MyUserProfile());

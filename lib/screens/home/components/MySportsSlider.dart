@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/models/sport.model.dart';
-import 'package:playrr_app/models/user.model.dart';
+import 'package:playrr_app/models/myUser.model.dart';
 import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/components/MySportCard.dart';
@@ -29,7 +29,7 @@ class _MySportsSliderState extends State<MySportsSlider> {
   void initState() {
     super.initState();
     _getUserSports();
-    UserModel currentUser = userProvider.user;
+    MyUserModel currentUser = userProvider.user;
   }
 
   void _getUserSports() {

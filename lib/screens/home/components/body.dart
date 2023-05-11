@@ -55,10 +55,26 @@ class _BodyState extends State<Body> {
             );
           } else {
             return RefreshIndicator(
+                backgroundColor: Colors.black,
+                color: greenPrimaryColor,
                 onRefresh: _refreshData,
                 child: SingleChildScrollView(
                   child: Column(
-                    children: const [MySportsSlider(), EventResultList()],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      MySportsSlider(),
+                      Padding(
+                        padding: EdgeInsets.only(left: 15, top: 20),
+                        child: Text(
+                          'Recomendados',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontFamily: 'Bebas neue'),
+                        ),
+                      ),
+                      EventResultList()
+                    ],
                   ),
                 ));
           }

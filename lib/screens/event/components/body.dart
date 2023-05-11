@@ -7,9 +7,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
+import 'package:playrr_app/models/event.model.dart';
+import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/screens/event/components/ChatSection.dart';
 import 'package:playrr_app/screens/event/components/DateSection.dart';
 import 'package:playrr_app/screens/event/components/JoinBar.dart';
+import 'package:playrr_app/screens/event/components/LevelAndSportSection.dart';
 import 'package:playrr_app/screens/event/components/LocationSection.dart';
 import 'package:playrr_app/screens/event/components/ParticipantsSections.dart';
 
@@ -23,28 +26,18 @@ class EventBody extends StatefulWidget {
 
 class _EventBodyState extends State<EventBody> {
   final EventsController _eventsController = Get.find<EventsController>();
-  late Future<Map<String, dynamic>> _eventDataFuture;
-  //Todo pass this to event service [X]
-  Future<Map<String, dynamic>> _getEventData() async {
-    try {
-      final response = await Dio()
-          .get('${dotenv.env['API_ENDPOINT']}/event/${widget.eventId}');
-      return response.data;
-    } catch (e) {
-      print(e);
-      rethrow;
-    }
-  }
+  final EventsProvider _eventsProvider = Get.find<EventsProvider>();
 
   @override
   void initState() {
     super.initState();
+    _eventsController.getAnEvent(widget.eventId);
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: _getEventData(),
+        future: _eventsController.getAnEvent(widget.eventId),
         builder: ((context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Container(
@@ -66,91 +59,102 @@ class _EventBodyState extends State<EventBody> {
               ),
             );
           } else {
-            final eventData = snapshot.data!;
-            return Container(
-              color: Colors.black,
-              child: Column(
-                children: [
-                  Expanded(
-                      child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Container(
-                        //   height: 199,
-                        //   decoration:
-                        //       const BoxDecoration(color: secondaryBackground),
-                        // ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(
-                              8.0), // Adjust the border radius if needed
-                          child: Image.network(
-                            eventData['eventPhoto'],
-                            height: 199,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
+            return Obx(() {
+              Event currentEvent = _eventsProvider.currentEvent.value;
+              return Container(
+                color: Colors.black,
+                child: Column(
+                  children: [
+                    Expanded(
+                        child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                                8.0), // Adjust the border radius if needed
+                            child: currentEvent.eventPhoto != null
+                                ? Image.network(
+                                    currentEvent.eventPhoto!,
+                                    height: 199,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.asset(
+                                    'assets/images/Splash.png',
+                                    height: 199,
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            eventData['title'],
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Bebas neue',
-                                fontSize: 25),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: secondaryBackground,
-                                width: 1.5,
-                              ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              currentEvent.title,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Bebas neue',
+                                  fontSize: 25),
                             ),
                           ),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Descripcion',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600),
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: secondaryBackground,
+                                  width: 1.5,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8),
-                                  child: Text(
-                                    eventData['description'],
-                                    style: const TextStyle(
-                                        color: bodyTextColor, fontSize: 16),
+                              ),
+                            ),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Descripcion',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w600),
                                   ),
-                                ),
-                              ]),
-                        ),
-                        LocationSection(location: eventData['location']),
-                        DateSection(date: eventData['startDate']),
-                        ParticipantsSection(
-                          hostAvatar: eventData['host']['photoUrl'],
-                          hostId: eventData['host']['id'],
-                          spotsNumber: eventData['spots'],
-                          playersList: eventData['players'],
-                        ),
-                        const ChatSection()
-                      ],
-                    ),
-                  )),
-                  JoinBar(
-                    price: eventData['price'],
-                    eventId: eventData['id'],
-                  ),
-                ],
-              ),
-            );
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8),
+                                    child: Text(
+                                      currentEvent.description,
+                                      style: const TextStyle(
+                                          color: bodyTextColor, fontSize: 16),
+                                    ),
+                                  ),
+                                ]),
+                          ),
+                          LevelAndSport(
+                              levelName: currentEvent.level.name,
+                              sportName: currentEvent.sport.name),
+                          LocationSection(location: currentEvent.location),
+                          DateSection(date: currentEvent.startDate),
+                          ParticipantsSection(
+                            hostAvatar: currentEvent.host.photoUrl,
+                            hostId: currentEvent.host.id,
+                            spotsNumber: currentEvent.spots,
+                            playersList: currentEvent.players,
+                          ),
+                          ChatSection(
+                            id: currentEvent.eventChat.id,
+                          )
+                        ],
+                      ),
+                    )),
+                    SafeArea(
+                      child: JoinBar(
+                        price: currentEvent.price,
+                        eventId: currentEvent.id,
+                      ),
+                    )
+                  ],
+                ),
+              );
+            });
           }
         }));
   }

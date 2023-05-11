@@ -19,4 +19,9 @@ class Sport {
       iconUrl: json['iconUrl'],
     );
   }
+  Sport.empty()
+      : id = -1,
+        name = '',
+        photoUrl = '',
+        iconUrl = '';
 }

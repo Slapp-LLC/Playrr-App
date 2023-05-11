@@ -14,7 +14,7 @@ class NotificationPage extends StatefulWidget {
 }
 
 class _NotificationPageState extends State<NotificationPage> {
-  final int _selectedIndex = 3;
+  final int _selectedIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

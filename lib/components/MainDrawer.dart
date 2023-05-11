@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
@@ -31,42 +32,44 @@ class _MainDrawerState extends State<MainDrawer> {
               decoration: const BoxDecoration(
                 color: Colors.black,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Container(
-                      width: 75,
-                      height: 75,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.black,
-                        border:
-                            Border.all(color: secondaryBackground, width: 3),
-                        image: _userProvider.user.photoUrl != null
-                            ? DecorationImage(
-                                image:
-                                    NetworkImage(_userProvider.user.photoUrl!),
-                                fit: BoxFit.cover,
-                              )
-                            : const DecorationImage(
-                                image: AssetImage('assets/images/Avatar.png'),
-                                fit: BoxFit.cover,
-                              ),
+              child: Obx(() {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Container(
+                        width: 75,
+                        height: 75,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.black,
+                          border:
+                              Border.all(color: secondaryBackground, width: 3),
+                          image: _userProvider.user.photoUrl != null
+                              ? DecorationImage(
+                                  image: NetworkImage(
+                                      _userProvider.user.photoUrl!),
+                                  fit: BoxFit.cover,
+                                )
+                              : const DecorationImage(
+                                  image: AssetImage('assets/images/Avatar.png'),
+                                  fit: BoxFit.cover,
+                                ),
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    '${_userProvider.user.name} ${_userProvider.user.lastName}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
+                    Text(
+                      '${_userProvider.user.name} ${_userProvider.user.lastName}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                      ),
                     ),
-                  ),
-                ],
-              )),
+                  ],
+                );
+              })),
           ListTile(
             title: const Text(
               'Mi Perfil',

@@ -3,9 +3,12 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
+import 'package:playrr_app/controllers/chats.controller.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/controllers/webSockets.controller.dart';
 import 'package:playrr_app/providers/auth.provider.dart';
+import 'package:playrr_app/providers/chat.provider.dart';
 import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
@@ -40,6 +43,8 @@ class _MyAppState extends State<MyApp> {
   final UserProvider userProvider = Get.put(UserProvider());
   final EventsProvider eventsProvider = Get.put(EventsProvider());
   final AuthProvider authProvider = Get.put(AuthProvider());
+  final ChatProvider chatProvider = Get.put(ChatProvider());
+  final ChatController chatController = Get.put(ChatController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +53,9 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         fontFamily: "Roboto",
       ),
+      initialBinding: BindingsBuilder(() {
+        Get.put(WebSocketController());
+      }),
       home: FutureBuilder<bool>(
         future: authController.getCurrenUser(),
         builder: (context, spanshot) {

@@ -6,7 +6,7 @@ import 'package:playrr_app/components/MainAppBar.dart';
 import 'package:playrr_app/components/MainDrawer.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
-import 'package:playrr_app/models/user.model.dart';
+import 'package:playrr_app/models/myUser.model.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/components/body.dart';
 import 'package:playrr_app/services/location.service.dart';

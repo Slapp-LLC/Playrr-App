@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:playrr_app/models/user.model.dart';
+import 'package:playrr_app/models/myUser.model.dart';
 
 class UserProvider extends GetxController {
-  final Rx<UserModel> _user = UserModel(
+  final Rx<MyUserModel> _user = MyUserModel(
     id: 0,
     name: '',
     lastName: '',
@@ -16,14 +16,14 @@ class UserProvider extends GetxController {
     role: UserRole(id: 0, name: ''),
   ).obs;
 
-  UserModel get user => _user.value;
+  MyUserModel get user => _user.value;
 
-  void updateUser(UserModel newUser) {
+  void updateUser(MyUserModel newUser) {
     _user.value = newUser;
   }
 
   void resetUser() {
-    _user.value = UserModel(
+    _user.value = MyUserModel(
       id: 0,
       name: '',
       lastName: '',

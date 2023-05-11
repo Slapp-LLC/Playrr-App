@@ -16,7 +16,7 @@ class Chat extends StatefulWidget {
 class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         backgroundColor: Colors.black, appBar: ChatAppbar(), body: ChatBody());
   }
 }

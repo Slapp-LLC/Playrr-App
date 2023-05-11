@@ -9,7 +9,7 @@ import 'package:playrr_app/screens/home/components/EventCard.dart';
 import 'package:playrr_app/screens/my_events/components/no_events.dart';
 
 class InconmingEvents extends StatefulWidget {
-  final List incomingEvents;
+  final List? incomingEvents;
   const InconmingEvents({super.key, required this.incomingEvents});
 
   @override
@@ -22,10 +22,11 @@ class _InconmingEventsState extends State<InconmingEvents> {
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now().toUtc();
-    final incomingEvents = widget.incomingEvents.where((event) {
-      final eventDate = DateTime.parse(event['event']['startDate']).toUtc();
-      return now.isBefore(eventDate);
-    }).toList();
+    final incomingEvents = widget.incomingEvents?.where((event) {
+          final eventDate = DateTime.parse(event['event']['startDate']).toUtc();
+          return now.isBefore(eventDate);
+        }).toList() ??
+        [];
     return incomingEvents.isNotEmpty
         ? ListView.builder(
             itemCount: incomingEvents.length,

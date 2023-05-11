@@ -5,7 +5,7 @@ import 'package:playrr_app/screens/home/components/EventCard.dart';
 import 'package:playrr_app/screens/my_events/components/no_events.dart';
 
 class PassedEvents extends StatefulWidget {
-  final List incomingEvents;
+  final List? incomingEvents;
   const PassedEvents({super.key, required this.incomingEvents});
 
   @override
@@ -16,11 +16,11 @@ class _PassedEventsState extends State<PassedEvents> {
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now().toUtc();
-
-    final passedEvents = widget.incomingEvents.where((event) {
-      final eventDate = DateTime.parse(event['event']['startDate']).toUtc();
-      return eventDate.isBefore(now);
-    }).toList();
+    final passedEvents = widget.incomingEvents?.where((event) {
+          final eventDate = DateTime.parse(event['event']['startDate']).toUtc();
+          return eventDate.isBefore(now);
+        }).toList() ??
+        [];
 
     return passedEvents.isNotEmpty
         ? ListView.builder(

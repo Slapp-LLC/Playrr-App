@@ -15,14 +15,7 @@ class MyEventsBody extends StatefulWidget {
 }
 
 class _MyEventsBodyState extends State<MyEventsBody> {
-  late List<dynamic>? _incomingEvents = [];
-  final userProvider = Get.put<UserProvider>(UserProvider());
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _incomingEvents = userProvider.user.matches;
-  }
+  final UserProvider _userProvider = Get.find<UserProvider>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +23,8 @@ class _MyEventsBodyState extends State<MyEventsBody> {
       decoration: const BoxDecoration(color: Colors.black),
       child: TabBarView(
         children: [
-          InconmingEvents(incomingEvents: _incomingEvents!),
-          PassedEvents(incomingEvents: _incomingEvents!),
+          InconmingEvents(incomingEvents: _userProvider.user.matches),
+          PassedEvents(incomingEvents: _userProvider.user.matches),
         ],
       ),
     );

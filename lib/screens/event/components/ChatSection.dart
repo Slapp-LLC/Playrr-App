@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class ChatSection extends StatefulWidget {
-  const ChatSection({super.key});
+  final int id;
+  const ChatSection({super.key, required this.id});
 
   @override
   State<ChatSection> createState() => _ChatSectionState();
@@ -35,7 +38,9 @@ class _ChatSectionState extends State<ChatSection> {
               )),
           Expanded(
               child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(RoutePaths.EventChat);
+            },
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -7,7 +7,7 @@ import 'package:playrr_app/utils/date.utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DateSection extends StatefulWidget {
-  final String date;
+  final DateTime date;
 
   const DateSection({super.key, required this.date});
 
@@ -22,8 +22,8 @@ class _DateSectionState extends State<DateSection> {
   @override
   void initState() {
     super.initState();
-    formatedDate = DateUtil.getMonthAndDay(widget.date);
-    formatedTime = DateUtil.getTime(widget.date);
+    formatedDate = DateUtil.getMonthAndDay(widget.date.toString());
+    formatedTime = DateUtil.getTime(widget.date.toString());
   }
 
   void _launchGoogleCalendar() async {

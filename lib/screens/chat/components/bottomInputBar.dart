@@ -16,7 +16,8 @@ class _BottomInputBarState extends State<BottomInputBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SafeArea(
+        child: Container(
       padding: EdgeInsets.symmetric(vertical: 10),
       color: Colors.black,
       child: Row(
@@ -49,6 +50,6 @@ class _BottomInputBarState extends State<BottomInputBar> {
           ),
         ],
       ),
-    );
+    ));
   }
 }

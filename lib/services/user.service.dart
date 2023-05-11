@@ -37,13 +37,14 @@ class UserService {
   }
 
   //Update profile data
-  Future<Response> updateMyUserData(
-      String email, String name, String lastName, String bio) async {
+  Future<Response> updateMyUserData(String email, String name, String lastName,
+      String bio, int userId) async {
     // int userId = userController.userData['id'];
     try {
       final accessToken = await tokenManager.getToken();
       Response response = await dio.put(
-        '/user/edit/${13.toString()}',
+        '/user/edit/${userId.toString()}',
+        data: {'email': email, 'name': name, 'lastName': lastName, 'bio': bio},
         options: Options(headers: {'Authorization': 'Bearer $accessToken'}),
       );
       return response;

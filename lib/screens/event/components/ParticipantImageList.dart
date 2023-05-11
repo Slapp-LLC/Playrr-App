@@ -5,9 +5,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/components/avatar.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/models/event.model.dart';
 
 class ParticipantImageList extends StatefulWidget {
-  final List playerList;
+  final List<Ticket> playerList;
   const ParticipantImageList({super.key, required this.playerList});
 
   @override
@@ -19,27 +20,19 @@ class _ParticipantImageListState extends State<ParticipantImageList> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (widget.playerList.isEmpty)
-          const Padding(
-              padding: EdgeInsets.symmetric(vertical: 14),
-              child: Text('Se el primero!',
-                  style: TextStyle(color: Colors.white))),
         if (widget.playerList.isNotEmpty && widget.playerList.length > 0)
           Positioned(
-            child:
-                AvatarImage(photoUrl: widget.playerList[0]['user']['photoUrl']),
+            child: AvatarImage(photoUrl: widget.playerList[0].user.photoUrl),
           ),
         if (widget.playerList.isNotEmpty && widget.playerList.length > 1)
           Positioned(
             left: 25,
-            child:
-                AvatarImage(photoUrl: widget.playerList[1]['user']['photoUrl']),
+            child: AvatarImage(photoUrl: widget.playerList[1].user.photoUrl),
           ),
         if (widget.playerList.isNotEmpty && widget.playerList.length > 2)
           Positioned(
             left: 50,
-            child:
-                AvatarImage(photoUrl: widget.playerList[2]['user']['photoUrl']),
+            child: AvatarImage(photoUrl: widget.playerList[2].user.photoUrl),
           ),
         if (widget.playerList.length > 3 && widget.playerList.isNotEmpty)
           Positioned(

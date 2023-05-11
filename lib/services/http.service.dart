@@ -7,6 +7,6 @@ class HttpService {
   factory HttpService() => instance;
   HttpService._();
   final dio = Dio(BaseOptions(
-      baseUrl: dotenv.env['API_ENDPOINT']!,
-      connectTimeout: Duration(seconds: 5)));
+    baseUrl: dotenv.env['API_ENDPOINT']!,
+  ));
 }

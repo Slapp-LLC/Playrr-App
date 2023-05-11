@@ -11,4 +11,5 @@ class RoutePaths {
   static const EditMyProfile = '/editMyProfile';
   static const ChatUser = '/chatUser';
   static const Home = '/home';
+  static const EventChat = '/eventChat';
 }

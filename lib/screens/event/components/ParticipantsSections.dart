@@ -7,19 +7,20 @@ import 'package:get/get.dart';
 import 'package:playrr_app/components/avatar.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
+import 'package:playrr_app/models/event.model.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/event/components/ParticipantImageList.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class ParticipantsSection extends StatefulWidget {
-  final String hostAvatar;
+  final String? hostAvatar;
   final int hostId;
   final spotsNumber;
-  final List playersList;
+  final List<Ticket> playersList;
 
   const ParticipantsSection(
       {super.key,
-      required this.hostAvatar,
+      this.hostAvatar,
       required this.hostId,
       required this.spotsNumber,
       required this.playersList});
@@ -85,17 +86,22 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
                   fontSize: 17,
                   fontWeight: FontWeight.w600),
             ),
-            GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, RoutePaths.EventParticipants,
-                      arguments: widget.playersList);
-                },
-                child: SizedBox(
-                    width: 130,
-                    child: Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: ParticipantImageList(
-                            playerList: widget.playersList))))
+            widget.playersList.isEmpty
+                ? const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    child: Text('Se el primero!',
+                        style: TextStyle(color: Colors.white)))
+                : GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, RoutePaths.EventParticipants,
+                          arguments: widget.playersList);
+                    },
+                    child: SizedBox(
+                        width: 130,
+                        child: Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: ParticipantImageList(
+                                playerList: widget.playersList))))
           ])
         ],
       ),

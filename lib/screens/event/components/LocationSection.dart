@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 class LocationSection extends StatefulWidget {
   final String location;
@@ -18,6 +19,8 @@ class LocationSection extends StatefulWidget {
 }
 
 class _LocationSectionState extends State<LocationSection> {
+  String? _mapStyle;
+  GoogleMapController? _mapController;
   void _launchGoogleMaps() async {
     final String coordinates = '37.7749,-122.4194';
 
@@ -27,6 +30,34 @@ class _LocationSectionState extends State<LocationSection> {
     final Uri urlFormatedd = Uri.parse(url);
     if (!await launchUrl(urlFormatedd)) {
       throw Exception('Could not launch $url');
+    }
+  }
+
+  Set<Marker> _createMarkers() {
+    return <Marker>{
+      Marker(
+        markerId: MarkerId('marker_1'), // A unique identifier for the marker
+        position: LatLng(37.7749, -122.4194), // The position of the marker
+      )
+    };
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    rootBundle.loadString('assets/map_styles.json').then((string) {
+      setState(() {
+        _mapStyle = string;
+      });
+    });
+    print(_mapStyle);
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    _mapController = controller;
+    if (_mapStyle != null) {
+      _mapController?.setMapStyle(_mapStyle);
     }
   }
 
@@ -101,18 +132,25 @@ class _LocationSectionState extends State<LocationSection> {
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
           margin: const EdgeInsets.symmetric(vertical: 5),
           height: 163,
-          width: 358,
           child: GoogleMap(
             initialCameraPosition: const CameraPosition(
               target: LatLng(37.7749, -122.4194),
               zoom: 17,
             ),
+            buildingsEnabled: false,
+            myLocationButtonEnabled: false,
             zoomControlsEnabled: false,
+            zoomGesturesEnabled: false, // Disable zoom gestures
+            scrollGesturesEnabled: false, // Disable scroll (panning) gestures
+            rotateGesturesEnabled: false, // Disable rotate gestures
+            tiltGesturesEnabled: false,
             gestureRecognizers: {
               Factory<OneSequenceGestureRecognizer>(
                 () => EagerGestureRecognizer(),
               )
             },
+            onMapCreated: _onMapCreated,
+            markers: _createMarkers(),
           ),
         )
       ]),

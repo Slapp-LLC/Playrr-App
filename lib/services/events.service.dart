@@ -24,6 +24,7 @@ class EventService {
       final response = dio.get('/event');
       return response;
     } on DioError catch (e) {
+      print(e);
       String errorMessage = e.response?.data['message'] ?? 'An error occurred';
       throw ApiError(statusCode: e.response?.statusCode, message: errorMessage);
     }
@@ -35,6 +36,7 @@ class EventService {
       Response response = await dio.get('/sport');
       return response;
     } on DioError catch (e) {
+      print(e);
       String errorMessage = e.response?.data['message'] ?? 'An error occurred';
       throw ApiError(statusCode: e.response?.statusCode, message: errorMessage);
     }

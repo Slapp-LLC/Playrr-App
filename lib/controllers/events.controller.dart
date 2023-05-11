@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:playrr_app/models/event.model.dart';
 import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/services/errorHandling.service.dart';
 import 'package:playrr_app/services/events.service.dart';
@@ -28,6 +29,32 @@ class EventsController extends GetxController {
     } on ApiError catch (e) {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
+      return false;
+    } catch (e) {
+      printError(info: e.toString());
+      ErrorHandlingService.instance
+          .showError('Un error inesperado ha ocurrido');
+      return false;
+    }
+  }
+
+  Future<bool> getAnEvent(int id) async {
+    try {
+      dio.Response eventResponse = await _eventService.getEvent(id);
+      print(eventResponse.data);
+      Event currentEvent =
+          Event.fromJson(eventResponse.data as Map<String, dynamic>);
+      _eventsProvider.setCurrentEvent(currentEvent);
+
+      return true;
+    } on ApiError catch (e) {
+      ErrorHandlingService.instance
+          .showError(e.message, statusCode: e.statusCode);
+      return false;
+    } catch (e) {
+      printError(info: e.toString());
+      ErrorHandlingService.instance
+          .showError('Un error inesperado ha ocurrido');
       return false;
     }
   }

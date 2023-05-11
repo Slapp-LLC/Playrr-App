@@ -13,7 +13,7 @@ class EventCard extends StatefulWidget {
   final String eventLevel;
   final String eventAddress;
   final int eventSpots;
-  final String eventPhotoUrl;
+  final String? eventPhotoUrl;
   final int eventId;
   final int attendingAmount;
   const EventCard(
@@ -132,12 +132,19 @@ class _EventCardState extends State<EventCard> {
             ClipRRect(
               borderRadius: BorderRadius.circular(
                   8.0), // Adjust the border radius if needed
-              child: Image.network(
-                widget.eventPhotoUrl,
-                height: 152,
-                width: 115,
-                fit: BoxFit.cover,
-              ),
+              child: widget.eventPhotoUrl != null
+                  ? Image.network(
+                      widget.eventPhotoUrl!,
+                      height: 152,
+                      width: 115,
+                      fit: BoxFit.cover,
+                    )
+                  : Image.asset(
+                      'assets/images/Splash.png',
+                      fit: BoxFit.cover,
+                      width: 115,
+                      height: 152,
+                    ),
             )
           ],
         ),

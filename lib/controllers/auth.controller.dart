@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/models/user.model.dart';
+import 'package:playrr_app/models/myUser.model.dart';
 import 'package:playrr_app/providers/auth.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/services/authentication.service.dart';
@@ -21,8 +21,8 @@ class AuthController extends GetxController {
     try {
       // Response response = await httpService.login(email, password);
       dio.Response response = await authService.login(email, password);
-      UserModel user =
-          UserModel.fromJson(response.data['user'] as Map<String, dynamic>);
+      MyUserModel user =
+          MyUserModel.fromJson(response.data['user'] as Map<String, dynamic>);
       _userProvider.updateUser(user);
       await tokenManager.storeToken(response.data['token']);
       Get.offAllNamed(RoutePaths.Home);
@@ -30,7 +30,7 @@ class AuthController extends GetxController {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
     } catch (e) {
-      print(e);
+      printError(info: e.toString());
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
           backgroundColor: errorColor,
@@ -53,8 +53,8 @@ class AuthController extends GetxController {
         dio.Response response = await authService.getUserData(accessToken);
 
         if (response.data != null) {
-          UserModel user =
-              UserModel.fromJson(response.data as Map<String, dynamic>);
+          MyUserModel user =
+              MyUserModel.fromJson(response.data as Map<String, dynamic>);
           _userProvider.updateUser(user);
           return true;
         }
@@ -65,6 +65,7 @@ class AuthController extends GetxController {
             .showError(e.message, statusCode: e.statusCode);
         return false;
       } catch (e) {
+        printError(info: e.toString());
         ScaffoldMessenger.of(Get.context!).showSnackBar(
           const SnackBar(
             backgroundColor: errorColor,
@@ -85,8 +86,8 @@ class AuthController extends GetxController {
     try {
       dio.Response response =
           await authService.signUp(email, password, name, lastName);
-      UserModel user =
-          UserModel.fromJson(response.data['user'] as Map<String, dynamic>);
+      MyUserModel user =
+          MyUserModel.fromJson(response.data['user'] as Map<String, dynamic>);
       _userProvider.updateUser(user);
       await tokenManager.storeToken(response.data['token']);
       Get.offAllNamed(RoutePaths.StepTwoSignUp);
@@ -95,6 +96,7 @@ class AuthController extends GetxController {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
     } catch (e) {
+      print('Error en signup:${e.toString()}');
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
           backgroundColor: errorColor,
@@ -119,6 +121,7 @@ class AuthController extends GetxController {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
     } catch (e) {
+      print('Error en set age and gender:${e.toString()}');
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
           backgroundColor: errorColor,
@@ -139,6 +142,7 @@ class AuthController extends GetxController {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
     } catch (e) {
+      print('Error en recover password:${e.toString()}');
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
           backgroundColor: errorColor,
@@ -158,6 +162,7 @@ class AuthController extends GetxController {
       _userProvider.resetUser(); // Reset user state
       //Todo futher implementation
     } catch (e) {
+      print('Error en logout:${e.toString()}');
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
           backgroundColor: errorColor,
@@ -179,6 +184,7 @@ class AuthController extends GetxController {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
     } catch (e) {
+      print('Error en obtener los niveles:${e.toString()}');
       ScaffoldMessenger.of(Get.context!).showSnackBar(
         const SnackBar(
           backgroundColor: errorColor,
