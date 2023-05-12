@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 
-class MainAppBar extends StatelessWidget with PreferredSizeWidget {
+class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MainAppBar({super.key});
 
   @override

@@ -1,51 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
-class ChatSection extends StatefulWidget {
-  final int id;
-  const ChatSection({super.key, required this.id});
+class Rules extends StatelessWidget {
+  const Rules({Key? key}) : super(key: key);
 
-  @override
-  State<ChatSection> createState() => _ChatSectionState();
-}
-
-class _ChatSectionState extends State<ChatSection> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 0),
-      padding: const EdgeInsets.symmetric(
-        vertical: 10,
-      ),
-      child: Row(
-        children: [
-          Container(
-              width: 52,
-              height: 52,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(
-                      color: greenPrimaryColor.withOpacity(0.33), width: 1)),
-              child: Transform.scale(
-                scale: 0.75,
-                child: SvgPicture.asset(
-                  'assets/icons/MessageGreenIcon.svg',
-                ),
-              )),
-          Expanded(
-              child: GestureDetector(
-            onTap: () {
-              Get.toNamed(RoutePaths.EventChat);
-            },
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, RoutePaths.Rules);
+      },
+      child: Container(
+        decoration: const BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: secondaryBackground,
+              width: 1.5,
+            ),
+          ),
+        ),
+        margin: const EdgeInsets.only(top: 0),
+        padding: const EdgeInsets.symmetric(
+          vertical: 10,
+        ),
+        child: Row(
+          children: [
+            Container(
+                width: 52,
+                height: 52,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(
+                        color: greenPrimaryColor.withOpacity(0.33), width: 1)),
+                child: Transform.scale(
+                  scale: 0.75,
+                  child: SvgPicture.asset(
+                    'assets/icons/Question.svg',
+                  ),
+                )),
+            Flexible(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
@@ -54,7 +54,7 @@ class _ChatSectionState extends State<ChatSection> {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 4),
                           child: Text(
-                            'Chat del grupo',
+                            'Reglas de juego',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
@@ -62,7 +62,7 @@ class _ChatSectionState extends State<ChatSection> {
                           ),
                         ),
                         Text(
-                          'Unete al chat del evento',
+                          'Reglas de la comunidad',
                           style: TextStyle(color: bodyTextColor),
                         )
                       ],
@@ -76,9 +76,9 @@ class _ChatSectionState extends State<ChatSection> {
                           'assets/icons/SecondaryBackButton.svg'),
                     ),
                   )
-                ]),
-          ))
-        ],
+                ])),
+          ],
+        ),
       ),
     );
   }

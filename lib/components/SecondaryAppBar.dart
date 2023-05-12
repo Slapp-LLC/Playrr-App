@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SecondaryAppBar extends StatelessWidget with PreferredSizeWidget {
+class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SecondaryAppBar({super.key});
 
   @override

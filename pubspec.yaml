@@ -112,6 +112,7 @@ flutter:
     - assets/icons/ActiveEventsIcon.svg
     - assets/icons/GoogleIcon.svg
     - assets/icons/SendMessageIcon.svg
+    - assets/icons/Question.svg
     - assets/images/LandingBackground.png
     - assets/images/SignUpHero.png
     - assets/images/Splash.png

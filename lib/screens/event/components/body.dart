@@ -15,6 +15,7 @@ import 'package:playrr_app/screens/event/components/JoinBar.dart';
 import 'package:playrr_app/screens/event/components/LevelAndSportSection.dart';
 import 'package:playrr_app/screens/event/components/LocationSection.dart';
 import 'package:playrr_app/screens/event/components/ParticipantsSections.dart';
+import 'package:playrr_app/screens/event/components/rules.dart';
 
 class EventBody extends StatefulWidget {
   final int eventId;
@@ -141,7 +142,8 @@ class _EventBodyState extends State<EventBody> {
                           ),
                           ChatSection(
                             id: currentEvent.eventChat.id,
-                          )
+                          ),
+                          const Rules()
                         ],
                       ),
                     )),
