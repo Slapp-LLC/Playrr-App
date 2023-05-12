@@ -8,7 +8,9 @@ import 'package:playrr_app/screens/event_participants/eventParticipants.screen.d
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/my_profile/my_profile.screen.dart';
 import 'package:playrr_app/screens/post_signup/secondStep/stepTwo.screen.dart';
+import 'package:playrr_app/screens/questions/questions.screen.dart';
 import 'package:playrr_app/screens/rules/rules.screen.dart';
+import 'package:playrr_app/screens/settings/settings.screen.dart';
 import 'package:playrr_app/screens/sport_picking/levelPicking.screen.dart';
 import 'package:playrr_app/screens/sport_picking/sportPicking.screen.dart';
 import 'package:playrr_app/screens/user/user.screen.dart';
@@ -55,6 +57,12 @@ class RouterGen {
 
       case (RoutePaths.Rules):
         return MaterialPageRoute(builder: (_) => const RulesScreen());
+
+      case (RoutePaths.Settings):
+        return MaterialPageRoute(builder: (_) => const ConfigScreen());
+
+      case (RoutePaths.Questions):
+        return MaterialPageRoute(builder: (_) => const Questions());
 
       default:
         return MaterialPageRoute(builder: (_) => const MyUserProfile());

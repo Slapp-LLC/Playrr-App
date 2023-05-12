@@ -13,4 +13,6 @@ class RoutePaths {
   static const Home = '/home';
   static const EventChat = '/eventChat';
   static const Rules = '/rules';
+  static const Settings = '/settings';
+  static const Questions = '/questions';
 }

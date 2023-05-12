@@ -110,6 +110,8 @@ flutter:
     - assets/icons/BackIcon.svg
     - assets/icons/TicketsIcon.svg
     - assets/icons/ActiveEventsIcon.svg
+    - assets/icons/CheckMark.svg
+    - assets/icons/SadFace.svg
     - assets/icons/GoogleIcon.svg
     - assets/icons/SendMessageIcon.svg
     - assets/icons/Question.svg

@@ -9,6 +9,7 @@ import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/models/event.model.dart';
 import 'package:playrr_app/providers/events.provider.dart';
+import 'package:playrr_app/screens/event/components/BottomBar.dart';
 import 'package:playrr_app/screens/event/components/ChatSection.dart';
 import 'package:playrr_app/screens/event/components/DateSection.dart';
 import 'package:playrr_app/screens/event/components/JoinBar.dart';
@@ -148,7 +149,7 @@ class _EventBodyState extends State<EventBody> {
                       ),
                     )),
                     SafeArea(
-                      child: JoinBar(
+                      child: BottomBar(
                         price: currentEvent.price,
                         eventId: currentEvent.id,
                       ),

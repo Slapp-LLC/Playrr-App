@@ -90,7 +90,9 @@ class _MainDrawerState extends State<MainDrawer> {
                   fontSize: 17,
                   fontWeight: FontWeight.w400),
             ),
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(RoutePaths.Settings);
+            },
           ),
           ListTile(
             title: const Text(
@@ -100,7 +102,9 @@ class _MainDrawerState extends State<MainDrawer> {
                   fontSize: 17,
                   fontWeight: FontWeight.w400),
             ),
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(RoutePaths.Questions);
+            },
           ),
           ListTile(
             title: const Text(
