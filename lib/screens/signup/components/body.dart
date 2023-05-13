@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:playrr_app/components/MainButton.dart';
 import 'package:playrr_app/screens/signup/components/SignUpForm.dart';
 
 class Body extends StatefulWidget {

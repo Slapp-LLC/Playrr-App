@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/components/SecondaryAppBar.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/screens/event/components/body.dart';

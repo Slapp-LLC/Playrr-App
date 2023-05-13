@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/utils/date.utils.dart';
@@ -27,6 +25,7 @@ class _DateSectionState extends State<DateSection> {
   }
 
   void _launchGoogleCalendar() async {
+    //Todo make this dinamic
     final String eventTitle = 'My Event';
     final String location = '123 Main St, Anytown USA';
     final DateTime startTime = DateTime.now().add(Duration(hours: 1));

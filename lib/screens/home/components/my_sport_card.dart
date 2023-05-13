@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/providers/events.provider.dart';
 
 class MySportCard extends StatefulWidget {

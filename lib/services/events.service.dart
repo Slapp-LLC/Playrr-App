@@ -1,8 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/services/http.service.dart';
 import 'package:playrr_app/utils/api_error.dart';
 import 'package:playrr_app/utils/token_manager.dart';

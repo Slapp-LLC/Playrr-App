@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/models/sport.model.dart';
-import 'package:playrr_app/models/myUser.model.dart';
 import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
-import 'package:playrr_app/screens/home/components/MySportCard.dart';
+import 'package:playrr_app/screens/home/components/my_sport_card.dart';
 import 'package:get/instance_manager.dart';
-import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class MySportsSlider extends StatefulWidget {
   const MySportsSlider({super.key});
@@ -29,7 +24,6 @@ class _MySportsSliderState extends State<MySportsSlider> {
   void initState() {
     super.initState();
     _getUserSports();
-    MyUserModel currentUser = userProvider.user;
   }
 
   void _getUserSports() {

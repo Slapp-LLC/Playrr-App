@@ -1,8 +1,5 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:playrr_app/components/MainButton.dart';
+import 'package:playrr_app/components/main_button.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/services/authentication.service.dart';
 
@@ -17,7 +14,7 @@ class _BodyState extends State<Body> {
   final _passwordRecoveryFormKey = GlobalKey<FormState>();
   String _email = '';
   bool _isLoading = false;
-
+  //Todo make a controller for this!
   Future<void> _submitForm(BuildContext context) async {
     setState(() {
       _isLoading = true;
@@ -28,7 +25,7 @@ class _BodyState extends State<Body> {
     }
 
     try {
-      final res = await AuthService.instance.recoverPassword(_email);
+      await AuthService.instance.recoverPassword(_email);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: greenPrimaryColor,

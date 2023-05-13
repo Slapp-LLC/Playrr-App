@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:playrr_app/utils/api_error.dart';
 
 class HttpService {
   static final HttpService instance = HttpService._();

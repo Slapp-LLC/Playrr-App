@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playrr_app/components/SecondaryAppBar.dart';
-import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/screens/questions/components/questions.body.dart';
-import 'package:playrr_app/screens/questions/components/questionsPanel.dart';
 
 class Questions extends StatelessWidget {
   const Questions({super.key});

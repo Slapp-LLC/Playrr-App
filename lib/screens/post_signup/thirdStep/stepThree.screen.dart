@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/screens/post_signup/thirdStep/components/body.dart';
 
 class StepThree extends StatelessWidget {

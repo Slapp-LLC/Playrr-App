@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/constants.dart';
 
@@ -46,7 +44,7 @@ class _CustomNotificationState extends State<CustomNotification> {
               )),
           Expanded(
               child: Padding(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: const EdgeInsets.only(left: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -66,7 +64,7 @@ class _CustomNotificationState extends State<CustomNotification> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 5),
+                        padding: const EdgeInsets.only(top: 5),
                         child: Text(
                           widget.message,
                           style: const TextStyle(

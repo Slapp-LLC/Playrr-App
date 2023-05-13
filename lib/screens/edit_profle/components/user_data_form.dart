@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
-import 'package:playrr_app/services/authentication.service.dart';
 
 class UserDataForm extends StatefulWidget {
   final String email;
@@ -98,7 +94,7 @@ class _UserDataFormState extends State<UserDataForm> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 15),
+            padding: const EdgeInsets.only(top: 15),
             child: TextFormField(
               initialValue: widget.name,
               decoration: InputDecoration(
@@ -132,7 +128,7 @@ class _UserDataFormState extends State<UserDataForm> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 15),
+            padding: const EdgeInsets.only(top: 15),
             child: TextFormField(
               initialValue: widget.lastName,
               decoration: InputDecoration(
@@ -166,7 +162,7 @@ class _UserDataFormState extends State<UserDataForm> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 15),
+            padding: const EdgeInsets.only(top: 15),
             child: TextFormField(
               maxLines: 5,
               initialValue: widget.bio,

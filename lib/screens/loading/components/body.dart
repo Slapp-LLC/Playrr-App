@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -10,9 +8,9 @@ class Body extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(color: Colors.black),
-      child: Center(
+      child: const Center(
         child: Column(
-          children: const [
+          children: [
             Text(
               'Playrr',
               style: TextStyle(fontSize: 100, color: Colors.black),

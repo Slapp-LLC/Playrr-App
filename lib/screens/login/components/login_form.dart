@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:playrr_app/components/MainButton.dart';
+import 'package:playrr_app/components/main_button.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
 

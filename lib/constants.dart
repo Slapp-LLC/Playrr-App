@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
 //Se definen los colores
 const greenPrimaryColor = Color(0xFFD2FA00);

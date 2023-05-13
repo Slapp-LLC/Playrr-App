@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/screens/chat/components/appbar.dart';
 import 'package:playrr_app/screens/chat/components/body.dart';
 

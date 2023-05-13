@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
-import 'package:playrr_app/components/MainAppBar.dart';
-import 'package:playrr_app/components/MainDrawer.dart';
-import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/components/main_appbar.dart';
+import 'package:playrr_app/components/main_drawer.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
-import 'package:playrr_app/models/myUser.model.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/components/body.dart';
 import 'package:playrr_app/services/location.service.dart';

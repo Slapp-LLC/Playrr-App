@@ -1,13 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
-import 'package:playrr_app/components/SecondaryAppBar.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/screens/my_events/components/myEvents_body.dart';
-import 'package:playrr_app/screens/my_events/components/passedEvents.dart';
+import 'package:playrr_app/screens/my_events/components/myevents.body.dart';
 
 class MyEvents extends StatefulWidget {
   const MyEvents({super.key});
@@ -27,7 +21,10 @@ class _MyEventsState extends State<MyEvents> {
             backgroundColor: Colors.black,
             appBar: AppBar(
               backgroundColor: Colors.black,
-              title: const Text('Mis partidos'),
+              title: const Text(
+                'Mis partidos',
+                style: TextStyle(fontSize: 16),
+              ),
               bottom: const TabBar(
                 unselectedLabelColor: bodyTextColor,
                 unselectedLabelStyle: TextStyle(fontSize: 17),

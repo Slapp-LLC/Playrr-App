@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/components/avatar.dart';
-import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class PlayerItem extends StatefulWidget {
-  final int player_id;
-  final String? player_photoUrl;
-  final String player_name;
-  final String player_lastName;
+  final int playerId;
+  final String? playerPhotoUrl;
+  final String playerName;
+  final String playerLastName;
   const PlayerItem(
       {super.key,
-      required this.player_id,
-      required this.player_lastName,
-      required this.player_name,
-      required this.player_photoUrl});
+      required this.playerId,
+      required this.playerLastName,
+      required this.playerName,
+      required this.playerPhotoUrl});
 
   @override
   State<PlayerItem> createState() => _PlayerItemState();
@@ -31,15 +28,15 @@ class _PlayerItemState extends State<PlayerItem> {
             GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, RoutePaths.User,
-                    arguments: widget.player_id);
+                    arguments: widget.playerId);
               },
               child: Row(
                 children: [
-                  AvatarImage(photoUrl: widget.player_photoUrl),
+                  AvatarImage(photoUrl: widget.playerPhotoUrl),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
-                      '${widget.player_name} ${widget.player_lastName}',
+                      '${widget.playerName} ${widget.playerLastName}',
                       style: const TextStyle(color: Colors.white, fontSize: 17),
                     ),
                   )

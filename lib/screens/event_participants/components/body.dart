@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/models/event.model.dart';
-import 'package:playrr_app/screens/event_participants/components/PlayerItem.dart';
+import 'package:playrr_app/screens/event_participants/components/player_item.dart';
 
 class EventParticipantBody extends StatefulWidget {
   final List<Ticket> playersList;
@@ -16,20 +14,15 @@ class _EventParticipantBodyState extends State<EventParticipantBody> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         itemCount: widget.playersList.length,
         itemBuilder: (context, index) {
           return PlayerItem(
-            player_id: widget.playersList[index].user.id,
-            player_lastName: widget.playersList[index].user.lastName,
-            player_name: widget.playersList[index].user.name,
-            player_photoUrl: widget.playersList[index].user.photoUrl,
+            playerId: widget.playersList[index].user.id,
+            playerLastName: widget.playersList[index].user.lastName,
+            playerName: widget.playersList[index].user.name,
+            playerPhotoUrl: widget.playersList[index].user.photoUrl,
           );
         });
-    ;
   }
 }
-// const Text(
-//           'Jugadores',
-//           style: const TextStyle(color: Colors.white),
-//         ),

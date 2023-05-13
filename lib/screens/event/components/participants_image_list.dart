@@ -1,8 +1,5 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/components/avatar.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/models/event.model.dart';
@@ -20,7 +17,7 @@ class _ParticipantImageListState extends State<ParticipantImageList> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (widget.playerList.isNotEmpty && widget.playerList.length > 0)
+        if (widget.playerList.isNotEmpty)
           Positioned(
             child: AvatarImage(photoUrl: widget.playerList[0].user.photoUrl),
           ),

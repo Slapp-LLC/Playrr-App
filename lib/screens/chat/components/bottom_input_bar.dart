@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playrr_app/constants.dart';
 
@@ -18,23 +16,23 @@ class _BottomInputBarState extends State<BottomInputBar> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       color: Colors.black,
       child: Row(
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: TextField(
                 controller: _textEditingController,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: 'Type a message',
                   fillColor: secondaryBackground,
                   filled: true,
-                  hintStyle: TextStyle(color: Colors.white60),
+                  hintStyle: const TextStyle(color: Colors.white60),
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
                     borderSide: BorderSide.none,

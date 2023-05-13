@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/landing/landing.screen.dart';
-import 'package:playrr_app/services/authentication.service.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class MainDrawer extends StatefulWidget {

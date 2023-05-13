@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:playrr_app/models/chat/chat.model.dart';
-import 'package:playrr_app/models/chat/message.model.dart';
 import 'package:playrr_app/providers/chat.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/services/chat.service.dart';

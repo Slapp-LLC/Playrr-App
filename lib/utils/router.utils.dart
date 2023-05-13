@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playrr_app/screens/chat/chat.screen.dart';
 import 'package:playrr_app/screens/edit_profle/edit_profile.screen.dart';
-import 'package:playrr_app/screens/event/components/rules.dart';
 import 'package:playrr_app/screens/event/event.screen.dart';
 import 'package:playrr_app/screens/eventChat/eventChat.screen.dart';
 import 'package:playrr_app/screens/event_participants/eventParticipants.screen.dart';

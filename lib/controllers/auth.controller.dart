@@ -6,7 +6,6 @@ import 'package:playrr_app/providers/auth.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/services/authentication.service.dart';
 import 'package:playrr_app/services/errorHandling.service.dart';
-import 'package:playrr_app/services/http.service.dart';
 import 'package:playrr_app/utils/api_error.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 import 'package:playrr_app/utils/token_manager.dart';
@@ -137,7 +136,7 @@ class AuthController extends GetxController {
 
   Future<void> recoverPassword(String email) async {
     try {
-      dio.Response response = await authService.recoverPassword(email);
+      await authService.recoverPassword(email);
     } on ApiError catch (e) {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
@@ -203,7 +202,6 @@ class AuthController extends GetxController {
   var pickedSportId = 0.obs;
   var pickedLevelId = 0.obs;
   var currentSport = 0.obs;
-  var _userData;
 
   void setAge(int value) {
     age.value = value;

@@ -1,21 +1,15 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/events.controller.dart';
 import 'package:playrr_app/models/event.model.dart';
 import 'package:playrr_app/providers/events.provider.dart';
-import 'package:playrr_app/screens/event/components/BottomBar.dart';
-import 'package:playrr_app/screens/event/components/ChatSection.dart';
-import 'package:playrr_app/screens/event/components/DateSection.dart';
-import 'package:playrr_app/screens/event/components/JoinBar.dart';
-import 'package:playrr_app/screens/event/components/LevelAndSportSection.dart';
-import 'package:playrr_app/screens/event/components/LocationSection.dart';
-import 'package:playrr_app/screens/event/components/ParticipantsSections.dart';
+import 'package:playrr_app/screens/event/components/bottom_bar.dart';
+import 'package:playrr_app/screens/event/components/chat_section.dart';
+import 'package:playrr_app/screens/event/components/date_section.dart';
+import 'package:playrr_app/screens/event/components/level_and_sports_section.dart';
+import 'package:playrr_app/screens/event/components/location_section.dart';
+import 'package:playrr_app/screens/event/components/participants_section.dart';
 import 'package:playrr_app/screens/event/components/rules.dart';
 
 class EventBody extends StatefulWidget {

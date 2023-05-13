@@ -1,14 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 class LocationSection extends StatefulWidget {
   final String location;
@@ -35,7 +32,7 @@ class _LocationSectionState extends State<LocationSection> {
 
   Set<Marker> _createMarkers() {
     return <Marker>{
-      Marker(
+      const Marker(
         markerId: MarkerId('marker_1'), // A unique identifier for the marker
         position: LatLng(37.7749, -122.4194), // The position of the marker
       )

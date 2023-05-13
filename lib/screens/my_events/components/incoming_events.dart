@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/animation/animation_controller.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/src/widgets/ticker_provider.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
-import 'package:playrr_app/screens/home/components/EventCard.dart';
+import 'package:playrr_app/screens/home/components/event_card.dart';
 import 'package:playrr_app/screens/my_events/components/no_events.dart';
 
 class InconmingEvents extends StatefulWidget {

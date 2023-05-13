@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/screens/event/components/JoinBar.dart';
-import 'package:playrr_app/services/events.service.dart';
 
 class BottomBar extends StatefulWidget {
   final int price;
@@ -28,16 +24,13 @@ class _BottomBarState extends State<BottomBar> {
           decoration: BoxDecoration(
               color: secondaryBackground,
               borderRadius: BorderRadius.circular(50)),
-          // child: JoinBar(
-          //     price: widget.price,
-          //     eventId: widget.eventId)) //Your
-          child: NoSpotsBar(),
+          child: const NoSpotsBar(),
         ));
   }
 }
 
 class NoSpotsBar extends StatelessWidget {
-  NoSpotsBar({Key? key}) : super(key: key);
+  const NoSpotsBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

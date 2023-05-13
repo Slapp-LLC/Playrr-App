@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playrr_app/constants.dart';
 
 class RulesList extends StatelessWidget {
+  RulesList({super.key});
   final List<String> bulletPoints = [
     'Cada uno tiene que probar qué se siente ser el arquero. No te escapes de la rotación.',
     'Jugamos limpio, nada de faltas a propósito ni actitudes antideportivas.',

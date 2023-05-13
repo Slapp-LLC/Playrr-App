@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/components/SecondaryAppBar.dart';
 import 'package:playrr_app/screens/user/components/UserBody.dart';
 
@@ -17,7 +15,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: SecondaryAppBar(),
+      appBar: const SecondaryAppBar(),
       body: UserBody(
         userId: widget.userId,
       ),

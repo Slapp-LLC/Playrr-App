@@ -1,15 +1,11 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
-import 'package:playrr_app/components/CustomCheckbox.dart';
-import 'package:playrr_app/components/MainButton.dart';
+import 'package:playrr_app/components/custom_checkbox.dart';
+import 'package:playrr_app/components/main_button.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/providers/auth.provider.dart';
-import 'package:playrr_app/screens/sport_picking/sportPicking.screen.dart';
-import 'package:playrr_app/services/authentication.service.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});

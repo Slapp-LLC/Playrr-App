@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:playrr_app/components/MainButton.dart';
+import 'package:playrr_app/components/main_button.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
-import 'package:playrr_app/services/authentication.service.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -13,7 +11,6 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final FocusNode _focusNode = FocusNode();
   final AuthController authController = AuthController();
   final _signUpFormKey = GlobalKey<FormState>();
   String _email = '';

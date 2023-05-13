@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/controllers/auth.controller.dart';
 
 class CustomCheckbox extends StatefulWidget {
   final String label;

@@ -1,14 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:playrr_app/components/MainButton.dart';
+import 'package:playrr_app/components/main_button.dart';
 import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/screens/sport_picking/components/LevelList.dart';
-import 'package:playrr_app/services/user.service.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});

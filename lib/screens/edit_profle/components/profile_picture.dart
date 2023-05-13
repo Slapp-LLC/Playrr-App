@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:playrr_app/constants.dart';
 
@@ -15,6 +13,7 @@ class ProfilePicture extends StatefulWidget {
 }
 
 class _ProfilePictureState extends State<ProfilePicture> {
+  // ignore: unused_field
   late File _imageFile;
   Future<void> _pickImage() async {
     final pickedFile = await ImagePicker().pickImage(
@@ -44,7 +43,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
               border: Border.all(color: secondaryBackground, width: 3),
               image: widget.photoUrl.isNotEmpty
                   ? DecorationImage(
-                      image: NetworkImage(widget.photoUrl!),
+                      image: NetworkImage(widget.photoUrl),
                       fit: BoxFit.cover,
                     )
                   : const DecorationImage(
@@ -54,7 +53,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.only(left: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

@@ -26,7 +26,6 @@ class _ChatItemState extends State<ChatItem> {
     if (widget.chat.messages.isNotEmpty) {
       formattedDate =
           DateUtil.formatDate(widget.chat.messages.last.createdAt.toString());
-      print(formattedDate);
     }
   }
 
@@ -38,7 +37,7 @@ class _ChatItemState extends State<ChatItem> {
         .firstWhere((participant) => participant.id != _userProvider.user.id);
 
     if (lastMessage == null) {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
 
     return Material(
@@ -61,7 +60,7 @@ class _ChatItemState extends State<ChatItem> {
               AvatarImage(photoUrl: otherParticipant.photoUrl),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.only(left: 10),
                   child: Column(
                     children: [
                       Row(
@@ -69,11 +68,12 @@ class _ChatItemState extends State<ChatItem> {
                         children: [
                           Text(
                             '${otherParticipant.name} ${otherParticipant.lastName}',
-                            style: TextStyle(color: Colors.white, fontSize: 17),
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 17),
                           ),
                           Text(
                             formattedDate!, // You might need to format this date string
-                            style: TextStyle(color: bodyTextColor),
+                            style: const TextStyle(color: bodyTextColor),
                           ),
                         ],
                       ),
@@ -84,7 +84,7 @@ class _ChatItemState extends State<ChatItem> {
                           children: [
                             Text(
                               lastMessage.content,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: bodyTextColor,
                                 fontSize: 17,
                               ),

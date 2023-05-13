@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/screens/rules/components/RulesList.dart';
+import 'package:playrr_app/screens/rules/components/rules_list.dart';
 
 class RulesBody extends StatelessWidget {
   const RulesBody({Key? key}) : super(key: key);

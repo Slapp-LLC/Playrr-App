@@ -1,8 +1,6 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:playrr_app/components/CustomCheckbox.dart';
+import 'package:playrr_app/components/custom_checkbox.dart';
 import 'package:playrr_app/controllers/auth.controller.dart';
 
 class LevelList extends StatefulWidget {
@@ -18,7 +16,6 @@ class _LevelListState extends State<LevelList> {
 
   String _selectedLevel = '';
   void saveLevel(value) {
-    final pickedSportId = signUpController.currentSport.value;
     setState(() {
       _selectedLevel = value.toString();
     });

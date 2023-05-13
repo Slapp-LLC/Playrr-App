@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/providers/auth.provider.dart';
-import 'package:playrr_app/screens/sport_picking/levelPicking.screen.dart';
 import 'package:playrr_app/utils/routePaths.utils.dart';
 
 class SportCard extends StatelessWidget {
