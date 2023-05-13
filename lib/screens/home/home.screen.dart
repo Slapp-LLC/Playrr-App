@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
+import 'package:playrr_app/components/navigation_bar.dart';
 import 'package:playrr_app/components/main_appbar.dart';
 import 'package:playrr_app/components/main_drawer.dart';
 import 'package:playrr_app/controllers/events.controller.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/components/SecondaryAppBar.dart';
-import 'package:playrr_app/screens/user/components/UserBody.dart';
+import 'package:playrr_app/components/secondary_appbar.dart';
+import 'package:playrr_app/screens/user/components/user_body.dart';
 
 class UserPage extends StatefulWidget {
   final int userId;

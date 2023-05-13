@@ -27,7 +27,7 @@ class _PlayerItemState extends State<PlayerItem> {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, RoutePaths.User,
+                Navigator.pushNamed(context, RoutePaths.user,
                     arguments: widget.playerId);
               },
               child: Row(

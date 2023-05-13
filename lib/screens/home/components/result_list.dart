@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/screens/home/components/event_card.dart';
-import 'package:playrr_app/screens/home/components/noResults.dart';
+import 'package:playrr_app/screens/home/components/no_results.dart';
 
 class EventResultList extends StatefulWidget {
   const EventResultList({

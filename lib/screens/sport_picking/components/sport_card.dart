@@ -21,7 +21,7 @@ class SportCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         authProvider.setPickedSportId(id);
-        Get.toNamed(RoutePaths.LevelPicking);
+        Get.toNamed(RoutePaths.levelPicking);
       },
       child: Stack(
         children: [

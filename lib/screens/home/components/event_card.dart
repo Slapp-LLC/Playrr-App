@@ -42,7 +42,7 @@ class _EventCardState extends State<EventCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, RoutePaths.Event,
+        Navigator.pushNamed(context, RoutePaths.event,
             arguments: widget.eventId);
       },
       child: Container(

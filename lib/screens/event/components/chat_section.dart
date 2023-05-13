@@ -39,7 +39,7 @@ class _ChatSectionState extends State<ChatSection> {
           Expanded(
               child: GestureDetector(
             onTap: () {
-              Get.toNamed(RoutePaths.EventChat);
+              Get.toNamed(RoutePaths.eventChat);
             },
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

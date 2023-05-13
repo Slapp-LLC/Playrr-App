@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/my_events/components/incoming_events.dart';
-import 'package:playrr_app/screens/my_events/components/passedEvents.dart';
+import 'package:playrr_app/screens/my_events/components/passed_events.dart';
 
 class MyEventsBody extends StatefulWidget {
   const MyEventsBody({super.key});

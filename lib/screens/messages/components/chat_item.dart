@@ -44,7 +44,7 @@ class _ChatItemState extends State<ChatItem> {
       color: Colors.transparent,
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, RoutePaths.ChatUser,
+          Navigator.pushNamed(context, RoutePaths.chatUser,
               arguments: otherParticipant.id);
         },
         child: Container(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/screens/signup/components/SignUpForm.dart';
+import 'package:playrr_app/screens/signup/components/signup_form.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});

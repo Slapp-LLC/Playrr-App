@@ -6,7 +6,7 @@ import 'package:playrr_app/controllers/user.controller.dart';
 import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/components/sport_slider.dart';
-import 'package:playrr_app/screens/home/components/resultList.dart';
+import 'package:playrr_app/screens/home/components/result_list.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});

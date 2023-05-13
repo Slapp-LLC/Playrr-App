@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/components/InitialAppBar.dart';
+import 'package:playrr_app/components/initial_appbar.dart';
 import 'package:playrr_app/screens/login/components/body.dart';
 
 class LoginScreen extends StatelessWidget {

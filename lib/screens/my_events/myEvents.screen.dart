@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
+import 'package:playrr_app/components/navigation_bar.dart';
 import 'package:playrr_app/constants.dart';
-import 'package:playrr_app/screens/my_events/components/myevents.body.dart';
+import 'package:playrr_app/screens/my_events/components/myevents_body.dart';
 
 class MyEvents extends StatefulWidget {
   const MyEvents({super.key});

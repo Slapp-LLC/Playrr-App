@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/screens/chat/components/appbar.dart';
+import 'package:playrr_app/screens/chat/components/app_bar.dart';
 import 'package:playrr_app/screens/chat/components/body.dart';
 
 class Chat extends StatefulWidget {

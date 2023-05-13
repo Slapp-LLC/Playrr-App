@@ -54,7 +54,7 @@ class _BodyState extends State<Body> {
               )),
           ElevatedButton.icon(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, RoutePaths.EditMyProfile);
+              Navigator.pushReplacementNamed(context, RoutePaths.editProfile);
             },
             icon: SvgPicture.asset('assets/icons/EditIcon.svg'),
             label: const Text(

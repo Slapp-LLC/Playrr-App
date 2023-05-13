@@ -61,10 +61,10 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
                     if (widget.hostId == _userProvider.user.id) {
                       Navigator.pushNamed(
                         context,
-                        RoutePaths.MyProfile,
+                        RoutePaths.myProfile,
                       );
                     } else {
-                      Navigator.pushNamed(context, RoutePaths.User,
+                      Navigator.pushNamed(context, RoutePaths.user,
                           arguments: widget.hostId);
                     }
                   },
@@ -88,7 +88,7 @@ class _ParticipantsSectionState extends State<ParticipantsSection> {
                         style: TextStyle(color: Colors.white)))
                 : GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, RoutePaths.EventParticipants,
+                      Navigator.pushNamed(context, RoutePaths.eventParticipants,
                           arguments: widget.playersList);
                     },
                     child: SizedBox(

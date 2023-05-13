@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
-import 'package:playrr_app/components/SecondaryAppBar.dart';
+import 'package:playrr_app/components/navigation_bar.dart';
+import 'package:playrr_app/components/secondary_appbar.dart';
 import 'package:playrr_app/screens/messages/components/messages_body.dart';
 
 class MessagesPage extends StatefulWidget {

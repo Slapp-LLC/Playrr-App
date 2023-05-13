@@ -18,49 +18,49 @@ import 'package:playrr_app/utils/routePaths.utils.dart';
 class RouterGen {
   static Route<dynamic> generatedRoute(RouteSettings settings) {
     switch (settings.name) {
-      case (RoutePaths.Event):
+      case (RoutePaths.event):
         var data = settings.arguments as int;
         return MaterialPageRoute(
             builder: (_) => EventPage(
                   id: data,
                 ));
-      case (RoutePaths.EventParticipants):
+      case (RoutePaths.eventParticipants):
         var data = settings.arguments;
         return MaterialPageRoute(
             builder: (_) => EventParticipantsPage(usersList: data));
-      case (RoutePaths.User):
+      case (RoutePaths.user):
         var data = settings.arguments as int;
         return MaterialPageRoute(builder: (_) => UserPage(userId: data));
 
-      case (RoutePaths.StepTwoSignUp):
+      case (RoutePaths.stepTwoSignUp):
         return MaterialPageRoute(builder: (_) => const StepTwo());
 
-      case (RoutePaths.MyProfile):
+      case (RoutePaths.myProfile):
         return MaterialPageRoute(builder: (_) => const Home());
 
-      case (RoutePaths.SportPicking):
+      case (RoutePaths.sportsPicking):
         return MaterialPageRoute(builder: (_) => const SportPickingScreen());
 
-      case (RoutePaths.EditMyProfile):
+      case (RoutePaths.editProfile):
         return MaterialPageRoute(builder: (_) => const EditProfile());
 
-      case (RoutePaths.ChatUser):
+      case (RoutePaths.chatUser):
         var data = settings.arguments as int;
         return MaterialPageRoute(builder: (_) => Chat(userId: data));
 
-      case (RoutePaths.LevelPicking):
+      case (RoutePaths.levelPicking):
         return MaterialPageRoute(builder: (_) => const LevelPickingScreen());
 
-      case (RoutePaths.EventChat):
+      case (RoutePaths.eventChat):
         return MaterialPageRoute(builder: (_) => const EventChatScreen());
 
-      case (RoutePaths.Rules):
+      case (RoutePaths.rules):
         return MaterialPageRoute(builder: (_) => const RulesScreen());
 
-      case (RoutePaths.Settings):
+      case (RoutePaths.settings):
         return MaterialPageRoute(builder: (_) => const ConfigScreen());
 
-      case (RoutePaths.Questions):
+      case (RoutePaths.questions):
         return MaterialPageRoute(builder: (_) => const Questions());
 
       default:

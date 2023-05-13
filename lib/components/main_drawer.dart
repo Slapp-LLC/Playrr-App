@@ -77,7 +77,7 @@ class _MainDrawerState extends State<MainDrawer> {
                   fontWeight: FontWeight.w400),
             ),
             onTap: () {
-              Navigator.pushNamed(context, RoutePaths.MyProfile);
+              Navigator.pushNamed(context, RoutePaths.myProfile);
             },
           ),
           ListTile(
@@ -89,7 +89,7 @@ class _MainDrawerState extends State<MainDrawer> {
                   fontWeight: FontWeight.w400),
             ),
             onTap: () {
-              Get.toNamed(RoutePaths.Settings);
+              Get.toNamed(RoutePaths.settings);
             },
           ),
           ListTile(
@@ -101,7 +101,7 @@ class _MainDrawerState extends State<MainDrawer> {
                   fontWeight: FontWeight.w400),
             ),
             onTap: () {
-              Get.toNamed(RoutePaths.Questions);
+              Get.toNamed(RoutePaths.questions);
             },
           ),
           ListTile(

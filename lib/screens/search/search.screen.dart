@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
-import 'package:playrr_app/components/SecondaryAppBar.dart';
+import 'package:playrr_app/components/navigation_bar.dart';
+import 'package:playrr_app/components/secondary_appbar.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

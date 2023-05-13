@@ -24,7 +24,7 @@ class AuthController extends GetxController {
           MyUserModel.fromJson(response.data['user'] as Map<String, dynamic>);
       _userProvider.updateUser(user);
       await tokenManager.storeToken(response.data['token']);
-      Get.offAllNamed(RoutePaths.Home);
+      Get.offAllNamed(RoutePaths.home);
     } on ApiError catch (e) {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);
@@ -89,7 +89,7 @@ class AuthController extends GetxController {
           MyUserModel.fromJson(response.data['user'] as Map<String, dynamic>);
       _userProvider.updateUser(user);
       await tokenManager.storeToken(response.data['token']);
-      Get.offAllNamed(RoutePaths.StepTwoSignUp);
+      Get.offAllNamed(RoutePaths.stepTwoSignUp);
       //Todo Implement futher logic
     } on ApiError catch (e) {
       ErrorHandlingService.instance
@@ -115,7 +115,7 @@ class AuthController extends GetxController {
       final String gender = _authProvider.gender.value;
       final int userId = _userProvider.user.id;
       await authService.setAgeAndGender(age, gender, userId);
-      Get.offAllNamed(RoutePaths.Home);
+      Get.offAllNamed(RoutePaths.home);
     } on ApiError catch (e) {
       ErrorHandlingService.instance
           .showError(e.message, statusCode: e.statusCode);

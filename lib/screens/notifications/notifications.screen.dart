@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:playrr_app/components/CustomBottomNavigationBar.dart';
+import 'package:playrr_app/components/navigation_bar.dart';
 import 'package:playrr_app/screens/notifications/components/notifications_body.dart';
 
 class NotificationPage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playrr_app/components/main_button.dart';
-import 'package:playrr_app/components/OuterLink.dart';
+import 'package:playrr_app/components/outer_link.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
 import 'package:playrr_app/screens/signup/steOneSignUp.screen.dart';
 

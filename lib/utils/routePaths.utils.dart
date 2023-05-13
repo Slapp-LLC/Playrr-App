@@ -1,16 +1,16 @@
 class RoutePaths {
-  static const Event = '/event';
-  static const EventParticipants = '/eventParticipants';
-  static const User = '/user';
-  static const StepTwoSignUp = '/signup/stepTwo';
-  static const MyProfile = '/myProfile';
-  static const SportPicking = '/sportPicking';
-  static const LevelPicking = '/levelPicking';
-  static const EditMyProfile = '/editMyProfile';
-  static const ChatUser = '/chatUser';
-  static const Home = '/home';
-  static const EventChat = '/eventChat';
-  static const Rules = '/rules';
-  static const Settings = '/settings';
-  static const Questions = '/questions';
+  static const event = '/event';
+  static const eventParticipants = '/eventParticipants';
+  static const user = '/user';
+  static const stepTwoSignUp = '/signup/stepTwo';
+  static const myProfile = '/myProfile';
+  static const sportsPicking = '/sportPicking';
+  static const levelPicking = '/levelPicking';
+  static const editProfile = '/editMyProfile';
+  static const chatUser = '/chatUser';
+  static const home = '/home';
+  static const eventChat = '/eventChat';
+  static const rules = '/rules';
+  static const settings = '/settings';
+  static const questions = '/questions';
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/components/SecondaryAppBar.dart';
+import 'package:playrr_app/components/secondary_appbar.dart';
 import 'package:playrr_app/screens/my_profile/components/body.dart';
 
 class MyUserProfile extends StatelessWidget {

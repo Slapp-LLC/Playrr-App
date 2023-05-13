@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/screens/sport_picking/components/SportCard.dart';
+import 'package:playrr_app/screens/sport_picking/components/sport_card.dart';
 
 class SportList extends StatefulWidget {
   final List sportData;

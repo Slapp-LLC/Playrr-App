@@ -10,7 +10,7 @@ class Rules extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, RoutePaths.Rules);
+        Navigator.pushNamed(context, RoutePaths.rules);
       },
       child: Container(
         decoration: const BoxDecoration(
