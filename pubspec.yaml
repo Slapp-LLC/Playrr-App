@@ -113,6 +113,8 @@ flutter:
     - assets/icons/CheckMark.svg
     - assets/icons/SadFace.svg
     - assets/icons/GoogleIcon.svg
+    - assets/icons/Level.svg
+    - assets/icons/Field.svg
     - assets/icons/SendMessageIcon.svg
     - assets/icons/Question.svg
     - assets/images/LandingBackground.png

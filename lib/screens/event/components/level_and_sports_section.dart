@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:playrr_app/constants.dart';
 
 class LevelAndSport extends StatefulWidget {
@@ -16,7 +17,7 @@ class _LevelAndSportState extends State<LevelAndSport> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 10),
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       decoration: BoxDecoration(
           border: Border.all(color: secondaryBackground, width: 2),
           borderRadius: BorderRadius.circular(20)),
@@ -24,37 +25,58 @@ class _LevelAndSportState extends State<LevelAndSport> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
             children: [
-              const Text(
-                "Deporte",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500),
-              ),
-              Text(
-                widget.sportName,
-                style: const TextStyle(color: bodyTextColor, fontSize: 18),
-              ),
+              SvgPicture.asset('assets/icons/Field.svg'),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Deporte",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      widget.sportName,
+                      style:
+                          const TextStyle(color: bodyTextColor, fontSize: 18),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
             children: [
-              const Text(
-                'Nivel',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500),
+              SvgPicture.asset(
+                'assets/icons/Level.svg',
+                width: 20,
               ),
-              Text(
-                widget.levelName,
-                style: const TextStyle(color: bodyTextColor, fontSize: 18),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Nivel',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      widget.levelName,
+                      style:
+                          const TextStyle(color: bodyTextColor, fontSize: 18),
+                    )
+                  ],
+                ),
               )
             ],
           )

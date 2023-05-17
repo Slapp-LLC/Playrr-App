@@ -147,7 +147,7 @@ class _EventBodyState extends State<EventBody> {
                         price: currentEvent.price,
                         eventId: currentEvent.id,
                       ),
-                    )
+                    ),
                   ],
                 ),
               );

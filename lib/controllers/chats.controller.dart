@@ -16,10 +16,8 @@ class ChatController extends GetxController {
       final userId = _userProvider.user.id;
       dio.Response myChatsResponse = await _chatService.getMyChats(userId);
       List<dynamic> chatListJson = myChatsResponse.data;
-      print(chatListJson);
       List<ChatModel> chatList =
           chatListJson.map((chatJson) => ChatModel.fromJson(chatJson)).toList();
-      print(chatListJson);
       _chatProvider.setChats(chatList);
       return true;
     } on ApiError catch (e) {
