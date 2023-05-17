@@ -11,7 +11,7 @@ class QuestionsBody extends StatefulWidget {
 }
 
 class _QuestionsBodyState extends State<QuestionsBody> {
-  List<Item> data = generateItems(10); // generate 10 questions
+  List<Item> data = generateItems(); // generate 10 questions
 
   @override
   Widget build(BuildContext context) {
