@@ -21,14 +21,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   UserProvider userProvider = Get.find<UserProvider>();
   final eventsController = Get.find<EventsController>();
-
   final int _selectedIndex = 0;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     eventsController.getRecomendedEvents();
-    LocationService.instance.getCurrentLocation();
+    LocationService.instance.getCurrentCoordinate();
   }
 
   @override

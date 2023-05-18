@@ -10,6 +10,7 @@ import 'package:playrr_app/controllers/webSockets.controller.dart';
 import 'package:playrr_app/providers/auth.provider.dart';
 import 'package:playrr_app/providers/chat.provider.dart';
 import 'package:playrr_app/providers/events.provider.dart';
+import 'package:playrr_app/providers/location.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 import 'package:playrr_app/screens/home/home.screen.dart';
 import 'package:playrr_app/screens/login/login.screen.dart';
@@ -45,6 +46,7 @@ class _MyAppState extends State<MyApp> {
   final AuthProvider authProvider = Get.put(AuthProvider());
   final ChatProvider chatProvider = Get.put(ChatProvider());
   final ChatController chatController = Get.put(ChatController());
+  final LocationProvider locationProvider = Get.put(LocationProvider());
 
   @override
   Widget build(BuildContext context) {

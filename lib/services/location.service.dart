@@ -1,4 +1,7 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:get/get.dart';
+import 'package:playrr_app/providers/location.provider.dart';
 
 class LocationService {
   // Singleton pattern
@@ -8,14 +11,18 @@ class LocationService {
 
   // Instance of Geolocator
   final GeolocatorPlatform _geolocator = GeolocatorPlatform.instance;
-
+  final LocationProvider _locationProvider = Get.put(LocationProvider());
   // Get the current location
-  Future<Position?> getCurrentLocation() async {
+  Future<Position?> getCurrentCoordinate() async {
     try {
       final Position position = await _determinePosition();
+      List<Placemark> placemark =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+      Placemark place = placemark[0];
+      _locationProvider.setLocality(place.locality!);
       return position;
     } on Exception catch (e) {
-      print('Error getting location: $e');
+      print(e);
       return null;
     }
   }

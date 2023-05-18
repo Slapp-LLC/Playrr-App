@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/providers/location.provider.dart';
 import 'package:playrr_app/providers/user.provider.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -8,8 +10,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserProvider _userProvider = Get.put(UserProvider());
-
+    final UserProvider _userProvider = Get.find<UserProvider>();
+    final LocationProvider _locationProvider = Get.find<LocationProvider>();
     return AppBar(
       automaticallyImplyLeading: false,
       actions: <Widget>[Container()], // this will hide endDrawer hamburger icon
@@ -17,9 +19,20 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            'Playrr',
-            style: TextStyle(fontFamily: 'Medula One', fontSize: 30),
+          Row(
+            children: [
+              SvgPicture.asset(
+                'assets/icons/LocationGreenIcon.svg',
+                width: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: Text(
+                  _locationProvider.locality.value,
+                  style: const TextStyle(fontSize: 15),
+                ),
+              )
+            ],
           ),
           SizedBox(
               width: 52,

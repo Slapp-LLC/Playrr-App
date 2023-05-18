@@ -89,7 +89,7 @@ class YouAreComing extends StatelessWidget {
                       height: 200,
                       decoration: BoxDecoration(
                           color: Colors.black,
-                          border: Border.all(color: bodyTextColor),
+                          border: Border.all(color: secondaryBackground),
                           borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(50),
                               topRight: Radius.circular(50))),
@@ -100,8 +100,9 @@ class YouAreComing extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                    side: const BorderSide(
-                                        color: secondaryBackground,
+                                    side: BorderSide(
+                                        color:
+                                            greenPrimaryColor.withOpacity(0.50),
                                         width: 2.0), // Add this line
                                   ),
                                   minimumSize: const Size.fromHeight(50),
@@ -110,7 +111,7 @@ class YouAreComing extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.add,
-                                    color: Colors.white,
+                                    color: greenPrimaryColor,
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(left: 15),
