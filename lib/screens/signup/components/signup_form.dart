@@ -174,27 +174,28 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ],
           )),
-          Container(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Column(
-                children: [
-                  const Text(
-                    'Paso 1 de 4',
-                    style: TextStyle(color: bodyTextColor),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 7),
-                    child: MainButton(
-                      isLoading: _isLoading,
-                      text: 'Siguiente',
-                      onPressed: () {
-                        _submitForm();
-                      },
-                      isPrimary: true,
-                    ),
-                  )
-                ],
-              ))
+          SafeArea(
+              child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Paso 1 de 4',
+                        style: TextStyle(color: bodyTextColor),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 7),
+                        child: MainButton(
+                          isLoading: _isLoading,
+                          text: 'Siguiente',
+                          onPressed: () {
+                            _submitForm();
+                          },
+                          isPrimary: true,
+                        ),
+                      )
+                    ],
+                  )))
         ],
       ),
     );
