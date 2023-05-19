@@ -9,7 +9,7 @@ class WebSocketService {
   void connect(Function(String) onMessageReceived) async {
     final token = await tokenManager.getToken();
     _socket =
-        IO.io('http://192.168.0.13:3000/?token=${token}', <String, dynamic>{
+        IO.io('http://192.168.0.13:3000/?token=$token', <String, dynamic>{
       'transports': ['websocket'],
     });
 
@@ -32,6 +32,6 @@ class WebSocketService {
   }
 
   void close() {
-    _socket?.disconnect();
+    _socket.disconnect();
   }
 }

@@ -10,8 +10,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserProvider _userProvider = Get.find<UserProvider>();
-    final LocationProvider _locationProvider = Get.find<LocationProvider>();
+    final UserProvider userProvider = Get.find<UserProvider>();
+    final LocationProvider locationProvider = Get.find<LocationProvider>();
     return AppBar(
       automaticallyImplyLeading: false,
       actions: <Widget>[Container()], // this will hide endDrawer hamburger icon
@@ -29,7 +29,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                 padding: const EdgeInsets.only(left: 5),
                 child: Obx(() {
                   return Text(
-                    _locationProvider.locality.value,
+                    locationProvider.locality.value,
                     style: const TextStyle(fontSize: 15),
                   );
                 }),
@@ -49,8 +49,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                     radius: 175,
                     child: CircleAvatar(
                       backgroundColor: secondaryBackground,
-                      backgroundImage: _userProvider.user.photoUrl != null
-                          ? NetworkImage(_userProvider.user.photoUrl!)
+                      backgroundImage: userProvider.user.photoUrl != null
+                          ? NetworkImage(userProvider.user.photoUrl!)
                           : Image.asset('assets/images/Avatar.png').image,
                       radius: 90,
                     ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/screens/chat/components/message_box.dart';
 
 class MessageList extends StatefulWidget {
@@ -19,7 +18,6 @@ class _MessageListState extends State<MessageList> {
           itemCount: 100,
           reverse: true,
           itemBuilder: (context, index) {
-            print(index);
             return MessageBox(
               date: 'Today',
               message: 'Hello',

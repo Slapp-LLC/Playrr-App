@@ -21,8 +21,7 @@ class LocationService {
       Placemark place = placemark[0];
       _locationProvider.setLocality(place.locality!);
       return position;
-    } on Exception catch (e) {
-      print(e);
+    } on Exception {
       return null;
     }
   }

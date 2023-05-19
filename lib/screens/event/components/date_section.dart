@@ -26,11 +26,11 @@ class _DateSectionState extends State<DateSection> {
 
   void _launchGoogleCalendar() async {
     //Todo make this dinamic
-    final String eventTitle = 'My Event';
-    final String location = '123 Main St, Anytown USA';
-    final DateTime startTime = DateTime.now().add(Duration(hours: 1));
-    final DateTime endTime = DateTime.now().add(Duration(hours: 2));
-    final String description = 'This is a description of my event.';
+    const String eventTitle = 'My Event';
+    const String location = '123 Main St, Anytown USA';
+    final DateTime startTime = DateTime.now().add(const Duration(hours: 1));
+    final DateTime endTime = DateTime.now().add(const Duration(hours: 2));
+    const String description = 'This is a description of my event.';
 
     final String startDate = startTime.toUtc().toString().replaceAll(' ', 'T');
     final String endDate = endTime.toUtc().toString().replaceAll(' ', 'T');

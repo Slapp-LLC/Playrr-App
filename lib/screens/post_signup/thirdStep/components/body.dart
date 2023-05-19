@@ -19,7 +19,7 @@ class _BodyState extends State<Body> {
   final AuthProvider authProvider = Get.find<AuthProvider>();
   final userController = Get.find<UserController>();
   final AuthController _authController = Get.find<AuthController>();
-  bool _isLoading = false;
+  final bool _isLoading = false;
   String selectedGender = '';
 
   void saveGender(value) {

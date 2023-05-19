@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/auth.controller.dart';
 import 'package:playrr_app/models/event.model.dart';
 import 'package:playrr_app/providers/events.provider.dart';
 import 'package:playrr_app/services/errorHandling.service.dart';
@@ -9,7 +12,7 @@ import 'package:playrr_app/utils/api_error.dart'; // Add an alias to the dio imp
 class EventsController extends GetxController {
   final EventsProvider _eventsProvider = Get.put(EventsProvider());
   final EventService _eventService = EventService.instance;
-
+  final AuthController _authController = Get.put(AuthController());
   Future<bool> getRecomendedEvents() async {
     try {
       dio.Response sportsResponse = await _eventService.getAllSports();
@@ -41,10 +44,37 @@ class EventsController extends GetxController {
   Future<bool> getAnEvent(int id) async {
     try {
       dio.Response eventResponse = await _eventService.getEvent(id);
-      print(eventResponse.data);
       Event currentEvent =
           Event.fromJson(eventResponse.data as Map<String, dynamic>);
       _eventsProvider.setCurrentEvent(currentEvent);
+      return true;
+    } on ApiError catch (e) {
+      ErrorHandlingService.instance
+          .showError(e.message, statusCode: e.statusCode);
+      return false;
+    } catch (e) {
+      printError(info: e.toString());
+      ErrorHandlingService.instance
+          .showError('Un error inesperado ha ocurrido');
+      return false;
+    }
+  }
+
+  Future<bool> joinEvent(int id) async {
+    try {
+      dio.Response res = await EventService.instance.joinEvent(id);
+      _authController.getCurrenUser();
+      getRecomendedEvents();
+      showDialog(
+          context: Get.context!,
+          builder: (BuildContext context) {
+            return Dialog(
+              child: Container(
+                  height: 200,
+                  color: secondaryBackground,
+                  child: Text('Hello')),
+            );
+          });
 
       return true;
     } on ApiError catch (e) {

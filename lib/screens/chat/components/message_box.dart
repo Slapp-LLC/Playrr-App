@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:playrr_app/components/avatar.dart';
 import 'package:playrr_app/constants.dart';
 
 class MessageBox extends StatefulWidget {
@@ -22,9 +21,9 @@ class _MessageBoxState extends State<MessageBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(vertical: 5),
         decoration: const BoxDecoration(),
-        child: widget.index % 2 == 0 ? UserMessage() : MyMessage());
+        child: widget.index % 2 == 0 ? const UserMessage() : const MyMessage());
   }
 }
 
@@ -118,6 +117,5 @@ class MyMessage extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

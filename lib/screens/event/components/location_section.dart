@@ -19,10 +19,10 @@ class _LocationSectionState extends State<LocationSection> {
   String? _mapStyle;
   GoogleMapController? _mapController;
   void _launchGoogleMaps() async {
-    final String coordinates = '37.7749,-122.4194';
+    const String coordinates = '37.7749,-122.4194';
 
-    final url =
-        'https://www.google.com/maps/search/?api=1&query=${coordinates}';
+    const url =
+        'https://www.google.com/maps/search/?api=1&query=$coordinates';
 
     final Uri urlFormatedd = Uri.parse(url);
     if (!await launchUrl(urlFormatedd)) {

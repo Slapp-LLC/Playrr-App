@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:get/get.dart';
 import 'package:playrr_app/constants.dart';
+import 'package:playrr_app/controllers/events.controller.dart';
+import 'package:playrr_app/providers/user.provider.dart';
+import 'package:playrr_app/screens/event/components/coming_bar.dart';
+import 'package:playrr_app/screens/event/components/join_bar.dart';
 
 class BottomBar extends StatefulWidget {
   final int price;
@@ -13,6 +17,41 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
+  final UserProvider _userProvider = Get.find<UserProvider>();
+  final EventsController _eventsController = Get.find<EventsController>();
+  bool _isLoading = false;
+  late bool _isAttending;
+
+  bool isAttending(int eventId) {
+    if (_userProvider.user.matches != null) {
+      for (var match in _userProvider.user.matches!) {
+        if (match['event']['id'] == eventId && match['status'] == 'attending') {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  Future<void> _onJoinEvent() async {
+    try {
+      await _eventsController.joinEvent(widget.eventId);
+      setState(() {
+        _isAttending = true;
+      });
+    } catch (e) {
+      setState(() {
+        _isAttending = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _isAttending = isAttending(widget.eventId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -26,7 +65,13 @@ class _BottomBarState extends State<BottomBar> {
               color: secondaryBackground,
               borderRadius: BorderRadius.circular(50)),
           //Todo make this conditional
-          child: YouAreComing(),
+          child: _isAttending
+              ? const ComingBar()
+              : JoinBar(
+                  price: widget.price,
+                  eventId: widget.eventId,
+                  onJoinEvent: _onJoinEvent,
+                ),
         ));
   }
 }
@@ -50,120 +95,6 @@ class NoSpotsBar extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
           ),
         )
-      ],
-    );
-  }
-}
-
-class YouAreComing extends StatelessWidget {
-  const YouAreComing({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Row(
-          children: [
-            SvgPicture.asset('assets/icons/CheckMark.svg'),
-            const Padding(
-              padding: EdgeInsets.only(
-                left: 10,
-              ),
-              child: Text(
-                'TU ASISTES A ESTE PARTIDO!',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
-              ),
-            )
-          ],
-        ),
-        IconButton(
-          onPressed: () {
-            showModalBottomSheet(
-                backgroundColor: Colors.transparent,
-                context: context,
-                builder: (BuildContext context) {
-                  return Container(
-                      padding: const EdgeInsets.all(30),
-                      height: 200,
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          border: Border.all(color: secondaryBackground),
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(50),
-                              topRight: Radius.circular(50))),
-                      child: Column(
-                        children: [
-                          ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    side: BorderSide(
-                                        color:
-                                            greenPrimaryColor.withOpacity(0.50),
-                                        width: 2.0), // Add this line
-                                  ),
-                                  minimumSize: const Size.fromHeight(50),
-                                  backgroundColor: Colors.black),
-                              child: const Row(
-                                children: [
-                                  Icon(
-                                    Icons.add,
-                                    color: greenPrimaryColor,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 15),
-                                    child: Text(
-                                      'Invitar a jugar',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  )
-                                ],
-                              )),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15),
-                            child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    minimumSize: const Size.fromHeight(50),
-                                    backgroundColor: errorColor),
-                                child: const Row(
-                                  children: [
-                                    Icon(
-                                      Icons
-                                          .exit_to_app, // Icon to signify 'exit' or 'leave'
-                                      color: Colors
-                                          .white, // Change this color as per your design
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 15),
-                                      child: Text(
-                                        'Abandonar el juego',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    )
-                                  ],
-                                )),
-                          )
-                        ],
-                      ));
-                });
-          },
-          icon: const Icon(
-            Icons.more_horiz,
-            size: 30,
-            color: bodyTextColor,
-          ),
-        ),
       ],
     );
   }
