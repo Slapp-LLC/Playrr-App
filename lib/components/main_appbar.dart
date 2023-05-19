@@ -27,10 +27,12 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 5),
-                child: Text(
-                  _locationProvider.locality.value,
-                  style: const TextStyle(fontSize: 15),
-                ),
+                child: Obx(() {
+                  return Text(
+                    _locationProvider.locality.value,
+                    style: const TextStyle(fontSize: 15),
+                  );
+                }),
               )
             ],
           ),

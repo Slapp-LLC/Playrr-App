@@ -4,6 +4,7 @@ class LocationProvider extends GetxController {
   var locality = ''.obs;
   var country = ''.obs;
   var latitude = ''.obs;
+
   var longitude = ''.obs;
 
   void setLocality(String value) {
