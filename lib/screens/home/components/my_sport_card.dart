@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
@@ -43,8 +44,8 @@ class _MySportCardState extends State<MySportCard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.network(
-                  widget.photoURl,
+                CachedNetworkImage(
+                  imageUrl: widget.photoURl,
                   width: 30,
                   height: 30,
                 ),
