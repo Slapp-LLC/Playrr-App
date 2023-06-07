@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playrr_app/components/navigation_bar.dart';
+import 'package:playrr_app/components/secondary_appbar.dart';
 import 'package:playrr_app/screens/notifications/components/notifications_body.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -15,16 +16,8 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('Notificationes'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: SvgPicture.asset('assets/icons/SecondaryBackButton.svg'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+      appBar: const SecondaryAppBar(
+        title: 'Notificaciones',
       ),
       body: const NotificationsBody(),
       bottomNavigationBar: CustomBottomNavigationBar(

@@ -5,7 +5,8 @@ import 'package:playrr_app/constants.dart';
 import 'package:playrr_app/providers/events.provider.dart';
 
 class PaymentCard extends StatefulWidget {
-  const PaymentCard({super.key});
+  final VoidCallback onJoinEvent;
+  const PaymentCard({super.key, required this.onJoinEvent});
 
   @override
   State<PaymentCard> createState() => _PaymentCardState();
@@ -13,6 +14,7 @@ class PaymentCard extends StatefulWidget {
 
 class _PaymentCardState extends State<PaymentCard> {
   final EventsProvider _eventsProvider = Get.find<EventsProvider>();
+  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
@@ -120,7 +122,17 @@ class _PaymentCardState extends State<PaymentCard> {
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: MainButton(
-                      text: 'Unirse', onPressed: () {}, isPrimary: true),
+                    text: 'Unirse',
+                    onPressed: () async {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      widget.onJoinEvent();
+                      Navigator.pop(context);
+                    },
+                    isPrimary: true,
+                    isLoading: _isLoading,
+                  ),
                 )
               ],
             )));

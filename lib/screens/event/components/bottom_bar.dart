@@ -40,6 +40,7 @@ class _BottomBarState extends State<BottomBar> {
         _isAttending = true;
       });
     } catch (e) {
+      print(e);
       setState(() {
         _isAttending = false;
       });

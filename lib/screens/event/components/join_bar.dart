@@ -22,7 +22,6 @@ class JoinBar extends StatefulWidget {
 
 class _JoinBarState extends State<JoinBar> {
   final EventsController _eventsController = Get.find<EventsController>();
-  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -62,29 +61,19 @@ class _JoinBarState extends State<JoinBar> {
               showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return const Dialog(
+                    return Dialog(
                       backgroundColor: Colors.transparent,
-                      child: PaymentCard(),
+                      child: PaymentCard(
+                        onJoinEvent: widget.onJoinEvent,
+                      ),
                     );
                   });
             },
-            child: _isLoading
-                ? const SizedBox(
-                    height: 15,
-                    width: 15,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-                      value: null, // set to null to use the default size
-                      strokeWidth: 2.0,
-                    ),
-                  )
-                : const Text(
-                    'Lets play',
-                    style: TextStyle(
-                        fontFamily: 'Bebas neue',
-                        color: Colors.black,
-                        fontSize: 25),
-                  ),
+            child: const Text(
+              'Lets play',
+              style: TextStyle(
+                  fontFamily: 'Bebas neue', color: Colors.black, fontSize: 25),
+            ),
           ),
         )
       ],
